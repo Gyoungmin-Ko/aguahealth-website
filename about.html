@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회사소개 | 아그와헬스</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .about-hero {
+            padding: 140px 0 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+        .ceo-section {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 60px;
+            align-items: start;
+            margin: 60px 0;
+        }
+        .ceo-photo {
+            width: 300px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .ceo-info h2 {
+            font-size: 32px;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+        }
+        .ceo-title {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 32px;
+        }
+        .ceo-bio {
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: 24px;
+        }
+        .credentials {
+            background: var(--bg-color);
+            padding: 24px;
+            border-radius: 12px;
+            margin-top: 24px;
+        }
+        .credentials h3 {
+            font-size: 20px;
+            margin-bottom: 16px;
+            color: var(--primary-color);
+        }
+        .credentials ul {
+            list-style: none;
+            padding: 0;
+        }
+        .credentials li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .credentials li:last-child {
+            border-bottom: none;
+        }
+        @media (max-width: 768px) {
+            .ceo-section {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .ceo-photo {
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation (동일) -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="index.html" class="logo">
+                    <img src="https://www.genspark.ai/api/files/s/OEXjjWnC?cache_control=3600" alt="Agua Health Logo" class="logo-img">
+                    <span class="logo-text">Agua Health</span>
+                </a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <span></span><span></span><span></span>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">홈</a></li>
+                    <li><a href="about.html" class="active">회사소개</a></li>
+                    <li class="dropdown">
+                        <a href="services.html">서비스</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="services/market-entry.html">시장진입전략</a></li>
+                            <li><a href="services/health-economics.html">건강경제성평가</a></li>
+                            <li><a href="services/regulatory.html">인허가지원</a></li>
+                            <li><a href="services/claims.html">요양급여비용청구</a></li>
+                            <li><a href="services/ai-solutions.html">AI솔루션</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="case-studies.html">성공사례</a></li>
+                    <li><a href="insights.html">인사이트</a></li>
+                    <li><a href="contact.html" class="btn-nav">문의하기</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="about-hero">
+        <div class="container">
+            <h1 style="font-size: 48px; margin-bottom: 16px;">아그와헬스를 소개합니다</h1>
+            <p style="font-size: 20px;">혁신 의약품과 의료기기의 성공적인 한국 시장 진입을 위한 전문 파트너</p>
+        </div>
+    </section>
+
+    <!-- CEO Section -->
+    <section style="padding: 80px 0;">
+        <div class="container">
+            <div class="ceo-section">
+                <img src="https://www.genspark.ai/api/files/s/OvqKbYZA" alt="고경민 대표" class="ceo-photo">
+                <div class="ceo-info">
+                    <h2>고경민 대표이사</h2>
+                    <p class="ceo-title">등록 약사 | 보건학 박사 | 전문 건강경제학자</p>
+                    <p class="ceo-bio">
+                        아그와헬스의 대표이사인 고경민 박사는 의약품과 의료기기의 인허가 및 건강보험 관리 분야에서 
+                        독보적인 전문성을 보유한 헬스케어 리더입니다. 등록 약사 자격과 고려대학교 공중보건학 박사 학위를 
+                        바탕으로, 전문 건강경제학자(Professional Health Economist)로서 50개 이상의 전문 컨설팅 서비스를 
+                        제공하고 있습니다.
+                    </p>
+                    <p class="ceo-bio">
+                        초기 계획 단계부터 인허가, 임상시험, 보험 등재, 사후관리에 이르기까지 헬스케어 제품 개발의 
+                        전체 로드맵을 제공하며, 경제성 평가와 가격 협상 전략을 통해 기업의 시장 접근성을 극대화합니다. 
+                        국내외 규제 환경 변화에 선제적으로 대응하며, 의료기술의 가치를 정의하고 입증하는 데 헌신하고 있습니다.
+                    </p>
+                    <div class="credentials">
+                        <h3>학력 및 경력</h3>
+                        <ul>
+                            <li>🎓 고려대학교 보건학 박사</li>
+                            <li>💊 등록 약사</li>
+                            <li>📊 전문 건강경제학자 (Professional Health Economist)</li>
+                            <li>💼 70+ 전문 컨설팅 서비스 제공</li>
+                            <li>🏆 과천시 창업지원센터 보육기업</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision & Mission -->
+    <section style="background: var(--bg-color); padding: 80px 0;">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">비전 & 미션</h2>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+                <div style="background: white; padding: 40px; border-radius: 16px;">
+                    <h3 style="font-size: 24px; margin-bottom: 16px; color: var(--primary-color);">비전</h3>
+                    <p>혁신 의료기술이 환자에게 빠르게 도달하도록 지원하여, 한국 헬스케어 산업의 글로벌 경쟁력을 강화합니다.</p>
+                </div>
+                <div style="background: white; padding: 40px; border-radius: 16px;">
+                    <h3 style="font-size: 24px; margin-bottom: 16px; color: var(--primary-color);">미션</h3>
+                    <p>데이터 기반 의사결정과 AI 기술을 활용하여, 고객의 시장 진입 성공률을 극대화하고 지속가능한 성장을 지원합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (동일) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <img src="https://www.genspark.ai/api/files/s/OEXjjWnC?cache_control=3600" alt="Agua Health Logo" class="footer-logo">
+                    <p class="footer-desc">혁신 의약품과 의료기기의<br>성공적인 한국 시장 진입 파트너</p>
+                </div>
+                <div class="footer-col">
+                    <h4>서비스</h4>
+                    <ul>
+                        <li><a href="services/market-entry.html">시장진입전략</a></li>
+                        <li><a href="services/health-economics.html">건강경제성평가</a></li>
+                        <li><a href="services/regulatory.html">인허가지원</a></li>
+                        <li><a href="services/claims.html">요양급여비용청구</a></li>
+                        <li><a href="services/ai-solutions.html">AI솔루션</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>회사</h4>
+                    <ul>
+                        <li><a href="about.html">회사소개</a></li>
+                        <li><a href="case-studies.html">성공사례</a></li>
+                        <li><a href="insights.html">인사이트</a></li>
+                        <li><a href="contact.html">문의하기</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>연락처</h4>
+                    <ul class="footer-contact">
+                        <li>📞 010-5435-2687</li>
+                        <li>✉️ gyoungmin.ko@agua-health.com</li>
+                        <li>📍 경기도 과천시 과천대로7길65 B동126</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Agua Health (아그와헬스). All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+</body>
+</html>
