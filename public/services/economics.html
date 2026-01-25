@@ -13,9 +13,10 @@
         <div class="container">
             <div class="nav-wrapper">
                 <a href="../index.html" class="logo">
-                    <img src="../로고만.png" alt="Agua Health Logo">
+                    <img src="/static/로고만.png" alt="Agua Health Logo" class="logo-img">
                     <span class="logo-text">아그와헬스</span>
                 </a>
+                
                 <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="메뉴 열기">
                     <span></span>
                     <span></span>
@@ -348,48 +349,57 @@
         </div>
     </section>
 
-    <!-- Footer -->
+        <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-about">
-                    <div class="footer-logo-img">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo-wrapper">
+                        <img src="/static/로고만.png" alt="Agua Health Logo" class="footer-logo-img">
                         <span class="footer-logo-text">아그와헬스</span>
-                        <img src="../로고만.png" alt="아그와헬스">
-                        <span class="logo-text">아그와헬스</span>
                     </div>
-                    <p>혁신 의약품과 의료기기의<br>성공적인 한국 시장 진입 파트너</p>
+                    <p class="footer-desc">
+                        혁신 의약품과 의료기기의<br>
+                        성공적인 한국 시장 진입 파트너
+                    </p>
                 </div>
-                <div class="footer-links">
+                
+                <div class="footer-col">
                     <h4>서비스</h4>
                     <ul>
-                        <li><a href="market-entry.html">시장진입전략</a></li>
-                        <li><a href="economics.html">경제성평가</a></li>
-                        <li><a href="regulatory.html">인허가지원</a></li>
-                        <li><a href="claims.html">요양급여비용청구</a></li>
+                        <li><a href="/services/market-entry.html">시장진입전략</a></li>
+                        <li><a href="/services/economics.html">경제성평가</a></li>
+                        <li><a href="/services/regulatory.html">인허가지원</a></li>
+                        <li><a href="/services/claims.html">요양급여비용청구</a></li>
                     </ul>
                 </div>
-                <div class="footer-links">
+                
+                <div class="footer-col">
                     <h4>회사</h4>
                     <ul>
-                        <li><a href="../about.html">회사소개</a></li>
-                        <li><a href="../ai-solutions.html">AI솔루션</a></li>
-                    <li><a href="../insights.html">인사이트</a></li>
-                        <li><a href="../contact.html">문의하기</a></li>
+                        <li><a href="/about.html">회사소개</a></li>
+                        <li><a href="/ai-solutions.html">AI솔루션</a></li>
+                        <li><a href="/insights.html">인사이트</a></li>
+                        <li><a href="/contact.html">문의하기</a></li>
                     </ul>
                 </div>
-                <div class="footer-contact">
+                
+                <div class="footer-col">
                     <h4>연락처</h4>
-                    <p>📞 010-5435-2687</p>
-                    <p>✉️ gyoungmin.ko@agua-health.com</p>
-                    <p>📍 경기도 과천시 과천대로7길65 B동126</p>
+                    <ul class="footer-contact">
+                        <li>📞 010-5435-2687</li>
+                        <li>✉️ gyoungmin.ko@agua-health.com</li>
+                        <li>📍 경기도 과천시 과천대로7길65 B동126</li>
+                    </ul>
                 </div>
             </div>
+            
             <div class="footer-bottom">
                 <p>&copy; 2026 아그와헬스. All rights reserved.</p>
             </div>
         </div>
     </footer>
+
 
     <script src="/static/js/main.js"></script>
 </body>
