@@ -35,29 +35,88 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Form Validation (for contact page)
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const company = document.getElementById('company').value;
-        const message = document.getElementById('message').value;
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.textContent;
         
-        if (!name || !email || !company || !message) {
+        // Disable button and show loading state
+        submitBtn.disabled = true;
+        submitBtn.textContent = '전송 중...';
+        
+        const formData = new FormData(contactForm);
+        const data = {
+            name: formData.get('name'),
+            email: formData.get('email'),
+            company: formData.get('company'),
+            phone: formData.get('phone'),
+            service: formData.get('service'),
+            message: formData.get('message')
+        };
+        
+        // Validation
+        if (!data.name || !data.email || !data.company || !data.message) {
             alert('모든 필수 항목을 입력해주세요.');
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
             return;
         }
         
         // Email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
+        if (!emailRegex.test(data.email)) {
             alert('올바른 이메일 주소를 입력해주세요.');
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
             return;
         }
         
-        // Success message
-        alert('문의가 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.');
-        contactForm.reset();
+        try {
+            // Send email using Formspree
+            const response = await fetch('https://formspree.io/f/xdkodkvg', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: data.name,
+                    email: data.email,
+                    company: data.company,
+                    phone: data.phone,
+                    service: data.service,
+                    message: data.message,
+                    _replyto: data.email,
+                    _subject: `[아그와헬스] ${data.company} - ${data.name}님의 상담 신청`
+                })
+            });
+            
+            if (response.ok) {
+                alert('✅ 문의가 성공적으로 접수되었습니다!\n\n24시간 내에 gyoungmin.ko@agua-health.com으로 연락드리겠습니다.');
+                contactForm.reset();
+            } else {
+                throw new Error('전송 실패');
+            }
+        } catch (error) {
+            // Fallback to mailto
+            const subject = encodeURIComponent(`[상담신청] ${data.company} - ${data.name}`);
+            const body = encodeURIComponent(`
+이름: ${data.name}
+회사명: ${data.company}
+이메일: ${data.email}
+연락처: ${data.phone}
+관심 서비스: ${data.service}
+
+상담 내용:
+${data.message}
+            `);
+            
+            window.location.href = `mailto:gyoungmin.ko@agua-health.com?subject=${subject}&body=${body}`;
+            alert('📧 이메일 클라이언트가 열립니다.\n\n또는 gyoungmin.ko@agua-health.com으로 직접 연락 주세요.');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+        }
     });
 }
 

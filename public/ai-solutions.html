@@ -4,437 +4,483 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI 솔루션 - 아그와헬스 | 헬스케어 마켓 액세스 자동화</title>
-    <meta name="description" content="AI와 빅데이터로 헬스케어 마켓 액세스를 자동화합니다. 청구 예측, 등재 성공률 예측, 정책 모니터링 등 지능형 솔루션 제공.">
+    <meta name="description" content="AI와 빅데이터로 헬스케어 마켓 액세스를 자동화합니다. 구독형 SaaS 플랫폼과 맞춤형 원타임 솔루션으로 귀사의 성공을 지원합니다.">
+    <meta name="keywords" content="AI 솔루션, 헬스케어 AI, 약가 예측, 등재 예측, 구독형 서비스, SaaS">
     <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .ai-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 140px 0 80px;
+            color: white;
+            text-align: center;
+        }
+        .ai-hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        .ai-hero p {
+            font-size: 20px;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .stat-number {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+        .stat-label {
+            color: var(--text-light);
+            font-size: 15px;
+        }
+        .solution-type-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 60px 0 40px;
+        }
+        .toggle-btn {
+            padding: 15px 40px;
+            border: 2px solid var(--primary-color);
+            background: white;
+            color: var(--primary-color);
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .toggle-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        .pricing-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            position: relative;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .pricing-card.featured {
+            border-color: var(--primary-color);
+            transform: scale(1.05);
+        }
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+        }
+        .plan-badge {
+            background: var(--primary-color);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+        .plan-name {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .plan-price {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+        .plan-price span {
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--text-light);
+        }
+        .plan-description {
+            color: var(--text-light);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .plan-features {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
+        }
+        .plan-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+        }
+        .plan-features li:before {
+            content: "✓";
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-right: 12px;
+            font-size: 18px;
+        }
+        .plan-cta {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .plan-cta:hover {
+            background: #0052a3;
+            transform: translateY(-2px);
+        }
+        .solution-features {
+            background: var(--bg-color);
+            padding: 80px 0;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 16px;
+            color: var(--primary-color);
+        }
+        .feature-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+        @media (max-width: 768px) {
+            .ai-hero h1 {
+                font-size: 32px;
+            }
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+            .toggle-btn {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
         <div class="container">
             <div class="nav-wrapper">
-                <a href="../index.html" class="logo">
-                    <img src="../로고만.png" alt="아그와헬스 Logo">
-                    <span>아그와헬스</span>
+                <a href="index.html" class="logo">
+                    <img src="/static/로고만.png" alt="Agua Health Logo" class="logo-img">
+                    <span class="logo-text">아그와헬스</span>
                 </a>
-                <button class="mobile-menu-toggle" aria-label="메뉴 열기">
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
                     <span></span>
                     <span></span>
                     <span></span>
                 </button>
-                <ul class="nav-menu">
-                    <li><a href="../index.html">홈</a></li>
-                    <li><a href="../about.html">회사소개</a></li>
-                    <li class="dropdown active">
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">홈</a></li>
+                    <li><a href="about.html">회사소개</a></li>
+                    <li class="dropdown">
                         <a href="#services">서비스</a>
                         <ul class="dropdown-menu">
-                            <li><a href="market-entry.html">시장진입전략</a></li>
-                            <li><a href="economics.html">경제성평가</a></li>
-                            <li><a href="regulatory.html">인허가지원</a></li>
-                            <li><a href="claims.html">요양급여비용청구</a></li>
-                            <li><a href="ai-solutions.html" class="active">AI 솔루션</a></li>
+                            <li><a href="services/market-entry.html">시장진입전략</a></li>
+                            <li><a href="services/economics.html">경제성평가</a></li>
+                            <li><a href="services/regulatory.html">인허가지원</a></li>
+                            <li><a href="services/claims.html">요양급여비용청구</a></li>
                         </ul>
                     </li>
-                    <li><a href="../case-studies.html">성공사례</a></li>
-                    <li><a href="../insights.html">인사이트</a></li>
-                    <li><a href="../contact.html">문의하기</a></li>
+                    <li><a href="ai-solutions.html" class="active">AI솔루션</a></li>
+                    <li><a href="insights.html">인사이트</a></li>
+                    <li><a href="contact.html" class="btn-nav">문의하기</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Service Hero -->
-    <section class="service-hero">
+    <!-- Hero Section -->
+    <section class="ai-hero">
         <div class="container">
-            <div class="service-hero-content">
-                <h1>AI 솔루션</h1>
-                <p class="service-intro">인공지능과 빅데이터로 헬스케어 마켓 액세스를 자동화하고<br>의사결정을 최적화합니다</p>
-                <a href="../contact.html" class="btn btn-primary">무료 상담 신청</a>
-            </div>
+            <h1>AI 기반 헬스케어 마켓 액세스 솔루션</h1>
+            <p>2,000+ 심사 데이터를 학습한 AI로 등재 성공률을 예측하고,<br>귀사의 시장 진입 전략을 최적화합니다</p>
+            <a href="contact.html" class="btn btn-white btn-lg">무료 데모 신청</a>
         </div>
     </section>
 
-    <!-- Service Overview -->
-    <section class="service-overview">
+    <!-- Stats -->
+    <section style="padding: 60px 0;">
         <div class="container">
-            <div class="overview-grid">
-                <div class="overview-text">
-                    <h2>AI로 헬스케어 마켓 액세스를 혁신합니다</h2>
-                    <p>복잡한 규제 환경과 방대한 심사 데이터를 <strong>인공지능과 머신러닝</strong>으로 분석하여, 등재 성공률 예측, 청구 반송 예방, 정책 변화 모니터링 등을 자동화합니다.</p>
-                    <p>아그와헬스는 <strong>2,000+ 심사 사례 빅데이터</strong>를 기반으로 학습한 AI 모델을 통해 정확한 예측과 최적의 전략을 제시합니다.</p>
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="stat-number">2,000+</div>
+                    <div class="stat-label">학습 데이터 (심사 사례)</div>
                 </div>
-                <div class="overview-stats">
-                    <div class="stat-box">
-                        <div class="stat-number">2,000+</div>
-                        <div class="stat-label">학습 데이터 (심사 사례)</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-number">92%</div>
-                        <div class="stat-label">예측 정확도</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-number">80%</div>
-                        <div class="stat-label">업무 시간 절감</div>
-                    </div>
+                <div class="stat-card">
+                    <div class="stat-number">92%</div>
+                    <div class="stat-label">예측 정확도</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">80%</div>
+                    <div class="stat-label">업무 시간 절감</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">실시간 모니터링</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- AI Solutions Grid -->
-    <section class="ai-solutions-grid">
+    <!-- Pricing Section -->
+    <section style="padding: 80px 0; background: var(--bg-color);">
         <div class="container">
-            <h2>AI 기반 솔루션</h2>
-            <div class="solutions-list">
-                <div class="ai-solution-card">
-                    <div class="solution-header">
-                        <div class="solution-icon">🎯</div>
-                        <h3>급여등재 성공률 예측</h3>
-                    </div>
-                    <div class="solution-content">
-                        <p>신약·의료기기의 건강보험 등재 성공 확률을 사전에 예측하고 최적 전략을 제시합니다.</p>
-                        <h4>주요 기능</h4>
-                        <ul>
-                            <li>ICER 기준 대비 등재 가능성 예측 (정확도 92%)</li>
-                            <li>유사 품목 등재 사례 자동 매칭</li>
-                            <li>위험분담제 필요 여부 판단</li>
-                            <li>최적 제출 시기 및 전략 권고</li>
-                        </ul>
-                        <div class="solution-tech">
-                            <strong>기술:</strong> Random Forest, Gradient Boosting, ICER 회귀 분석
-                        </div>
-                    </div>
-                </div>
-
-                <div class="ai-solution-card">
-                    <div class="solution-header">
-                        <div class="solution-icon">⚠️</div>
-                        <h3>청구 반송 예측 시스템</h3>
-                    </div>
-                    <div class="solution-content">
-                        <p>급여 청구 제출 전 AI가 반송 가능성을 검토하고 오류를 사전 차단합니다.</p>
-                        <h4>주요 기능</h4>
-                        <ul>
-                            <li>청구 항목별 반송 위험도 점수 (0-100)</li>
-                            <li>요양급여기준 위배 여부 자동 검출</li>
-                            <li>과거 유사 반송 사례 제시</li>
-                            <li>개선 권고사항 및 수정안 제안</li>
-                        </ul>
-                        <div class="solution-tech">
-                            <strong>기술:</strong> Deep Learning (LSTM), NLP (자연어 처리), 규칙 기반 엔진
-                        </div>
-                    </div>
-                </div>
-
-                <div class="ai-solution-card">
-                    <div class="solution-header">
-                        <div class="solution-icon">📊</div>
-                        <h3>약가 예측 모델</h3>
-                    </div>
-                    <div class="solution-content">
-                        <p>신약의 예상 약가와 협상 가능 범위를 AI가 예측하여 협상 전략을 지원합니다.</p>
-                        <h4>주요 기능</h4>
-                        <ul>
-                            <li>유사 약제 약가 분석 및 예측</li>
-                            <li>ICER 기반 최적 약가 범위 산출</li>
-                            <li>경쟁 제품 대비 가격 경쟁력 분석</li>
-                            <li>위험분담제 적용 시 약가 시뮬레이션</li>
-                        </ul>
-                        <div class="solution-tech">
-                            <strong>기술:</strong> 회귀 분석, 가격 최적화 알고리즘, Monte Carlo Simulation
-                        </div>
-                    </div>
-                </div>
-
-                <div class="ai-solution-card">
-                    <div class="solution-header">
-                        <div class="solution-icon">🔍</div>
-                        <h3>정책 변화 자동 모니터링</h3>
-                    </div>
-                    <div class="solution-content">
-                        <p>심평원, 복지부, 식약처 등의 정책 변화를 AI가 자동으로 추적하고 영향을 분석합니다.</p>
-                        <h4>주요 기능</h4>
-                        <ul>
-                            <li>규제 기관 고시·공고 자동 수집</li>
-                            <li>중요 정책 변화 알림 (이메일/SMS)</li>
-                            <li>귀사 제품에 미치는 영향 자동 분석</li>
-                            <li>대응 전략 권고 및 실행 가이드</li>
-                        </ul>
-                        <div class="solution-tech">
-                            <strong>기술:</strong> Web Scraping, NLP, 키워드 매칭, 감정 분석
-                        </div>
-                    </div>
-                </div>
-
-                <div class="ai-solution-card">
-                    <div class="solution-header">
-                        <div class="solution-icon">💡</div>
-                        <h3>경제성평가 자동화</h3>
-                    </div>
-                    <div class="solution-content">
-                        <p>복잡한 경제성평가 모델 구축을 AI가 지원하여 분석 시간을 80% 단축합니다.</p>
-                        <h4>주요 기능</h4>
-                        <ul>
-                            <li>임상 데이터 기반 자동 모델 구축</li>
-                            <li>ICER 및 예산영향분석 자동 산출</li>
-                            <li>Sensitivity Analysis 자동 실행</li>
-                            <li>보고서 자동 생성 (초안)</li>
-                        </ul>
-                        <div class="solution-tech">
-                            <strong>기술:</strong> Markov Modeling Automation, 통계 분석, 보고서 생성 엔진
-                        </div>
-                    </div>
-                </div>
-
-                <div class="ai-solution-card">
-                    <div class="solution-header">
-                        <div class="solution-icon">🗣️</div>
-                        <h3>AI 챗봇 컨설턴트</h3>
-                    </div>
-                    <div class="solution-content">
-                        <p>24/7 운영되는 AI 챗봇이 급여등재, 청구, 인허가 등의 질문에 즉시 답변합니다.</p>
-                        <h4>주요 기능</h4>
-                        <ul>
-                            <li>급여기준 및 심사 기준 즉시 검색</li>
-                            <li>유사 사례 및 판례 자동 제공</li>
-                            <li>필수 제출 서류 체크리스트 생성</li>
-                            <li>복잡한 규제 질문에 대한 전문가 수준 답변</li>
-                        </ul>
-                        <div class="solution-tech">
-                            <strong>기술:</strong> Large Language Model (LLM), RAG (Retrieval-Augmented Generation)
-                        </div>
-                    </div>
-                </div>
+            <div class="section-header">
+                <h2 class="section-title">솔루션 플랜</h2>
+                <p class="section-subtitle">귀사의 니즈에 맞는 최적의 솔루션을 선택하세요</p>
             </div>
-        </div>
-    </section>
 
-    <!-- Technology Stack -->
-    <section class="tech-stack">
-        <div class="container">
-            <h2>기술 스택</h2>
-            <div class="tech-grid">
-                <div class="tech-card">
-                    <h3>🧠 Machine Learning</h3>
-                    <p>Random Forest, XGBoost, LSTM, Neural Networks</p>
-                </div>
-                <div class="tech-card">
-                    <h3>📊 데이터 분석</h3>
-                    <p>Python (Pandas, NumPy), R, SQL, Excel VBA</p>
-                </div>
-                <div class="tech-card">
-                    <h3>💬 NLP</h3>
-                    <p>GPT-4, BERT, 한국어 형태소 분석, 의료 도메인 언어 모델</p>
-                </div>
-                <div class="tech-card">
-                    <h3>☁️ 클라우드</h3>
-                    <p>AWS (SageMaker, Lambda), Azure ML, Google Cloud</p>
-                </div>
+            <div class="solution-type-toggle">
+                <button class="toggle-btn active" onclick="showPricing('subscription')">구독형 (SaaS)</button>
+                <button class="toggle-btn" onclick="showPricing('onetime')">원타임 프로젝트</button>
             </div>
-        </div>
-    </section>
 
-    <!-- Use Cases -->
-    <section class="use-cases">
-        <div class="container">
-            <h2>실제 적용 사례</h2>
-            <div class="cases-grid">
-                <div class="case-card">
-                    <h3>제약사 A사: 청구 반송률 70% 감소</h3>
-                    <p><strong>도입 전:</strong> 반송률 35%, 연간 재정 손실 5억원</p>
-                    <p><strong>도입 후:</strong> 반송률 12%, 연간 비용 절감 3억원</p>
-                    <div class="case-metric">
-                        <span class="metric-value">70%</span>
-                        <span class="metric-label">반송률 감소</span>
-                    </div>
-                </div>
-
-                <div class="case-card">
-                    <h3>바이오텍 B사: 등재 전략 최적화</h3>
-                    <p><strong>도입 전:</strong> 등재 실패 2회, 시장 진입 24개월 지연</p>
-                    <p><strong>도입 후:</strong> AI 예측 기반 전략으로 1회 만에 등재 성공</p>
-                    <div class="case-metric">
-                        <span class="metric-value">12개월</span>
-                        <span class="metric-label">시장 진입 기간 단축</span>
-                    </div>
-                </div>
-
-                <div class="case-card">
-                    <h3>의료기기 C사: 정책 모니터링 자동화</h3>
-                    <p><strong>도입 전:</strong> 수동 모니터링, 정책 변화 대응 지연</p>
-                    <p><strong>도입 후:</strong> 실시간 알림으로 즉시 대응, 담당자 업무 80% 감소</p>
-                    <div class="case-metric">
-                        <span class="metric-value">80%</span>
-                        <span class="metric-label">업무 시간 절감</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Benefits -->
-    <section class="benefits-section">
-        <div class="container">
-            <h2>AI 솔루션의 이점</h2>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon">⚡</div>
-                    <h3>업무 효율 향상</h3>
-                    <p>반복적인 분석 업무를 자동화하여 <strong>80% 시간 절감</strong></p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">🎯</div>
-                    <h3>정확도 극대화</h3>
-                    <p>2,000+ 사례 학습으로 <strong>92% 예측 정확도</strong> 달성</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">💰</div>
-                    <h3>비용 절감</h3>
-                    <p>청구 반송 감소 및 최적 전략으로 <strong>연간 3억원+ 절감</strong></p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">📈</div>
-                    <h3>성공률 향상</h3>
-                    <p>데이터 기반 의사결정으로 <strong>등재 성공률 95% 이상</strong></p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">🔔</div>
-                    <h3>실시간 대응</h3>
-                    <p>정책 변화를 <strong>24시간 모니터링</strong>하고 즉시 알림</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">🔒</div>
-                    <h3>데이터 보안</h3>
-                    <p>ISO 27001 인증 클라우드 환경에서 <strong>안전한 데이터 관리</strong></p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Implementation -->
-    <section class="implementation-section">
-        <div class="container">
-            <h2>도입 프로세스</h2>
-            <div class="implementation-timeline">
-                <div class="impl-step">
-                    <div class="step-number">1주</div>
-                    <h3>요구사항 분석</h3>
-                    <p>현황 진단 및 도입 목표 설정</p>
-                </div>
-                <div class="impl-step">
-                    <div class="step-number">2-4주</div>
-                    <h3>데이터 수집 & 모델 구축</h3>
-                    <p>고객사 데이터 학습 및 AI 모델 훈련</p>
-                </div>
-                <div class="impl-step">
-                    <div class="step-number">1주</div>
-                    <h3>파일럿 테스트</h3>
-                    <p>제한된 범위에서 시범 운영 및 검증</p>
-                </div>
-                <div class="impl-step">
-                    <div class="step-number">1주</div>
-                    <h3>정식 배포</h3>
-                    <p>전사 적용 및 담당자 교육</p>
-                </div>
-                <div class="impl-step">
-                    <div class="step-number">지속</div>
-                    <h3>모니터링 & 개선</h3>
-                    <p>성과 분석 및 모델 지속 최적화</p>
-                </div>
-            </div>
-            <p class="impl-note">평균 도입 기간: <strong>6-8주</strong> | 즉시 효과 확인 가능</p>
-        </div>
-    </section>
-
-    <!-- Pricing (optional) -->
-    <section class="pricing-section">
-        <div class="container">
-            <h2>도입 문의</h2>
-            <p class="pricing-intro">귀사의 규모와 요구사항에 맞는 맞춤형 솔루션을 제공합니다.</p>
-            <div class="pricing-options">
+            <!-- Subscription Pricing -->
+            <div id="subscription-pricing" class="pricing-grid">
                 <div class="pricing-card">
-                    <h3>스타터</h3>
-                    <p>중소 제약사·의료기기 기업</p>
-                    <ul>
-                        <li>청구 반송 예측 시스템</li>
-                        <li>정책 모니터링</li>
+                    <div class="plan-name">Starter</div>
+                    <div class="plan-price">₩500,000<span>/월</span></div>
+                    <div class="plan-description">스타트업과 중소기업을 위한 기본 AI 솔루션</div>
+                    <ul class="plan-features">
+                        <li>급여등재 성공률 예측</li>
+                        <li>월 100건 데이터 분석</li>
+                        <li>기본 대시보드</li>
+                        <li>이메일 지원</li>
                         <li>월간 리포트</li>
                     </ul>
-                    <a href="../contact.html" class="btn btn-secondary">문의하기</a>
+                    <button class="plan-cta" onclick="location.href='contact.html'">시작하기</button>
                 </div>
+
                 <div class="pricing-card featured">
-                    <div class="popular-badge">인기</div>
-                    <h3>프로페셔널</h3>
-                    <p>대형 제약사·다국적 기업</p>
-                    <ul>
-                        <li>전체 AI 솔루션 패키지</li>
-                        <li>맞춤형 모델 개발</li>
-                        <li>전담 컨설턴트</li>
-                        <li>24/7 기술 지원</li>
+                    <span class="plan-badge">인기</span>
+                    <div class="plan-name">Professional</div>
+                    <div class="plan-price">₩1,500,000<span>/월</span></div>
+                    <div class="plan-description">중견기업을 위한 전문 AI 플랫폼</div>
+                    <ul class="plan-features">
+                        <li>모든 Starter 기능</li>
+                        <li>월 500건 데이터 분석</li>
+                        <li>청구 반송 예방 AI</li>
+                        <li>정책 변화 실시간 알림</li>
+                        <li>맞춤형 대시보드</li>
+                        <li>전화/챗 지원</li>
+                        <li>주간 컨설팅</li>
                     </ul>
-                    <a href="../contact.html" class="btn btn-primary">문의하기</a>
+                    <button class="plan-cta" onclick="location.href='contact.html'">시작하기</button>
                 </div>
+
                 <div class="pricing-card">
-                    <h3>엔터프라이즈</h3>
-                    <p>그룹사·대규모 조직</p>
-                    <ul>
-                        <li>전사 통합 솔루션</li>
-                        <li>On-premise 배포</li>
-                        <li>API 연동</li>
-                        <li>커스터마이징</li>
+                    <div class="plan-name">Enterprise</div>
+                    <div class="plan-price">맞춤 견적</div>
+                    <div class="plan-description">대기업을 위한 완전 맞춤형 AI 솔루션</div>
+                    <ul class="plan-features">
+                        <li>모든 Professional 기능</li>
+                        <li>무제한 데이터 분석</li>
+                        <li>API 통합</li>
+                        <li>전용 AI 모델 구축</li>
+                        <li>온프레미스 배포 옵션</li>
+                        <li>전담 컨설턴트 배정</li>
+                        <li>24/7 우선 지원</li>
                     </ul>
-                    <a href="../contact.html" class="btn btn-secondary">문의하기</a>
+                    <button class="plan-cta" onclick="location.href='contact.html'">문의하기</button>
+                </div>
+            </div>
+
+            <!-- One-time Project Pricing -->
+            <div id="onetime-pricing" class="pricing-grid" style="display: none;">
+                <div class="pricing-card">
+                    <div class="plan-name">단일 프로젝트</div>
+                    <div class="plan-price">₩5,000,000<span>~</span></div>
+                    <div class="plan-description">특정 프로젝트를 위한 원타임 AI 분석</div>
+                    <ul class="plan-features">
+                        <li>특정 제품 등재 성공률 분석</li>
+                        <li>경쟁사 가격 전략 분석</li>
+                        <li>최적 제출 시기 권고</li>
+                        <li>상세 보고서 제공</li>
+                        <li>1회 전문가 미팅</li>
+                    </ul>
+                    <button class="plan-cta" onclick="location.href='contact.html'">문의하기</button>
+                </div>
+
+                <div class="pricing-card featured">
+                    <span class="plan-badge">추천</span>
+                    <div class="plan-name">맞춤형 AI 모델 개발</div>
+                    <div class="plan-price">₩15,000,000<span>~</span></div>
+                    <div class="plan-description">귀사 데이터로 학습한 전용 AI 모델 구축</div>
+                    <ul class="plan-features">
+                        <li>모든 단일 프로젝트 기능</li>
+                        <li>자사 데이터 통합 학습</li>
+                        <li>맞춤형 예측 모델 개발</li>
+                        <li>소스코드 제공 옵션</li>
+                        <li>3개월 유지보수</li>
+                        <li>직원 교육 세션</li>
+                    </ul>
+                    <button class="plan-cta" onclick="location.href='contact.html'">문의하기</button>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="plan-name">데이터 분석 컨설팅</div>
+                    <div class="plan-price">₩3,000,000<span>~</span></div>
+                    <div class="plan-description">AI 기반 데이터 분석 및 인사이트 도출</div>
+                    <ul class="plan-features">
+                        <li>기존 데이터 분석</li>
+                        <li>시장 트렌드 예측</li>
+                        <li>전략적 인사이트 제공</li>
+                        <li>시각화 대시보드</li>
+                        <li>실행 가능한 권고사항</li>
+                    </ul>
+                    <button class="plan-cta" onclick="location.href='contact.html'">문의하기</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
+    <!-- Features -->
+    <section class="solution-features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">핵심 기능</h2>
+                <p class="section-subtitle">AI 기술로 헬스케어 마켓 액세스를 혁신합니다</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>급여등재 성공률 예측</h3>
+                    <p>ICER 기준 대비 등재 가능성을 92% 정확도로 예측하고, 유사 품목 사례를 자동 매칭하여 최적 전략을 제시합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>약가 예측 시뮬레이션</h3>
+                    <p>최대 및 최소 약가를 예측하고, 협상 시나리오별 결과를 시뮬레이션하여 최적의 가격 전략을 수립합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚫</div>
+                    <h3>청구 반송 예방</h3>
+                    <p>과거 심사 패턴을 분석하여 반송 위험이 높은 청구를 사전에 식별하고, 즉각적인 개선 가이드를 제공합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>실시간 정책 모니터링</h3>
+                    <p>심평원, 복지부, 식약처의 정책 변화를 24/7 모니터링하고, 귀사에 영향을 미치는 변화를 즉시 알려드립니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>경쟁사 분석</h3>
+                    <p>경쟁 제품의 등재 현황, 가격 전략, 시장 점유율을 자동으로 추적하고 벤치마킹 인사이트를 제공합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>맞춤형 대시보드</h3>
+                    <p>중요한 KPI와 트렌드를 실시간으로 시각화하여, 데이터 기반 의사결정을 즉각적으로 수행할 수 있습니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
     <section class="cta-section">
         <div class="container">
-            <h2>AI로 헬스케어 마켓 액세스를 혁신하세요</h2>
-            <p>무료 데모를 통해 AI 솔루션의 성능을 직접 체험해 보세요</p>
-            <a href="../contact.html" class="btn btn-primary">무료 데모 신청하기</a>
+            <div class="cta-content">
+                <h2>AI로 귀사의 시장 진입 성공률을 높이세요</h2>
+                <p>무료 데모를 통해 AI 솔루션의 강력함을 직접 경험해보세요</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-primary btn-lg">무료 데모 신청</a>
+                    <a href="tel:010-5435-2687" class="btn btn-white btn-lg">📞 010-5435-2687</a>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-about">
-                    <div class="footer-logo-img">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo-wrapper">
+                        <img src="/static/로고만.png" alt="Agua Health Logo" class="footer-logo-img">
                         <span class="footer-logo-text">아그와헬스</span>
-                        <img src="../로고만.png" alt="아그와헬스">
-                        <span>아그와헬스</span>
                     </div>
-                    <p>혁신 의약품과 의료기기의<br>성공적인 한국 시장 진입 파트너</p>
+                    <p class="footer-desc">
+                        혁신 의약품과 의료기기의<br>
+                        성공적인 한국 시장 진입 파트너
+                    </p>
                 </div>
-                <div class="footer-links">
+                
+                <div class="footer-col">
                     <h4>서비스</h4>
                     <ul>
-                        <li><a href="market-entry.html">시장진입전략</a></li>
-                        <li><a href="economics.html">경제성평가</a></li>
-                        <li><a href="regulatory.html">인허가지원</a></li>
-                        <li><a href="claims.html">요양급여비용청구</a></li>
-                        <li><a href="ai-solutions.html">AI 솔루션</a></li>
+                        <li><a href="services/market-entry.html">시장진입전략</a></li>
+                        <li><a href="services/economics.html">경제성평가</a></li>
+                        <li><a href="services/regulatory.html">인허가지원</a></li>
+                        <li><a href="services/claims.html">요양급여비용청구</a></li>
                     </ul>
                 </div>
-                <div class="footer-links">
+                
+                <div class="footer-col">
                     <h4>회사</h4>
                     <ul>
-                        <li><a href="../about.html">회사소개</a></li>
-                        <li><a href="../case-studies.html">성공사례</a></li>
-                        <li><a href="../insights.html">인사이트</a></li>
-                        <li><a href="../contact.html">문의하기</a></li>
+                        <li><a href="about.html">회사소개</a></li>
+                        <li><a href="ai-solutions.html">AI솔루션</a></li>
+                        <li><a href="insights.html">인사이트</a></li>
+                        <li><a href="contact.html">문의하기</a></li>
                     </ul>
                 </div>
-                <div class="footer-contact">
+                
+                <div class="footer-col">
                     <h4>연락처</h4>
-                    <p>📞 010-5435-2687</p>
-                    <p>✉️ gyoungmin.ko@agua-health.com</p>
-                    <p>📍 경기도 과천시 과천대로7길65 B동126</p>
+                    <ul class="footer-contact">
+                        <li>📞 010-5435-2687</li>
+                        <li>✉️ gyoungmin.ko@agua-health.com</li>
+                        <li>📍 경기도 과천시 과천대로7길65 B동126</li>
+                    </ul>
                 </div>
             </div>
+            
             <div class="footer-bottom">
                 <p>&copy; 2026 아그와헬스. All rights reserved.</p>
             </div>
@@ -442,5 +488,24 @@
     </footer>
 
     <script src="/static/js/main.js"></script>
+    <script>
+        function showPricing(type) {
+            const subscriptionPricing = document.getElementById('subscription-pricing');
+            const onetimePricing = document.getElementById('onetime-pricing');
+            const buttons = document.querySelectorAll('.toggle-btn');
+            
+            if (type === 'subscription') {
+                subscriptionPricing.style.display = 'grid';
+                onetimePricing.style.display = 'none';
+                buttons[0].classList.add('active');
+                buttons[1].classList.remove('active');
+            } else {
+                subscriptionPricing.style.display = 'none';
+                onetimePricing.style.display = 'grid';
+                buttons[0].classList.remove('active');
+                buttons[1].classList.add('active');
+            }
+        }
+    </script>
 </body>
 </html>
