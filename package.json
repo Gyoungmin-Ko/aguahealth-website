@@ -1,0 +1,33 @@
+{
+  "name": "aguahealth-website",
+  "version": "1.0.0",
+  "description": "아그와헬스 - 혁신 의약품과 의료기기의 성공적인 한국 시장 진입 파트너",
+  "type": "module",
+  "scripts": {
+    "dev": "python3 -m http.server 3000 --directory dist",
+    "dev:sandbox": "wrangler pages dev dist --ip 0.0.0.0 --port 3000",
+    "build": "cp -r public/* dist/",
+    "preview": "wrangler pages dev dist",
+    "deploy": "npm run build && wrangler pages deploy dist",
+    "deploy:prod": "npm run build && wrangler pages deploy dist --project-name aguahealth-website",
+    "clean-port": "fuser -k 3000/tcp 2>/dev/null || true",
+    "test": "curl http://localhost:3000",
+    "git:init": "git init && git add . && git commit -m 'Initial commit'",
+    "git:commit": "git add . && git commit -m",
+    "git:status": "git status",
+    "git:log": "git log --oneline"
+  },
+  "keywords": ["aguahealth", "healthcare", "pharma", "market-access", "cloudflare-pages"],
+  "author": "Gyoungmin Ko <gyoungmin.ko@agua-health.com>",
+  "license": "ISC",
+  "dependencies": {
+    "hono": "^4.0.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "4.20250705.0",
+    "@hono/vite-cloudflare-pages": "^0.4.2",
+    "vite": "^5.0.0",
+    "wrangler": "^3.78.0",
+    "typescript": "^5.0.0"
+  }
+}

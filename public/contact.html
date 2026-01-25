@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문의하기 - Agua Health | 헬스케어 마켓 액세스 전문 컨설팅</title>
+    <meta name="description" content="아그와헬스에 무료 상담을 신청하세요. 의약품·의료기기 시장진입 전략, 건강보험 등재, 약가산정 등 전문 컨설팅 서비스를 제공합니다.">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="index.html" class="logo">
+                    <img src="로고만.png" alt="Agua Health Logo" class="logo-img">
+                    <span class="logo-text">아그와헬스</span>
+                </a>
+                <button class="mobile-menu-toggle" aria-label="메뉴 열기">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="index.html">홈</a></li>
+                    <li><a href="about.html">회사소개</a></li>
+                    <li class="dropdown">
+                        <a href="services/market-entry.html">서비스</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="services/market-entry.html">시장진입전략</a></li>
+                            <li><a href="services/economics.html">경제성평가</a></li>
+                            <li><a href="services/regulatory.html">인허가지원</a></li>
+                            <li><a href="services/claims.html">요양급여비용청구</a></li>
+                            <li><a href="services/ai-solutions.html">AI 솔루션</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="case-studies.html">성공사례</a></li>
+                    <li><a href="insights.html">인사이트</a></li>
+                    <li><a href="contact.html" class="active">문의하기</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>무료 상담 신청</h1>
+            <p>혁신 의약품과 의료기기의 성공적인 한국 시장 진입을 위한 첫 걸음을 시작하세요</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Contact Form -->
+                <div class="contact-form-wrapper">
+                    <h2>상담 신청하기</h2>
+                    <p class="form-intro">아래 양식을 작성해 주시면 24시간 내에 연락드리겠습니다.</p>
+                    
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">이름 *</label>
+                                <input type="text" id="name" name="name" required placeholder="홍길동">
+                            </div>
+                            <div class="form-group">
+                                <label for="company">회사명 *</label>
+                                <input type="text" id="company" name="company" required placeholder="회사명을 입력하세요">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">이메일 *</label>
+                                <input type="email" id="email" name="email" required placeholder="example@company.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">연락처 *</label>
+                                <input type="tel" id="phone" name="phone" required placeholder="010-1234-5678">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="service">관심 서비스 *</label>
+                            <select id="service" name="service" required>
+                                <option value="">선택하세요</option>
+                                <option value="market-entry">시장진입전략</option>
+                                <option value="economics">경제성평가</option>
+                                <option value="regulatory">인허가지원</option>
+                                <option value="claims">요양급여비용청구</option>
+                                <option value="ai-solutions">AI 솔루션</option>
+                                <option value="other">기타</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">상담 내용 *</label>
+                            <textarea id="message" name="message" rows="6" required placeholder="프로젝트 개요, 예산, 일정 등 상담하실 내용을 자유롭게 작성해 주세요."></textarea>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <label>
+                                <input type="checkbox" name="privacy" required>
+                                <span>개인정보 수집 및 이용에 동의합니다 *</span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">무료 상담 신청하기</button>
+                    </form>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="contact-info-wrapper">
+                    <h2>연락처 정보</h2>
+                    
+                    <div class="contact-info-card">
+                        <div class="info-item">
+                            <div class="info-icon">📞</div>
+                            <div class="info-content">
+                                <h3>전화</h3>
+                                <a href="tel:010-5435-2687">010-5435-2687</a>
+                                <p class="info-note">평일 09:00 - 18:00</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">✉️</div>
+                            <div class="info-content">
+                                <h3>이메일</h3>
+                                <a href="mailto:gyoungmin.ko@agua-health.com">gyoungmin.ko@agua-health.com</a>
+                                <p class="info-note">24시간 이내 답변</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">📍</div>
+                            <div class="info-content">
+                                <h3>주소</h3>
+                                <p>경기도 과천시 과천대로7길65<br>B동 126호</p>
+                                <p class="info-note">과천시 창업지원센터</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="consultation-benefits">
+                        <h3>무료 상담 혜택</h3>
+                        <ul>
+                            <li>✓ 프로젝트 실행 가능성 분석</li>
+                            <li>✓ 예상 비용 및 일정 산정</li>
+                            <li>✓ 규제 요구사항 검토</li>
+                            <li>✓ 최적 전략 수립 방향 제시</li>
+                        </ul>
+                    </div>
+
+                    <div class="response-time">
+                        <h3>⏰ 신속한 대응</h3>
+                        <p>영업일 기준 <strong>24시간 이내</strong> 답변 드립니다</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2>자주 묻는 질문</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>상담 비용이 있나요?</h3>
+                    <p>초기 상담은 <strong>완전 무료</strong>입니다. 프로젝트 범위와 비용은 상담 후 투명하게 안내드립니다.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>어떤 기업과 협력하나요?</h3>
+                    <p>글로벌 제약사, 바이오텍, 의료기기 제조사, 스타트업 등 <strong>모든 규모의 기업</strong>과 협력합니다.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>프로젝트 기간은 얼마나 걸리나요?</h3>
+                    <p>서비스 종류에 따라 다르지만, 평균적으로 <strong>2-6개월</strong>이 소요됩니다. 긴급 프로젝트도 대응 가능합니다.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>외국 기업도 지원하나요?</h3>
+                    <p>네, <strong>한국 시장 진입을 원하는 모든 기업</strong>을 지원합니다. 영어 상담도 가능합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <img src="로고만.png" alt="Agua Health Logo">
+                        <span>아그와헬스</span>
+                    </div>
+                    <p>혁신 의약품과 의료기기의<br>성공적인 한국 시장 진입 파트너</p>
+                </div>
+                <div class="footer-links">
+                    <h4>서비스</h4>
+                    <ul>
+                        <li><a href="services/market-entry.html">시장진입전략</a></li>
+                        <li><a href="services/economics.html">경제성평가</a></li>
+                        <li><a href="services/regulatory.html">인허가지원</a></li>
+                        <li><a href="services/claims.html">요양급여비용청구</a></li>
+                        <li><a href="services/ai-solutions.html">AI 솔루션</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>회사</h4>
+                    <ul>
+                        <li><a href="about.html">회사소개</a></li>
+                        <li><a href="case-studies.html">성공사례</a></li>
+                        <li><a href="insights.html">인사이트</a></li>
+                        <li><a href="contact.html">문의하기</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>연락처</h4>
+                    <p>📞 010-5435-2687</p>
+                    <p>✉️ gyoungmin.ko@agua-health.com</p>
+                    <p>📍 경기도 과천시 과천대로7길65 B동126</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 아그와헬스. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

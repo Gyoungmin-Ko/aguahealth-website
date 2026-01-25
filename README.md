@@ -2,25 +2,43 @@
 
 혁신 의약품과 의료기기의 성공적인 한국 시장 진입 파트너
 
-## 📁 웹사이트 구조
+## 🌐 배포 URL
+
+- **샌드박스 개발**: https://3000-igrnq95kr41pe3q7tqa7i-0e616f0a.sandbox.novita.ai
+- **프로덕션** (예정): https://aguahealth-website.pages.dev
+- **도메인** (예정): https://agua-health.com
+
+## 📁 프로젝트 구조
 
 ```
 aguahealth-website/
-├── index.html              # 홈페이지
-├── about.html              # 회사소개
-├── contact.html            # 문의하기 (추가 필요)
-├── case-studies.html       # 성공사례 (추가 필요)
-├── insights.html           # 인사이트 (추가 필요)
-├── services/               # 서비스 상세 페이지 (추가 필요)
-├── css/
-│   └── style.css          # 메인 스타일시트
-├── js/
-│   └── main.js            # JavaScript
-└── README.md              # 이 파일
+├── public/                 # 소스 파일
+│   ├── static/
+│   │   ├── css/
+│   │   │   └── style.css
+│   │   ├── js/
+│   │   │   └── main.js
+│   │   └── 로고만.png
+│   ├── services/           # 서비스 상세 페이지
+│   │   ├── market-entry.html
+│   │   ├── economics.html
+│   │   ├── regulatory.html
+│   │   ├── claims.html
+│   │   └── ai-solutions.html
+│   ├── index.html          # 홈페이지
+│   ├── about.html          # 회사소개
+│   ├── contact.html        # 문의하기
+│   ├── case-studies.html   # 성공사례
+│   └── insights.html       # 인사이트
+├── dist/                   # 빌드 출력
+├── package.json
+├── wrangler.jsonc          # Cloudflare Pages 설정
+└── README.md
 ```
 
-## 🚀 완성된 페이지
+## ✨ 완성된 기능
 
+### 페이지
 ✅ **index.html** - 홈페이지
 - Hero 섹션
 - 신뢰 지표 (보건학 박사, 70+ 서비스, AI 예측, 98% 성공률)
@@ -31,122 +49,115 @@ aguahealth-website/
 - 푸터
 
 ✅ **about.html** - 회사소개
-- 고경민 대표 프로필 (실제 사진 포함)
+- 고경민 대표 프로필
 - 학력 및 경력
 - 비전 & 미션
 
-✅ **css/style.css** - 완전한 반응형 디자인
-- 네비게이션 (모바일 메뉴 포함)
-- 모든 섹션 스타일
-- 애니메이션 효과
-- 반응형 레이아웃
-
-✅ **js/main.js** - 인터랙션
-- 모바일 메뉴 토글
-- 스크롤 효과
-- 폼 검증
-- 스크롤 애니메이션
-
-## 📝 추가 작업 필요
-
-다음 페이지들은 기본 구조를 참고하여 추가하실 수 있습니다:
-
-### 1. contact.html (문의하기)
-- 문의 폼 (이름, 이메일, 회사명, 전화번호, 메시지)
+✅ **contact.html** - 문의하기
+- 문의 폼
 - 연락처 정보
-- 오시는 길 (Google Maps)
+- 오시는 길
 
-### 2. case-studies.html (성공사례)
-- 글로벌 제약사 A사 항암제 위험분담제 등재 사례
-- 프로젝트 개요, 도전과제, 솔루션, 결과
+✅ **case-studies.html** - 성공사례
+- 프로젝트 사례 목록
 
-### 3. insights.html (인사이트 블로그)
-- 2025년 경제성평가 ICER 결과 분석
-- 암질환심의위원회 심의결과
-- 치료재료 등재 가이드
-- 블로그 목록 페이지
+✅ **insights.html** - 인사이트
+- 블로그 포스트
 
-### 4. services/ 폴더 (5개 서비스 상세)
-- market-entry.html (시장진입전략)
-- health-economics.html (건강경제성평가)
-- regulatory.html (인허가지원)
-- claims.html (요양급여비용청구)
-- ai-solutions.html (AI솔루션)
+✅ **services/** - 5개 서비스 상세 페이지
+- 시장진입전략
+- 경제성평가
+- 인허가지원
+- 요양급여비용청구
+- AI솔루션
 
-## 🎨 디자인 가이드
+### 디자인
+✅ 완전한 반응형 디자인 (Desktop/Tablet/Mobile)
+✅ 네비게이션 (모바일 메뉴 포함)
+✅ 애니메이션 효과
+✅ SEO 최적화
 
-### 색상
-- Primary: #0066CC (파란색)
-- Secondary: #00B8A9 (청록색)
-- Text: #1A2332
-- Background: #F8F9FA
+## 🚀 개발 환경
 
-### 타이포그래피
-- Font: Noto Sans KR
-- Heading: 700 (Bold)
-- Body: 400 (Regular)
-
-## 📱 반응형
-
-- Desktop: 1200px+
-- Tablet: 768px - 1199px
-- Mobile: < 768px
-
-## 🔧 사용 방법
-
-### GitHub 업로드
-
-1. 모든 파일을 GitHub 저장소에 업로드
-2. Cloudflare Pages가 자동으로 배포
-3. agua-health.com 도메인 연결
-
-### 로컬 테스트
+### 로컬 개발
 
 ```bash
-# 간단한 HTTP 서버 실행
-python -m http.server 8000
-# 또는
-npx serve
+# 의존성 설치
+npm install
+
+# 개발 서버 시작
+npm run dev
+
+# 또는 PM2로 시작
+pm2 start ecosystem.config.cjs
+
+# 빌드
+npm run build
 ```
 
-브라우저에서 `http://localhost:8000` 접속
+### Cloudflare Pages 배포
+
+```bash
+# 프로덕션 배포
+npm run deploy:prod
+
+# 또는 수동으로
+npm run build
+npx wrangler pages deploy dist --project-name aguahealth-website
+```
+
+## 🎨 디자인 시스템
+
+### 색상
+- **Primary**: #0066CC (파란색)
+- **Secondary**: #00B8A9 (청록색)
+- **Text**: #1A2332
+- **Background**: #F8F9FA
+
+### 타이포그래피
+- **Font**: Noto Sans KR
+- **Heading**: 700 (Bold)
+- **Body**: 400 (Regular)
+
+### 반응형 브레이크포인트
+- **Desktop**: 1200px+
+- **Tablet**: 768px - 1199px
+- **Mobile**: < 768px
 
 ## 📞 연락처
 
+- **대표**: 고경민
 - **전화**: 010-5435-2687
 - **이메일**: gyoungmin.ko@agua-health.com
 - **주소**: 경기도 과천시 과천대로7길65 B동126
 
-## 🎯 SEO 최적화
+## 🛠️ 기술 스택
 
-모든 페이지에 포함된 요소:
-- ✅ Meta description
-- ✅ Meta keywords
-- ✅ Open Graph tags
-- ✅ Semantic HTML
-- ✅ Alt tags
-- ✅ Mobile-friendly
+- **Frontend**: HTML5, CSS3, JavaScript
+- **Fonts**: Noto Sans KR (Google Fonts)
+- **Deployment**: Cloudflare Pages
+- **Version Control**: Git, GitHub
+- **Dev Server**: Python SimpleHTTPServer / PM2
 
-## 📊 다음 단계
+## 📋 배포 체크리스트
 
-1. **나머지 페이지 완성**
-   - Contact, Case Studies, Insights 페이지
-   - 5개 서비스 상세 페이지
+- [x] 정적 파일 구조 재구성
+- [x] 경로 수정 (/static/*)
+- [x] 반응형 디자인 적용
+- [x] SEO 메타태그 추가
+- [ ] Cloudflare Pages 배포
+- [ ] 커스텀 도메인 연결 (agua-health.com)
+- [ ] Google Analytics 설치
+- [ ] 문의 폼 이메일 연동
 
-2. **콘텐츠 추가**
-   - 블로그 포스트 작성
-   - 성공 사례 업데이트
-   - 서비스 상세 설명
+## 📝 업데이트 로그
 
-3. **기능 추가**
-   - 문의 폼 이메일 연동
-   - Google Analytics 설치
-   - 챗봇 통합 (선택사항)
-
-4. **SEO 작업**
-   - Google Search Console 등록
-   - Sitemap 제출
-   - 백링크 구축
+### 2026-01-25
+- ✅ GitHub 레포지토리 연동
+- ✅ 정적 사이트 구조로 재구성
+- ✅ 모든 HTML 파일 경로 수정
+- ✅ 로컬 개발 서버 설정 (PM2)
+- ✅ Cloudflare Pages 배포 준비 완료
 
 ---
 
