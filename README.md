@@ -4,9 +4,61 @@
 
 ## 🌐 배포 URL
 
-- **샌드박스 개발**: https://3000-igrnq95kr41pe3q7tqa7i-0e616f0a.sandbox.novita.ai
-- **프로덕션** (예정): https://aguahealth-website.pages.dev
-- **도메인** (예정): https://agua-health.com
+- **프로덕션**: https://aguahealth-website.pages.dev
+- **커스텀 도메인** (예정): https://agua-health.com
+- **GitHub**: https://github.com/Gyoungmin-Ko/aguahealth-website
+
+## ✨ 주요 기능
+
+### 완성된 페이지
+✅ **홈페이지** (`index.html`)
+- Hero 섹션
+- 신뢰 지표 (보건학 박사, 70+ 서비스, AI 예측, 98% 성공률)
+- 5개 핵심 서비스 소개
+- 4단계 컨설팅 프로세스
+- 최신 인사이트 프리뷰
+- CTA 섹션
+
+✅ **회사소개** (`about.html`)
+- 고경민 대표이사 프로필 사진
+- 학력 및 경력
+- 비전 & 미션
+
+✅ **AI솔루션** (`ai-solutions.html`) - 핵심 서비스
+- 구독형 SaaS 플랜 (Starter, Professional, Enterprise)
+- 원타임 프로젝트 (단일 프로젝트, AI 모델 개발, 데이터 분석)
+- 가격 토글 기능
+- 6가지 핵심 AI 기능 소개
+
+✅ **서비스 상세 페이지** (4개)
+- 시장진입전략 (`services/market-entry.html`)
+- 경제성평가 (`services/economics.html`)
+- 인허가지원 (`services/regulatory.html`)
+- 요양급여비용청구 (`services/claims.html`)
+
+✅ **인사이트** (`insights.html`)
+- 블로그 포스트 (ICER 분석, 암질환심의위원회, 치료재료 등재)
+- 카테고리별 정리
+
+✅ **문의하기** (`contact.html`)
+- 이메일 연동 폼 (Formspree)
+- 자동 이메일 전송: gyoungmin.ko@agua-health.com
+- 연락처 정보
+- 상담 혜택 안내
+
+### 디자인 & UX
+✅ 완전한 반응형 디자인 (Desktop/Tablet/Mobile)
+✅ 네비게이션 (모바일 메뉴 포함)
+✅ Footer (로고 + 회사명)
+✅ 애니메이션 효과
+✅ IQVIA 스타일 전문 디자인
+
+### 기술 기능
+✅ 이메일 전송 (Formspree API)
+✅ 폼 검증 및 사용자 피드백
+✅ SEO 최적화 (sitemap.xml, robots.txt)
+✅ Open Graph 메타태그
+✅ 구조화된 데이터
 
 ## 📁 프로젝트 구조
 
@@ -18,64 +70,25 @@ aguahealth-website/
 │   │   │   └── style.css
 │   │   ├── js/
 │   │   │   └── main.js
-│   │   └── 로고만.png
+│   │   ├── 로고만.png
+│   │   └── ceo-profile.jpg
 │   ├── services/           # 서비스 상세 페이지
 │   │   ├── market-entry.html
 │   │   ├── economics.html
 │   │   ├── regulatory.html
-│   │   ├── claims.html
-│   │   └── ai-solutions.html
+│   │   └── claims.html
 │   ├── index.html          # 홈페이지
 │   ├── about.html          # 회사소개
+│   ├── ai-solutions.html   # AI솔루션 (핵심)
 │   ├── contact.html        # 문의하기
-│   ├── case-studies.html   # 성공사례
-│   └── insights.html       # 인사이트
+│   ├── insights.html       # 인사이트
+│   ├── sitemap.xml         # SEO 사이트맵
+│   └── robots.txt          # 검색엔진 크롤러 설정
 ├── dist/                   # 빌드 출력
 ├── package.json
 ├── wrangler.jsonc          # Cloudflare Pages 설정
 └── README.md
 ```
-
-## ✨ 완성된 기능
-
-### 페이지
-✅ **index.html** - 홈페이지
-- Hero 섹션
-- 신뢰 지표 (보건학 박사, 70+ 서비스, AI 예측, 98% 성공률)
-- 5개 핵심 서비스 소개
-- 4단계 컨설팅 프로세스
-- 최신 인사이트 프리뷰
-- CTA 섹션
-- 푸터
-
-✅ **about.html** - 회사소개
-- 고경민 대표 프로필
-- 학력 및 경력
-- 비전 & 미션
-
-✅ **contact.html** - 문의하기
-- 문의 폼
-- 연락처 정보
-- 오시는 길
-
-✅ **case-studies.html** - 성공사례
-- 프로젝트 사례 목록
-
-✅ **insights.html** - 인사이트
-- 블로그 포스트
-
-✅ **services/** - 5개 서비스 상세 페이지
-- 시장진입전략
-- 경제성평가
-- 인허가지원
-- 요양급여비용청구
-- AI솔루션
-
-### 디자인
-✅ 완전한 반응형 디자인 (Desktop/Tablet/Mobile)
-✅ 네비게이션 (모바일 메뉴 포함)
-✅ 애니메이션 효과
-✅ SEO 최적화
 
 ## 🚀 개발 환경
 
@@ -85,25 +98,24 @@ aguahealth-website/
 # 의존성 설치
 npm install
 
-# 개발 서버 시작
-npm run dev
-
-# 또는 PM2로 시작
+# 개발 서버 시작 (PM2)
 pm2 start ecosystem.config.cjs
 
 # 빌드
 npm run build
+
+# 포트 정리
+npm run clean-port
 ```
 
 ### Cloudflare Pages 배포
 
 ```bash
-# 프로덕션 배포
-npm run deploy:prod
+# 프로덕션 배포 (자동)
+git push origin main  # GitHub-Cloudflare 자동 연동
 
-# 또는 수동으로
-npm run build
-npx wrangler pages deploy dist --project-name aguahealth-website
+# 수동 배포
+npm run deploy:prod
 ```
 
 ## 🎨 디자인 시스템
@@ -126,38 +138,55 @@ npx wrangler pages deploy dist --project-name aguahealth-website
 
 ## 📞 연락처
 
-- **대표**: 고경민
+- **대표**: 고경민 대표이사
 - **전화**: 010-5435-2687
 - **이메일**: gyoungmin.ko@agua-health.com
 - **주소**: 경기도 과천시 과천대로7길65 B동126
+- **회사**: 과천시 창업지원센터 보육기업
 
 ## 🛠️ 기술 스택
 
 - **Frontend**: HTML5, CSS3, JavaScript
 - **Fonts**: Noto Sans KR (Google Fonts)
+- **Email Service**: Formspree
 - **Deployment**: Cloudflare Pages
 - **Version Control**: Git, GitHub
 - **Dev Server**: Python SimpleHTTPServer / PM2
 
-## 📋 배포 체크리스트
+## 📋 최근 업데이트 (2026-01-25)
 
-- [x] 정적 파일 구조 재구성
-- [x] 경로 수정 (/static/*)
-- [x] 반응형 디자인 적용
-- [x] SEO 메타태그 추가
-- [ ] Cloudflare Pages 배포
-- [ ] 커스텀 도메인 연결 (agua-health.com)
+### ✅ 완료된 작업
+1. **로고 이미지 경로 수정** - 모든 페이지에서 `/static/로고만.png` 경로 통일
+2. **네비게이션 구조 변경** - 성공사례 삭제, AI솔루션 메인 메뉴로 이동
+3. **Footer 디자인 개선** - 로고 + 회사명 형태로 통일
+4. **회사소개 CEO 사진 추가** - 대표이사 프로필 사진 업로드
+5. **문의하기 이메일 연동** - Formspree API 통합, gyoungmin.ko@agua-health.com
+6. **AI솔루션 페이지 재작성** - 구독형/원타임 가격 플랜, 전문 디자인
+7. **SEO 최적화** - sitemap.xml, robots.txt 생성
+
+### 🔜 향후 계획
 - [ ] Google Analytics 설치
-- [ ] 문의 폼 이메일 연동
+- [ ] 커스텀 도메인 연결 (agua-health.com)
+- [ ] 블로그 콘텐츠 지속 업데이트
+- [ ] 고객 성공사례 추가
+- [ ] 다국어 지원 (영어)
 
-## 📝 업데이트 로그
+## 📊 성능 & SEO
 
-### 2026-01-25
-- ✅ GitHub 레포지토리 연동
-- ✅ 정적 사이트 구조로 재구성
-- ✅ 모든 HTML 파일 경로 수정
-- ✅ 로컬 개발 서버 설정 (PM2)
-- ✅ Cloudflare Pages 배포 준비 완료
+- ✅ 완전 반응형 디자인
+- ✅ 모바일 최적화
+- ✅ SEO 메타태그 완비
+- ✅ Open Graph 태그
+- ✅ Sitemap & Robots.txt
+- ✅ 이미지 최적화
+- ✅ 빠른 로딩 속도
+
+## 🔐 보안
+
+- ✅ HTTPS 자동 (Cloudflare)
+- ✅ 폼 검증
+- ✅ XSS 방어
+- ✅ 안전한 이메일 전송
 
 ---
 
