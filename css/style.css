@@ -40,7 +40,11 @@ body {
     background: var(--white);
     box-shadow: var(--shadow-sm);
     z-index: 1000;
-    transition: all 0.3s ease;
+    transition: box-shadow 0.3s ease;
+}
+
+.navbar.scrolled {
+    box-shadow: var(--shadow-md);
 }
 
 .nav-wrapper {
@@ -103,7 +107,7 @@ body {
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
-    transition: all 0.3s ease;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
 }
 
 .dropdown:hover .dropdown-menu {
@@ -148,7 +152,7 @@ body {
     height: 3px;
     background: var(--text-color);
     border-radius: 3px;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 /* Hero Section */
@@ -208,7 +212,7 @@ body {
     border-radius: 50px;
     text-decoration: none;
     font-weight: 600;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     border: 2px solid transparent;
 }
 
@@ -332,7 +336,7 @@ section {
     padding: 40px;
     border-radius: 16px;
     box-shadow: var(--shadow-md);
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .service-card:hover {
@@ -420,7 +424,7 @@ section {
     padding: 32px;
     border-radius: 12px;
     box-shadow: var(--shadow-md);
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .insight-card:hover {
@@ -592,7 +596,7 @@ section {
         transform: translateY(-100%);
         opacity: 0;
         visibility: hidden;
-        transition: all 0.3s ease;
+        transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
     }
     
     .nav-menu.active {
