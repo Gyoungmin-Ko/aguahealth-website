@@ -1498,6 +1498,16 @@ section {
     background: white !important;
     color: #285BAB !important;
     border-color: white !important;
+    font-weight: 600;
+}
+
+/* Ensure filter buttons always have white text in default state */
+.insights-filters .filter-btn {
+    color: white !important;
+}
+
+.insights-filters .filter-btn:not(.active) {
+    color: white !important;
 }
 
 /* Contact Us Button */
