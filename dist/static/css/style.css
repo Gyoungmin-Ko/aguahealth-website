@@ -6,7 +6,7 @@
 }
 
 :root {
-    --primary-color: #0066CC;
+    --primary-color: #285BAB;
     --secondary-color: #00B8A9;
     --text-color: #1A2332;
     --text-light: #666;
@@ -171,7 +171,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #285BAB 0%, #1E4A8A 100%);
     z-index: -1;
 }
 
@@ -641,7 +641,7 @@ section {
 
 /* Service Pages Enhanced Styles */
 .service-hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #285BAB 0%, #1E4A8A 100%);
     padding: 140px 0 80px;
     color: white;
     text-align: center;
@@ -812,7 +812,7 @@ section {
 }
 
 .page-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #285BAB 0%, #1E4A8A 100%);
     padding: 140px 0 80px;
     color: white;
     text-align: center;
@@ -856,7 +856,7 @@ section {
 
 /* Insights Page Styles - IQVIA Style */
 .insights-hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #285BAB 0%, #1E4A8A 100%);
     color: white;
     padding: 100px 0 60px;
     text-align: center;
@@ -900,7 +900,7 @@ section {
 
 .filter-btn.active {
     background: white;
-    color: #667eea;
+    color: #285BAB;
     border-color: white;
 }
 
@@ -961,7 +961,7 @@ section {
 }
 
 .insight-badge {
-    background: #667eea;
+    background: #285BAB;
     color: white;
     padding: 6px 14px;
     border-radius: 20px;
@@ -993,7 +993,7 @@ section {
 }
 
 .insight-link {
-    color: #667eea;
+    color: #285BAB;
     font-weight: 600;
     text-decoration: none;
     display: inline-flex;
@@ -1008,7 +1008,7 @@ section {
 
 /* Newsletter Section - Adjusted Input Sizes */
 .newsletter-section {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #285BAB 0%, #1E4A8A 100%);
     padding: 80px 0;
 }
 
@@ -1065,7 +1065,7 @@ section {
     padding: 18px 32px; /* 구독하기 버튼 1pt 축소 (기존 19px -> 18px) */
     border: none;
     background: white;
-    color: #667eea;
+    color: #285BAB;
     font-weight: 700;
     cursor: pointer;
     border-radius: 12px;
@@ -1086,7 +1086,7 @@ section {
 
 /* Contact Modal Styles */
 .contact-btn {
-    background: #667eea;
+    background: #285BAB;
     color: white;
     border: none;
     padding: 10px 24px;
@@ -1097,7 +1097,7 @@ section {
 }
 
 .contact-btn:hover {
-    background: #5568d3;
+    background: #3D6FBF;
     transform: translateY(-2px);
 }
 
@@ -1189,7 +1189,7 @@ section {
 .modal input:focus,
 .modal textarea:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #285BAB;
 }
 
 .modal textarea {
@@ -1263,4 +1263,213 @@ section {
         margin: 10% 5%;
         padding: 30px 20px;
     }
+}
+
+/* Updated Insights Page Styles - Remove color boxes, improve readability */
+.insight-box .insight-image {
+    display: none; /* Hide colored background boxes */
+}
+
+.insight-box {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e9ecef;
+}
+
+.insight-badge {
+    background: #285BAB;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.filter-btn.active {
+    background: #285BAB;
+    color: white;
+    border-color: #285BAB;
+}
+
+/* Service Details - Consistent Box Design */
+.service-details {
+    background: #f8f9fa;
+    padding: 80px 0;
+}
+
+.services-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.service-item {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+}
+
+.service-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.service-item-header {
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 3px solid #285BAB;
+}
+
+.service-item-header h3 {
+    color: #2c3e50;
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.service-item-content p {
+    color: #6c757d;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.service-item-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.service-item-content ul li {
+    color: #495057;
+    line-height: 1.8;
+    padding: 8px 0;
+    padding-left: 28px;
+    position: relative;
+    font-size: 15px;
+}
+
+.service-item-content ul li:before {
+    content: "✓";
+    color: #285BAB;
+    font-weight: 700;
+    position: absolute;
+    left: 0;
+    font-size: 18px;
+}
+
+/* Key Deliverables Section */
+.deliverables-section {
+    background: white;
+    padding: 80px 0;
+}
+
+.deliverables-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.deliverable-card {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+    text-align: center;
+}
+
+.deliverable-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.deliverable-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.deliverable-card h3 {
+    color: #2c3e50;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.deliverable-card p {
+    color: #6c757d;
+    line-height: 1.7;
+    font-size: 15px;
+}
+
+/* Features Grid - Consistent with Service Items */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.feature-item {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+}
+
+.feature-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.feature-item h3 {
+    color: #2c3e50;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid #285BAB;
+}
+
+.feature-item p {
+    color: #6c757d;
+    line-height: 1.8;
+    font-size: 16px;
+}
+
+.feature-item ul {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 0 0;
+}
+
+.feature-item ul li {
+    color: #495057;
+    line-height: 1.8;
+    padding: 8px 0;
+    padding-left: 28px;
+    position: relative;
+    font-size: 15px;
+}
+
+.feature-item ul li:before {
+    content: "✓";
+    color: #285BAB;
+    font-weight: 700;
+    position: absolute;
+    left: 0;
+    font-size: 18px;
 }
