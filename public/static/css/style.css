@@ -1504,3 +1504,47 @@ section {
     background: #1E4A8A;
     color: white !important;
 }
+/* Fix filter buttons - ensure text visibility */
+.filter-btn {
+    padding: 12px 24px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    color: white !important;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.filter-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+    color: white !important;
+}
+
+.filter-btn.active {
+    background: white !important;
+    color: #285BAB !important;
+    border-color: white !important;
+}
+
+/* Fix newsletter subscribe button */
+.newsletter-form button {
+    padding: 18px 32px;
+    border: none;
+    background: white !important;
+    color: #285BAB !important;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.newsletter-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+    background: white !important;
+    color: #285BAB !important;
+}

@@ -229,7 +229,8 @@ if (modalContactForm) {
             const response = await fetch('https://formspree.io/f/xrbblvyl', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
                 },
                 body: JSON.stringify({
                     name: data.name,
@@ -242,27 +243,19 @@ if (modalContactForm) {
                 })
             });
             
+            const result = await response.json();
+            
             if (response.ok) {
-                alert('✅ 문의가 성공적으로 접수되었습니다!\n\n빠른 시일 내에 연락드리겠습니다.');
+                alert('✅ 문의가 성공적으로 접수되었습니다!\n\ngyoungmin.ko@agua-health.com으로 메일이 발송되었습니다.\n빠른 시일 내에 연락드리겠습니다.');
                 modalContactForm.reset();
                 closeContactModal();
             } else {
-                throw new Error('전송 실패');
+                console.error('Formspree error:', result);
+                alert('❌ 전송 중 오류가 발생했습니다.\n\n직접 gyoungmin.ko@agua-health.com으로 연락 주시거나,\n010-5435-2687로 전화 주세요.');
             }
         } catch (error) {
-            const subject = encodeURIComponent(`[Contact Us] ${data.name}`);
-            const body = encodeURIComponent(`
-이름: ${data.name}
-회사명: ${data.company}
-이메일: ${data.email}
-연락처: ${data.phone}
-
-문의 내용:
-${data.message}
-            `);
-            
-            window.location.href = `mailto:gyoungmin.ko@agua-health.com?subject=${subject}&body=${body}`;
-            alert('📧 이메일 클라이언트가 열립니다.');
+            console.error('Network error:', error);
+            alert('❌ 네트워크 오류가 발생했습니다.\n\n직접 gyoungmin.ko@agua-health.com으로 연락 주시거나,\n010-5435-2687로 전화 주세요.');
         } finally {
             submitBtn.disabled = false;
             submitBtn.textContent = originalBtnText;
