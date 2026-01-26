@@ -916,15 +916,11 @@ section {
 }
 
 .insight-image {
-    height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 48px;
+    display: none !important; /* Hide colored background boxes */
 }
 
 .insight-box.featured .insight-image {
-    height: 280px;
+    display: none !important;
 }
 
 .insight-content {
