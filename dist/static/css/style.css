@@ -162,7 +162,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 0;
+    padding-top: 80px;
     overflow: hidden;
 }
 
@@ -1521,4 +1521,168 @@ section {
     background: #1E4A8A;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(40, 91, 171, 0.3);
+}
+
+/* Enhanced Service Cards - Box Style */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.service-card {
+    background: white;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 1px solid #e0e0e0;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 30px rgba(40, 91, 171, 0.15);
+    border-color: var(--primary-color);
+}
+
+.service-card-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.service-card h3 {
+    color: var(--primary-color);
+    font-size: 22px;
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
+.service-card p {
+    color: var(--text-light);
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.service-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.service-card ul li {
+    color: var(--text-color);
+    line-height: 1.8;
+    padding-left: 24px;
+    position: relative;
+    margin-bottom: 12px;
+}
+
+.service-card ul li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* Deliverables Grid */
+.deliverables-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.deliverable-card {
+    background: white;
+    border-radius: 12px;
+    padding: 35px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 1px solid #e0e0e0;
+    text-align: center;
+}
+
+.deliverable-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 30px rgba(40, 91, 171, 0.15);
+}
+
+.deliverable-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.deliverable-card h3 {
+    color: var(--primary-color);
+    font-size: 20px;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.deliverable-card p {
+    color: var(--text-light);
+    line-height: 1.7;
+    font-size: 15px;
+}
+
+/* Features Grid for Support Services */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.feature-card {
+    background: white;
+    border-radius: 12px;
+    padding: 35px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 1px solid #e0e0e0;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 30px rgba(40, 91, 171, 0.15);
+    border-color: var(--primary-color);
+}
+
+.feature-icon {
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+.feature-card h3 {
+    color: var(--primary-color);
+    font-size: 20px;
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
+.feature-card p, .feature-card ul {
+    color: var(--text-light);
+    line-height: 1.8;
+}
+
+.feature-card ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 16px;
+}
+
+.feature-card ul li {
+    padding-left: 24px;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.feature-card ul li:before {
+    content: "•";
+    position: absolute;
+    left: 8px;
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 18px;
 }

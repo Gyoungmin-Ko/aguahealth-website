@@ -349,4 +349,37 @@
     </div>
 
 </body>
+</html>    <!-- Contact Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeContactModal()">&times;</span>
+            <h2>무료 상담 신청</h2>
+            <p>궁금하신 사항을 남겨주시면 빠른 시일 내에 연락드리겠습니다.</p>
+            <form id="modalContactForm" action="https://formspree.io/f/xrbblvyl" method="POST">
+                <div class="form-group">
+                    <label for="modalName">이름 *</label>
+                    <input type="text" id="modalName" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="modalEmail">이메일 *</label>
+                    <input type="email" id="modalEmail" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="modalCompany">회사명</label>
+                    <input type="text" id="modalCompany" name="company">
+                </div>
+                <div class="form-group">
+                    <label for="modalPhone">연락처</label>
+                    <input type="tel" id="modalPhone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="modalMessage">문의 내용 *</label>
+                    <textarea id="modalMessage" name="message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">상담 신청하기</button>
+            </form>
+        </div>
+    </div>
+
+</body>
 </html>
