@@ -222,7 +222,7 @@ body {
 }
 
 .btn-primary:hover {
-    background: #0052a3;
+    background: #1E4A8A;
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
 }
@@ -1472,4 +1472,35 @@ section {
     position: absolute;
     left: 0;
     font-size: 18px;
+}
+
+/* Pricing Cards - Ensure white text on buttons */
+.plan-cta {
+    width: 100%;
+    padding: 15px;
+    background: var(--primary-color);
+    color: white !important;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.plan-cta:hover {
+    background: #1E4A8A;
+    transform: translateY(-2px);
+    color: white !important;
+}
+
+/* Ensure all primary buttons have white text */
+.btn-primary {
+    background: var(--primary-color);
+    color: white !important;
+}
+
+.btn-primary:hover {
+    background: #1E4A8A;
+    color: white !important;
 }
