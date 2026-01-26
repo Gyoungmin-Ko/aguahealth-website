@@ -479,6 +479,7 @@ section {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: var(--white);
     text-align: center;
+    padding: 80px 0;
 }
 
 .cta-content h2 {
@@ -1736,7 +1737,7 @@ section {
 }
 
 .filter-text {
-    font-size: 14px;
+    font-size: 19px;
     font-weight: 500;
     color: white !important;
     white-space: nowrap;
@@ -1766,4 +1767,21 @@ section {
     .filter-text {
         font-size: 12px;
     }
+}
+
+/* CTA Section Full Width Styling */
+.cta-section h2 {
+    font-size: 36px;
+    margin-bottom: 16px;
+    font-weight: 700;
+}
+
+.cta-section p {
+    font-size: 18px;
+    margin-bottom: 32px;
+    opacity: 0.95;
+}
+
+.cta-section .btn {
+    margin-top: 8px;
 }
