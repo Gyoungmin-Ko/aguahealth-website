@@ -145,7 +145,7 @@ document.querySelectorAll('.service-card, .insight-card, .process-step, .trust-i
 });
 
 // ===== Insights Page Filtering =====
-const filterBtns = document.querySelectorAll('.filter-btn');
+const filterBtns = document.querySelectorAll('.filter-btn, .filter-btn-new');
 const insightBoxes = document.querySelectorAll('.insight-box');
 
 if (filterBtns.length > 0) {
