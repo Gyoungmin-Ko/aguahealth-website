@@ -436,7 +436,7 @@ section {
 .insight-badge {
     display: inline-block;
     background: var(--primary-color);
-    color: var(--white);
+    color: var(--white) !important;
     padding: 6px 16px;
     border-radius: 20px;
     font-size: 14px;
@@ -939,7 +939,7 @@ section {
 
 .insight-badge {
     background: #285BAB;
-    color: white;
+    color: white !important;
     padding: 6px 14px;
     border-radius: 20px;
     font-size: 13px;
@@ -1228,7 +1228,7 @@ section {
 
 .insight-badge {
     background: #285BAB;
-    color: white;
+    color: white !important;
     padding: 8px 16px;
     border-radius: 20px;
     font-size: 14px;
