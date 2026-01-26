@@ -161,7 +161,8 @@ body {
     min-height: 50vh;
     display: flex;
     align-items: center;
-    padding-top: 80px;
+    justify-content: center;
+    padding-top: 0;
     overflow: hidden;
 }
 
@@ -1501,4 +1502,23 @@ section {
     background: white !important;
     color: #285BAB !important;
     border-color: white !important;
+}
+
+/* Contact Us Button */
+.contact-btn {
+    padding: 10px 24px;
+    background: var(--primary-color);
+    color: white !important;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.contact-btn:hover {
+    background: #1E4A8A;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(40, 91, 171, 0.3);
 }
