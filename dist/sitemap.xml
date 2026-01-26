@@ -1,57 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://aguahealth-website.pages.dev/</loc>
-    <lastmod>2026-01-25</lastmod>
+    <loc>https://agua-health.com/</loc>
+    <lastmod>2026-01-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://aguahealth-website.pages.dev/about.html</loc>
-    <lastmod>2026-01-25</lastmod>
+    <loc>https://agua-health.com/about.html</loc>
+    <lastmod>2026-01-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://aguahealth-website.pages.dev/ai-solutions.html</loc>
-    <lastmod>2026-01-25</lastmod>
+    <loc>https://agua-health.com/ai-solutions.html</loc>
+    <lastmod>2026-01-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://aguahealth-website.pages.dev/services/market-entry.html</loc>
-    <lastmod>2026-01-25</lastmod>
+    <loc>https://agua-health.com/services/market-entry.html</loc>
+    <lastmod>2026-01-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://aguahealth-website.pages.dev/services/economics.html</loc>
-    <lastmod>2026-01-25</lastmod>
+    <loc>https://agua-health.com/services/economics.html</loc>
+    <lastmod>2026-01-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://aguahealth-website.pages.dev/services/regulatory.html</loc>
-    <lastmod>2026-01-25</lastmod>
+    <loc>https://agua-health.com/services/regulatory.html</loc>
+    <lastmod>2026-01-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://aguahealth-website.pages.dev/services/claims.html</loc>
-    <lastmod>2026-01-25</lastmod>
+    <loc>https://agua-health.com/services/claims.html</loc>
+    <lastmod>2026-01-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://aguahealth-website.pages.dev/insights.html</loc>
-    <lastmod>2026-01-25</lastmod>
+    <loc>https://agua-health.com/insights.html</loc>
+    <lastmod>2026-01-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://aguahealth-website.pages.dev/contact.html</loc>
-    <lastmod>2026-01-25</lastmod>
+    <loc>https://agua-health.com/contact.html</loc>
+    <lastmod>2026-01-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://agua-health.com/case-studies.html</loc>
+    <lastmod>2026-01-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>
