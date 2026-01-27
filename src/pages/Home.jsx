@@ -26,8 +26,8 @@ export default function Home() {
                 <span className="text-[#285BAB]">AI 기반 Market Access 파트너</span>
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                아그와헬스는 보건학·건강경제학 전문성과 AI를 결합한 Market Access 파트너입니다.<br />
-                예상 약가 산정부터 경제성평가, 요양급여비용청구까지<br />
+                아그와헬스는 보건학·보건경제 전문성과 AI를 결합한 Market Access 파트너입니다.<br />
+                예상 보험가격 산정부터 경제성평가, 요양급여비용청구까지<br />
                 경쟁업체 대비 합리적인 비용으로 실무에 바로 쓰이는 솔루션을 제공합니다.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -92,7 +92,7 @@ export default function Home() {
                   {companyData.tagline}
                 </p>
                 <p className="text-gray-600 mb-6">
-                  보건학·건강경제학 전문성과 2,000건 이상의 심사 경험을 바탕으로,
+                  보건학·보건경제 전문성과 2,000건 이상의 심사 경험을 바탕으로,
                   시장 진입부터 요양급여비용청구까지 전 과정을 함께합니다.
                 </p>
                 <ul className="space-y-2 mb-6">
@@ -206,14 +206,14 @@ export default function Home() {
                   <div className="bg-white/5 border border-white/10 rounded-xl p-4">
                     <div className="text-xs font-semibold text-sky-300 mb-1">의약품</div>
                     <ul className="space-y-1 text-gray-100">
-                      <li>· 예상 약가 산정</li>
+                      <li>· 예상 보험가격 산정</li>
                       <li>· 교과서·의약품집 수재내역 스크리닝</li>
                       <li>· 학술지 수재내역 분석</li>
                       <li>· 예상 대체가능약제 탐색</li>
                       <li>· 체계적 문헌고찰 지원</li>
                       <li>· 경제성평가 AI 시뮬레이터</li>
                       <li>· 재정영향분석 자동화</li>
-                      <li>· 신약 등재 전략 수립 지원</li>
+                      <li>· 건강보험 등재 전략 수립 지원</li>
                       <li>· 외국 현황 리서치</li>
                       <li>· 퇴장방지의약품 지정·원가보전 분석</li>
                       <li>· 약가협상 전략 수립</li>

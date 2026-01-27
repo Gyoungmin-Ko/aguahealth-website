@@ -3,8 +3,8 @@ export const aiModules = [
   {
     id: 'drug-expected-price',
     category: '의약품',
-    title: '예상 약가 산정',
-    tagline: '레퍼런스 약제·가정값을 바탕으로 예상 약가 범위를 빠르게 만들어요.',
+    title: '예상 보험가격 산정',
+    tagline: '레퍼런스 약제·가정값을 바탕으로 예상 보험가격(약가)을 빠르게 산출합니다.',
     inputs: [
       { id: 'productName', label: '제품명(가칭)', type: 'text', placeholder: '예: ABC-101' },
       { id: 'indication', label: '적응증', type: 'text', placeholder: '예: 전이성 비소세포폐암' },
@@ -14,7 +14,7 @@ export const aiModules = [
       { id: 'notes', label: '추가 메모', type: 'textarea', placeholder: '가정/제약사항/특이사항' },
     ],
     outputs: [
-      '예상 약가 범위(낮음/기준/높음)',
+      '예상 보험가격 범위(낮음/기준/높음)',
       '레퍼런스 약제 리스트 및 근거 요약',
       '핵심 가정값 표(환산 단위/투여량/기간 등)',
       '리스크·대응 포인트 3가지',
@@ -103,8 +103,8 @@ export const aiModules = [
   {
     id: 'drug-listing-strategy',
     category: '의약품',
-    title: '신약 등재 전략 수립',
-    tagline: '가격·근거·포지셔닝을 한 장으로 정리해 옵션을 비교해요.',
+    title: '건강보험 등재 전략 수립',
+    tagline: '가격·근거·포지셔닝을 한 장으로 정리해 건강보험 등재 전략 옵션을 비교합니다.',
     inputs: [
       { id: 'product', label: '제품/적응증', type: 'text', placeholder: '예: ABC-101 / NSCLC' },
       { id: 'value', label: '핵심 가치(Value)', type: 'textarea', placeholder: '임상적 차별점/환자 혜택' },
