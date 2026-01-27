@@ -1,0 +1,113 @@
+{
+  "marketEntry": {
+    "id": "market-entry",
+    "title": "시장진입전략",
+    "subtitle": "Market Entry Strategy",
+    "description": "혁신 의약품과 의료기기의 성공적인 한국 시장 진입을 위한 전략적 컨설팅",
+    "icon": "🎯",
+    "features": [
+      "시장 진입 로드맵 수립",
+      "규제 요건 분석 및 대응",
+      "가격 전략 수립",
+      "보험 등재 전략",
+      "경쟁사 분석",
+      "리스크 관리"
+    ],
+    "benefits": [
+      "체계적인 시장 진입",
+      "리스크 최소화",
+      "성공률 극대화",
+      "시간 및 비용 절감"
+    ],
+    "timeline": "18-36개월",
+    "successRate": "95%"
+  },
+  "economics": {
+    "id": "economics",
+    "title": "경제성평가",
+    "subtitle": "Economic Evaluation",
+    "description": "의약품 및 의료기기의 비용-효과 분석 및 건강보험 등재 지원",
+    "icon": "💰",
+    "features": [
+      "비용-효과 분석 (CEA)",
+      "비용-효용 분석 (CUA)",
+      "예산영향분석 (BIA)",
+      "ICER 산출",
+      "민감도 분석",
+      "경제성 평가 보고서 작성"
+    ],
+    "benefits": [
+      "건강보험 등재 가능성 향상",
+      "적정 가격 산정",
+      "협상력 강화",
+      "근거 기반 의사결정"
+    ],
+    "timeline": "3-6개월"
+  },
+  "regulatory": {
+    "id": "regulatory",
+    "title": "인허가지원",
+    "subtitle": "Regulatory Support",
+    "description": "의약품 및 의료기기 인허가 전 과정 지원",
+    "icon": "📋",
+    "features": [
+      "식약처 인허가 컨설팅",
+      "임상시험 계획 수립",
+      "허가 자료 작성 지원",
+      "GMP/QMS 컨설팅",
+      "변경허가 지원",
+      "사후관리 컨설팅"
+    ],
+    "benefits": [
+      "인허가 성공률 향상",
+      "신속한 허가 취득",
+      "규제 리스크 최소화",
+      "전문가 네트워크 활용"
+    ],
+    "timeline": "12-24개월"
+  },
+  "claims": {
+    "id": "claims",
+    "title": "요양급여비용청구",
+    "subtitle": "Claims Management",
+    "description": "건강보험 급여 청구 및 심사 대응 전문 서비스",
+    "icon": "🏥",
+    "features": [
+      "급여 청구 컨설팅",
+      "심사 대응 전략",
+      "이의신청 지원",
+      "청구 데이터 분석",
+      "교육 프로그램",
+      "모니터링 시스템"
+    ],
+    "benefits": [
+      "청구 정확도 향상",
+      "심사 통과율 증가",
+      "손실 최소화",
+      "업무 효율성 향상"
+    ],
+    "experience": "2,000건 이상 심사 경험"
+  },
+  "aiServices": {
+    "id": "ai-services",
+    "title": "AI 솔루션",
+    "subtitle": "AI-Powered Solutions",
+    "description": "AI 기반 예측 모델로 시장 진입 성공률 극대화",
+    "icon": "🤖",
+    "features": [
+      "AI 기반 가격 예측",
+      "시장 진입 시뮬레이션",
+      "빅데이터 분석",
+      "예측 모델링",
+      "리스크 예측",
+      "최적화 알고리즘"
+    ],
+    "benefits": [
+      "데이터 기반 의사결정",
+      "정확한 예측",
+      "리스크 사전 파악",
+      "전략 최적화"
+    ],
+    "accuracy": "95% 이상"
+  }
+}

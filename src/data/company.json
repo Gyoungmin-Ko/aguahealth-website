@@ -1,0 +1,38 @@
+{
+  "name": "아그와헬스",
+  "englishName": "Agua Health",
+  "description": "혁신 의약품과 의료기기의 성공적인 한국 시장 진입 파트너",
+  "tagline": "보건학 박사의 전문성과 AI 기반 예측으로 귀사의 혁신 제품이 환자에게 빠르게 도달하도록 지원합니다.",
+  "address": {
+    "street": "과천대로7길65 B동126",
+    "city": "과천시",
+    "region": "경기도",
+    "country": "대한민국"
+  },
+  "contact": {
+    "phone": "+82-10-5435-2687",
+    "email": "gyoungmin.ko@agua-health.com"
+  },
+  "social": {
+    "linkedin": "",
+    "twitter": "",
+    "facebook": ""
+  },
+  "ceo": {
+    "name": "고경민",
+    "title": "대표이사",
+    "credentials": [
+      "등록 약사",
+      "공중보건학 박사",
+      "전문 건강경제학자",
+      "의약품 및 의료기기 마켓액세스 전문가"
+    ],
+    "experience": "2,000건 이상의 청구 심사 및 조사 경험"
+  },
+  "stats": {
+    "services": "70+",
+    "successRate": "95%",
+    "reviews": "2,000건+",
+    "aiPrediction": "AI 기반 예측 모델"
+  }
+}

@@ -1,33 +1,27 @@
 {
   "name": "aguahealth-website",
-  "version": "1.0.0",
-  "description": "아그와헬스 - 혁신 의약품과 의료기기의 성공적인 한국 시장 진입 파트너",
+  "version": "2.0.0",
   "type": "module",
   "scripts": {
-    "dev": "python3 -m http.server 3000 --directory dist",
-    "dev:sandbox": "wrangler pages dev dist --ip 0.0.0.0 --port 3000",
-    "build": "cp -r public/* dist/",
-    "preview": "wrangler pages dev dist",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "deploy": "npm run build && wrangler pages deploy dist",
-    "deploy:prod": "npm run build && wrangler pages deploy dist --project-name aguahealth-website",
-    "clean-port": "fuser -k 3000/tcp 2>/dev/null || true",
-    "test": "curl http://localhost:3000",
-    "git:init": "git init && git add . && git commit -m 'Initial commit'",
-    "git:commit": "git add . && git commit -m",
-    "git:status": "git status",
-    "git:log": "git log --oneline"
+    "deploy:prod": "npm run build && wrangler pages deploy dist --project-name aguahealth-website"
   },
-  "keywords": ["aguahealth", "healthcare", "pharma", "market-access", "cloudflare-pages"],
-  "author": "Gyoungmin Ko <gyoungmin.ko@agua-health.com>",
-  "license": "ISC",
   "dependencies": {
-    "hono": "^4.0.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.20.0",
+    "react-helmet-async": "^2.0.4"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "4.20250705.0",
-    "@hono/vite-cloudflare-pages": "^0.4.2",
-    "vite": "^5.0.0",
-    "wrangler": "^3.78.0",
-    "typescript": "^5.0.0"
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.3.6",
+    "vite": "^5.0.8"
   }
 }

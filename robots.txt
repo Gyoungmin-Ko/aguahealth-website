@@ -1,0 +1,14 @@
+# Google 검색봇
+User-agent: Googlebot
+Allow: /
+
+# 네이버 검색봇 (Yeti)
+User-agent: Yeti
+Allow: /
+
+# 기타 모든 검색봇
+User-agent: *
+Allow: /
+
+# Sitemap 위치
+Sitemap: https://agua-health.com/sitemap.xml
