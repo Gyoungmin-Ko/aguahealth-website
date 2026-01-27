@@ -32,7 +32,6 @@ export default function Navbar() {
     },
     { label: 'AI솔루션', path: '/ai-solutions' },
     { label: '인사이트', path: '/insights' },
-    { label: 'FAQ', path: '/faq' },
   ]
 
   const isActive = (path) => location.pathname === path

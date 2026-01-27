@@ -6,8 +6,8 @@ import Home from './pages/Home'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import AIServices from './pages/AIServices'
+import AIModule from './pages/ai/AIModule'
 import Insights from './pages/Insights'
-import FAQ from './pages/FAQ'
 import CaseStudies from './pages/CaseStudies'
 import MarketEntry from './pages/services/MarketEntry'
 import Economics from './pages/services/Economics'
@@ -24,8 +24,8 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/ai-solutions" element={<AIServices />} />
+        <Route path="/ai-solutions/:moduleId" element={<AIModule />} />
         <Route path="/insights" element={<Insights />} />
-        <Route path="/faq" element={<FAQ />} />
         <Route path="/case-studies" element={<CaseStudies />} />
         <Route path="/services/market-entry" element={<MarketEntry />} />
         <Route path="/services/economics" element={<Economics />} />
