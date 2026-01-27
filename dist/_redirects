@@ -1,0 +1,27 @@
+# Cloudflare Pages Redirects Configuration
+# https://developers.cloudflare.com/pages/configuration/redirects/
+
+# Force HTTPS (handled by Cloudflare automatically)
+# Redirect www to non-www
+https://www.agua-health.com/* https://agua-health.com/:splat 301!
+
+# Redirect old aguahealth-website.pages.dev to custom domain
+https://aguahealth-website.pages.dev/* https://agua-health.com/:splat 301!
+
+# Trailing slash normalization - redirect with trailing slash to without
+/about.html/ /about.html 301
+/ai-solutions.html/ /ai-solutions.html 301
+/case-studies.html/ /case-studies.html 301
+/contact.html/ /contact.html 301
+/insights.html/ /insights.html 301
+/services/market-entry.html/ /services/market-entry.html 301
+/services/economics.html/ /services/economics.html 301
+/services/regulatory.html/ /services/regulatory.html 301
+/services/claims.html/ /services/claims.html 301
+/services/ai-solutions.html/ /services/ai-solutions.html 301
+
+# Redirect index.html to root
+/index.html / 301
+
+# Legacy URL redirects (if needed in future)
+# /old-page.html /new-page.html 301
