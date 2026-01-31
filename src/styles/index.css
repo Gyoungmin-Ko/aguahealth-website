@@ -2,15 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 기존 스타일 변수들 */
+/* 컨설팅 전문성 강화 디자인 시스템 */
 :root {
-  --primary-color: #285BAB;
-  --primary-dark: #1e4580;
-  --primary-light: #3d7bcc;
-  --text-dark: #2c3e50;
-  --text-light: #7f8c8d;
-  --bg-light: #f8f9fa;
-  --border-color: #e0e0e0;
+  --primary-color: #1e3a5f;
+  --primary-dark: #152a45;
+  --primary-light: #285BAB;
+  --text-dark: #1a2b3c;
+  --text-muted: #4a5568;
+  --bg-light: #f8fafc;
+  --border-color: #e2e8f0;
+  --shadow-pro: 0 4px 6px -1px rgba(15, 31, 51, 0.08);
+  --shadow-card: 0 1px 3px rgba(15, 31, 51, 0.06), 0 4px 12px rgba(15, 31, 51, 0.04);
 }
 
 /* 전역 스타일 */
