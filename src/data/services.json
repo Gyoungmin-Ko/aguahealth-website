@@ -8,8 +8,8 @@
     "icon": "🎯",
     "kpis": [
       { "value": "18-36개월", "label": "평균 시장진입 기간" },
-      { "value": "95%", "label": "전략 성공률" },
-      { "value": "6단계", "label": "체계적 프로세스" }
+      { "value": "95%", "label": "성공률" },
+      { "value": "6단계", "label": "시장진입 프로세스" }
     ],
     "processTitle": "한국 시장 진입, 철저한 준비가 성공을 결정합니다",
     "processSteps": [
@@ -34,9 +34,9 @@
     "description": "의약품 및 의료기기의 비용-효과 분석 및 건강보험 등재 지원",
     "icon": "💰",
     "kpis": [
-      { "value": "2,682만원", "label": "비용 절감 효과" },
-      { "value": "4,294만원", "label": "보험등재 기대효과" },
-      { "value": "100%", "label": "보험등재 성공률" }
+      { "value": "2,682만원", "label": "일반약제 ICER 중간값" },
+      { "value": "4,294만원", "label": "항암제 ICER 중간값" },
+      { "value": "100%", "label": "경제성평가 특화" }
     ],
     "processTitle": "경제성평가, 등재의 핵심 관문입니다",
     "processSteps": [
@@ -88,9 +88,9 @@
     "description": "건강보험 급여 청구 및 심사 대응 전문 서비스",
     "icon": "🏥",
     "kpis": [
-      { "value": "2,000+", "label": "심사 건수" },
-      { "value": "70%", "label": "반송률 감소" },
-      { "value": "3억원", "label": "절감 예상 비용" }
+      { "value": "2,000+", "suffix": "증가", "label": "청구 심사 사례" },
+      { "value": "70%", "suffix": "감소", "label": "반송률" },
+      { "value": "3억원", "suffix": "절감", "label": "연간 재정 손실" }
     ],
     "processTitle": "청구 심사 반송, 예방이 최선입니다",
     "processSteps": [

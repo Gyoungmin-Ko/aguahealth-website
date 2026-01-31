@@ -1,0 +1,92 @@
+[
+  {
+    "id": "1",
+    "title": "2025년 경제성평가 제출 약제의 비용효과성 평가결과 (ICER) 심층 분석",
+    "category": "economics",
+    "categoryLabel": "경제성평가",
+    "date": "2025년 1월",
+    "summary": "건강보험심사평가원이 2025년 경제성평가 제출 약제의 비용효과성 평가결과(ICER)를 공개했습니다. 총 20개 성분에 대한 분석 결과를 통해 한국 약가 정책의 방향성과 제약사들의 전략적 시사점을 도출했습니다.",
+    "link": "#"
+  },
+  {
+    "id": "2",
+    "title": "2026년 약가제도 주요 변경사항",
+    "category": "market-entry",
+    "categoryLabel": "시장진입전략",
+    "date": "2026년 1월",
+    "summary": "2026년부터 시행되는 약가제도 개편안의 핵심 내용과 제약사에 미치는 영향을 분석합니다.",
+    "link": "#"
+  },
+  {
+    "id": "3",
+    "title": "건강보험 급여등재 프로세스 완벽 가이드",
+    "category": "regulatory",
+    "categoryLabel": "인허가지원",
+    "date": "2025년 12월",
+    "summary": "신약의 건강보험 급여등재를 위한 단계별 절차와 준비 서류, 심사 기준을 상세히 안내합니다.",
+    "link": "#"
+  },
+  {
+    "id": "4",
+    "title": "치료재료 가치평가 제도 이해하기",
+    "category": "claims",
+    "categoryLabel": "요양급여비용청구",
+    "date": "2025년 11월",
+    "summary": "가치평가 기준과 의료기기 제조사의 대응 전략을 소개합니다.",
+    "link": "#"
+  },
+  {
+    "id": "5",
+    "title": "한국 약가 수준 국제 비교: 미국 대비 25.57%",
+    "category": "market-entry",
+    "categoryLabel": "시장진입전략",
+    "date": "2025년 10월",
+    "summary": "한국의 약가가 미국의 25.57% 수준인 현실과 이것이 제약사 시장진입 전략에 미치는 영향을 분석합니다.",
+    "link": "#"
+  },
+  {
+    "id": "6",
+    "title": "최소 필수 치료재료 제도 완벽 가이드",
+    "category": "regulatory",
+    "categoryLabel": "인허가지원",
+    "date": "2025년 9월",
+    "summary": "제도 활용 전략을 상세히 설명합니다.",
+    "link": "#"
+  },
+  {
+    "id": "7",
+    "title": "AI로 예측하는 급여등재 성공률",
+    "category": "ai",
+    "categoryLabel": "AI 솔루션",
+    "date": "2025년 8월",
+    "summary": "2,000+ 실제 사례 데이터로 급여등재 성공률을 예측하고 전략을 수립하는 방법을 소개합니다.",
+    "link": "#"
+  },
+  {
+    "id": "8",
+    "title": "위험분담제(RSA) 완벽 가이드",
+    "category": "economics",
+    "categoryLabel": "경제성평가",
+    "date": "2025년 7월",
+    "summary": "Performance-based RSA와 Financial-based RSA의 차이점과 활용 전략을 상세히 설명합니다.",
+    "link": "#"
+  },
+  {
+    "id": "9",
+    "title": "심사청구 거부 사례 분석 및 대응 전략",
+    "category": "claims",
+    "categoryLabel": "요양급여비용청구",
+    "date": "2025년 6월",
+    "summary": "실제 거부 사례를 통해 청구 오류를 예방하고 성공률을 높이는 방법을 소개합니다.",
+    "link": "#"
+  },
+  {
+    "id": "10",
+    "title": "빅데이터로 분석하는 심사 트렌드",
+    "category": "ai",
+    "categoryLabel": "AI 솔루션",
+    "date": "2025년 5월",
+    "summary": "2,000+ 심사 사례 분석을 통해 발견한 최신 심사 트렌드와 성공 패턴을 공유합니다.",
+    "link": "#"
+  }
+]
