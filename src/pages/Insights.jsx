@@ -3,22 +3,28 @@ import SEOHead from '../components/SEOHead'
 import insightsData from '../data/insights.json'
 import seoData from '../data/seo.json'
 
+const FILTER_OPTIONS = [
+  { value: 'all', label: '전체' },
+  { value: 'market-entry', label: '시장진입전략' },
+  { value: 'economics', label: '경제성평가' },
+  { value: 'regulatory', label: '인허가지원' },
+  { value: 'claims', label: '요양급여비용청구' },
+  { value: 'ai', label: 'AI 솔루션' }
+]
+
 export default function Insights() {
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
+  const [activeFilter, setActiveFilter] = useState('all')
 
   const handleNewsletterSubmit = (e) => {
     e.preventDefault()
     if (email) setSubscribed(true)
   }
 
-  const categoryColors = {
-    economics: 'from-[#667eea] to-[#764ba2]',
-    'market-entry': 'from-[#f093fb] to-[#f5576c]',
-    regulatory: 'from-[#4facfe] to-[#00f2fe]',
-    claims: 'from-[#43e97b] to-[#38f9d7]',
-    ai: 'from-[#a8edea] to-[#fed6e3]'
-  }
+  const filteredInsights = activeFilter === 'all'
+    ? insightsData
+    : insightsData.filter(item => item.category === activeFilter)
 
   return (
     <>
@@ -47,15 +53,33 @@ export default function Insights() {
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
+              {/* 필터 버튼 */}
+              <div className="flex flex-wrap gap-2 mb-10">
+                {FILTER_OPTIONS.map((opt) => (
+                  <button
+                    key={opt.value}
+                    onClick={() => setActiveFilter(opt.value)}
+                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                      activeFilter === opt.value
+                        ? 'bg-[#285BAB] text-white'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    {opt.label}
+                  </button>
+                ))}
+              </div>
+
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {insightsData.map((insight, i) => (
+                {filteredInsights.length === 0 ? (
+                  <div className="col-span-full py-16 text-center text-gray-500">
+                    해당 분류의 인사이트가 없습니다.
+                  </div>
+                ) : filteredInsights.map((insight) => (
                   <article 
                     key={insight.id} 
                     className="bg-white rounded-xl overflow-hidden shadow-pro border border-slate-100 hover:shadow-pro-lg transition-shadow"
                   >
-                    <div 
-                      className={`h-40 bg-gradient-to-br ${categoryColors[insight.category] || 'from-gray-400 to-gray-600'}`} 
-                    />
                     <div className="p-6">
                       <div className="flex items-center justify-between mb-3">
                         <span className="text-xs font-medium text-[#285BAB] bg-blue-50 px-2 py-1 rounded">
