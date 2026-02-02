@@ -37,9 +37,10 @@ wrangler pages dev dist --compatibility-flag=nodejs_compat
 
 뉴스레터 구독은 다음 순서로 동작합니다:
 1. **Resend Contacts API** 시도 → Audiences/Segments에 등록
-2. **실패 시** Resend Emails API로 관리자(gyoungmin.ko@agua-health.com)에게 구독자 이메일 전송
+2. **실패 시** **Google Sheets** 웹훅 호출 → 구독자 이메일 시트에 자동 저장
+3. 둘 다 실패 시 Resend Emails API로 관리자에게 전송
 
-Contacts API가 플랜 제한 등으로 실패해도, 이메일 백업으로 구독 정보가 전달됩니다.
+**구글 시트 자동 저장** 설정은 [GOOGLE_SHEETS_NEWSLETTER_SETUP.md](./GOOGLE_SHEETS_NEWSLETTER_SETUP.md) 참고.
 
 ---
 

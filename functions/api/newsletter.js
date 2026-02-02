@@ -1,8 +1,8 @@
 /**
  * Newsletter API - 뉴스레터 구독 처리
  * 1) Resend Contacts API 시도 (Audiences/Segments 등록)
- * 2) 실패 시 Resend Emails API로 관리자에게 구독자 정보 전송 (백업)
- * Cloudflare Pages Function (API 키는 서버에서만 사용)
+ * 2) 실패 시 Google Sheets 웹훅 호출 (구독자 자동 저장)
+ * 3) 둘 다 실패 시 Resend Emails API로 관리자에게 전송 (백업)
  */
 const ADMIN_EMAIL = 'gyoungmin.ko@agua-health.com'
 
@@ -82,7 +82,26 @@ export async function onRequestPost(context) {
       return jsonResponse({ success: true })
     }
 
-    // 2) Contacts 실패 시 Emails API로 관리자에게 구독 알림 전송 (백업)
+    // 2) Contacts 실패 시 Google Sheets 웹훅 호출 (구독자 자동 저장)
+    const webhookUrl = env.GOOGLE_SHEETS_WEBHOOK_URL
+    const webhookSecret = env.GOOGLE_SHEETS_SECRET
+    if (webhookUrl && webhookSecret) {
+      try {
+        const gsRes = await fetch(webhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: trimmedEmail, secret: webhookSecret }),
+        })
+        const gsData = await gsRes.json().catch(() => ({}))
+        if (gsRes.ok && gsData.success) {
+          return jsonResponse({ success: true })
+        }
+      } catch (gsErr) {
+        console.error('Newsletter: Google Sheets webhook error', gsErr)
+      }
+    }
+
+    // 3) 둘 다 실패 시 Emails API로 관리자에게 구독 알림 전송 (백업)
     const fromEmail = env.CONTACT_FROM_EMAIL || 'onboarding@resend.dev'
     const fromName = env.CONTACT_FROM_NAME || '아그와헬스 웹사이트'
 
@@ -99,7 +118,7 @@ export async function onRequestPost(context) {
         html: `
           <h2>뉴스레터 구독 신청</h2>
           <p><strong>이메일:</strong> ${trimmedEmail}</p>
-          <p><em>Resend Contacts 등록은 실패했으나, 이메일로 구독자 정보가 전달됩니다. 수동으로 Audiences/Segments에 추가해주세요.</em></p>
+          <p><em>Google Sheets 연동이 설정되지 않았거나 실패했습니다. 구독자 정보를 수동으로 기록해주세요.</em></p>
         `,
       }),
     })

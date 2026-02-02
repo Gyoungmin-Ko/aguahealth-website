@@ -1,5 +1,9 @@
 # Cloudflare Pages Functions 로컬 테스트용
-# 이 파일을 .dev.vars로 복사한 뒤 실제 API 키를 입력하세요
+# 이 파일을 .dev.vars로 복사한 뒤 실제 값을 입력하세요
 # .dev.vars는 .gitignore에 포함되어 있습니다
 
 RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxxxxxxx
+
+# 뉴스레터 구독 → 구글 시트 저장 (선택, GOOGLE_SHEETS_NEWSLETTER_SETUP.md 참고)
+# GOOGLE_SHEETS_WEBHOOK_URL=https://script.google.com/macros/s/xxxxx/exec
+# GOOGLE_SHEETS_SECRET=your_secret_here
