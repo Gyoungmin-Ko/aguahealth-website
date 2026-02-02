@@ -17,9 +17,35 @@ export default function Insights() {
   const [subscribed, setSubscribed] = useState(false)
   const [activeFilter, setActiveFilter] = useState('all')
 
-  const handleNewsletterSubmit = (e) => {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState('')
+
+  const handleNewsletterSubmit = async (e) => {
     e.preventDefault()
-    if (email) setSubscribed(true)
+    if (!email) return
+    
+    setIsSubmitting(true)
+    setError('')
+    
+    try {
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email.trim() })
+      })
+
+      const data = await response.json().catch(() => ({}))
+      
+      if (response.ok && data.success) {
+        setSubscribed(true)
+      } else {
+        setError(data.error || '구독 등록에 실패했습니다. 다시 시도해주세요.')
+      }
+    } catch (err) {
+      setError('처리 중 오류가 발생했습니다. 다시 시도해주세요.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const filteredInsights = activeFilter === 'all'
@@ -129,17 +155,20 @@ export default function Insights() {
                       <input
                         type="email"
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) => { setEmail(e.target.value); setError('') }}
                         placeholder="이메일 주소를 입력하세요"
                         required
-                        className="flex-1 px-4 py-3 rounded-lg text-gray-900 placeholder-gray-500 border-0"
+                        disabled={isSubmitting}
+                        className="flex-1 px-4 py-3 rounded-lg text-gray-900 placeholder-gray-500 border-0 disabled:opacity-70"
                       />
                       <button 
                         type="submit" 
-                        className="px-6 py-3 bg-[#285BAB] text-white font-semibold rounded-lg hover:bg-[#1e4580] transition-colors"
+                        disabled={isSubmitting}
+                        className="px-6 py-3 bg-[#285BAB] text-white font-semibold rounded-lg hover:bg-[#1e4580] transition-colors disabled:opacity-70"
                       >
-                        구독하기
+                        {isSubmitting ? '처리 중...' : '구독하기'}
                       </button>
+                      {error && <p className="text-red-300 text-sm w-full">{error}</p>}
                     </form>
                   )}
                   <p className="text-sm text-blue-200 mt-4">

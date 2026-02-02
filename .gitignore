@@ -13,6 +13,7 @@ pids
 # Environment variables
 .env
 .dev.vars
+resend.txt
 
 # PM2
 .pm2/

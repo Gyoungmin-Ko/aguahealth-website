@@ -32,7 +32,7 @@ export default function ContactModal() {
     e.preventDefault()
     
     try {
-      const response = await fetch('https://formspree.io/f/xrbblvyl', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -40,7 +40,9 @@ export default function ContactModal() {
         body: JSON.stringify(formData)
       })
 
-      if (response.ok) {
+      const data = await response.json().catch(() => ({}))
+      
+      if (response.ok && data.success) {
         alert('문의가 성공적으로 전송되었습니다! 빠른 시일 내에 연락드리겠습니다.')
         setFormData({
           name: '',
@@ -51,7 +53,7 @@ export default function ContactModal() {
         })
         setIsOpen(false)
       } else {
-        alert('전송 중 오류가 발생했습니다. 다시 시도해주세요.')
+        alert(data.error || '전송 중 오류가 발생했습니다. 다시 시도해주세요.')
       }
     } catch (error) {
       console.error('Form submission error:', error)

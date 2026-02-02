@@ -36,12 +36,7 @@ export default function Navbar() {
 
   const isActive = (path) => location.pathname === path
 
-  const openContactModal = () => {
-    const modal = document.getElementById('contactModal')
-    if (modal) {
-      modal.classList.add('active')
-    }
-  }
+  const openContactModal = () => window.openContactModal?.()
 
   return (
     <nav className={`fixed w-full top-0 z-50 transition-all duration-300 ${
