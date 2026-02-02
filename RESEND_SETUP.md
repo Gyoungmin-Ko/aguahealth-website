@@ -1,4 +1,4 @@
-# Resend API 설정 가이드 (Contact Us 이메일 전송)
+# Resend API 설정 가이드 (Contact Us + Newsletter)
 
 ## 중요: .env vs Cloudflare
 
@@ -33,7 +33,17 @@ wrangler pages dev dist --compatibility-flag=nodejs_compat
 
 ---
 
-## 3. Resend 도메인 인증
+## 3. Newsletter 구독
+
+뉴스레터 구독은 다음 순서로 동작합니다:
+1. **Resend Contacts API** 시도 → Audiences/Segments에 등록
+2. **실패 시** Resend Emails API로 관리자(gyoungmin.ko@agua-health.com)에게 구독자 이메일 전송
+
+Contacts API가 플랜 제한 등으로 실패해도, 이메일 백업으로 구독 정보가 전달됩니다.
+
+---
+
+## 4. Resend 도메인 인증
 
 - 기본 발신: `onboarding@resend.dev` (테스트용)
 - 본인 도메인(`@agua-health.com`) 사용 시: Resend 대시보드에서 도메인 인증 후  

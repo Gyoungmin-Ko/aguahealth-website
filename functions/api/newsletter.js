@@ -1,7 +1,11 @@
 /**
- * Newsletter API - Resend Contacts에 구독자 등록
- * Cloudflare Pages Function (API 키는 서버에서만 사용, 브라우저에 노출되지 않음)
+ * Newsletter API - 뉴스레터 구독 처리
+ * 1) Resend Contacts API 시도 (Audiences/Segments 등록)
+ * 2) 실패 시 Resend Emails API로 관리자에게 구독자 정보 전송 (백업)
+ * Cloudflare Pages Function (API 키는 서버에서만 사용)
  */
+const ADMIN_EMAIL = 'gyoungmin.ko@agua-health.com'
+
 function jsonResponse(data, status = 200) {
   return new Response(JSON.stringify(data), {
     status,
@@ -49,17 +53,18 @@ export async function onRequestPost(context) {
       )
     }
 
+    const trimmedEmail = email.trim()
+
+    // 1) Resend Contacts API 시도
     const contactPayload = {
-      email: email.trim(),
+      email: trimmedEmail,
       unsubscribed: false,
     }
-
-    // 세그먼트가 설정된 경우 추가 (Resend Segments - Audiences 대체)
     if (env.RESEND_SEGMENT_ID) {
       contactPayload.segments = [{ id: env.RESEND_SEGMENT_ID }]
     }
 
-    const res = await fetch('https://api.resend.com/contacts', {
+    const contactRes = await fetch('https://api.resend.com/contacts', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${apiKey}`,
@@ -68,21 +73,47 @@ export async function onRequestPost(context) {
       body: JSON.stringify(contactPayload),
     })
 
-    const data = await res.json()
-
-    if (!res.ok) {
-      // 이미 등록된 이메일인 경우 (409 등) 성공으로 처리
-      if (res.status === 409 || (data.message && data.message.toLowerCase().includes('already'))) {
-        return jsonResponse({ success: true })
-      }
-      console.error('Resend Contacts API error:', data)
-      return jsonResponse(
-        { error: '구독 등록에 실패했습니다. 잠시 후 다시 시도해주세요.' },
-        500
-      )
+    if (contactRes.ok) {
+      return jsonResponse({ success: true })
     }
 
-    return jsonResponse({ success: true })
+    const contactData = await contactRes.json()
+    if (contactRes.status === 409 || (contactData.message && contactData.message.toLowerCase().includes('already'))) {
+      return jsonResponse({ success: true })
+    }
+
+    // 2) Contacts 실패 시 Emails API로 관리자에게 구독 알림 전송 (백업)
+    const fromEmail = env.CONTACT_FROM_EMAIL || 'onboarding@resend.dev'
+    const fromName = env.CONTACT_FROM_NAME || '아그와헬스 웹사이트'
+
+    const emailRes = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: `${fromName} <${fromEmail}>`,
+        to: [ADMIN_EMAIL],
+        subject: `[아그와헬스 뉴스레터] 구독 신청: ${trimmedEmail}`,
+        html: `
+          <h2>뉴스레터 구독 신청</h2>
+          <p><strong>이메일:</strong> ${trimmedEmail}</p>
+          <p><em>Resend Contacts 등록은 실패했으나, 이메일로 구독자 정보가 전달됩니다. 수동으로 Audiences/Segments에 추가해주세요.</em></p>
+        `,
+      }),
+    })
+
+    if (emailRes.ok) {
+      return jsonResponse({ success: true })
+    }
+
+    const emailData = await emailRes.json()
+    console.error('Newsletter: Contacts 및 Emails API 모두 실패', { contactData, emailData })
+    return jsonResponse(
+      { error: '구독 등록에 실패했습니다. 잠시 후 다시 시도해주세요.' },
+      500
+    )
   } catch (error) {
     console.error('Newsletter API error:', error)
     return jsonResponse(
