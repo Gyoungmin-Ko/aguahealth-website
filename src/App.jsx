@@ -8,6 +8,7 @@ import Contact from './pages/Contact'
 import AIServices from './pages/AIServices'
 import AIModule from './pages/ai/AIModule'
 import Insights from './pages/Insights'
+import InsightDetail from './pages/InsightDetail'
 import CaseStudies from './pages/CaseStudies'
 import MarketEntry from './pages/services/MarketEntry'
 import Economics from './pages/services/Economics'
@@ -26,6 +27,7 @@ function App() {
         <Route path="/ai-solutions" element={<AIServices />} />
         <Route path="/ai-solutions/:moduleId" element={<AIModule />} />
         <Route path="/insights" element={<Insights />} />
+        <Route path="/insights/:id" element={<InsightDetail />} />
         <Route path="/case-studies" element={<CaseStudies />} />
         <Route path="/services/market-entry" element={<MarketEntry />} />
         <Route path="/services/economics" element={<Economics />} />
