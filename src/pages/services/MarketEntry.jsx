@@ -47,7 +47,7 @@ export default function MarketEntry() {
   const whyChooseUs = [
     { title: '전문 인력', desc: '평균 20년 이상의 실무 경험과 전문성을 갖춘 팀' },
     { title: '데이터 기반', desc: '객관적 데이터 분석을 통해 정확하고 신뢰할 수 있는 전략 수립' },
-    { title: '2,000건 이상의 성공 경험', desc: '' },
+    { title: '100건 이상의 프로젝트 경험', desc: '' },
     { title: '네트워크', desc: '정부 기관, 학계, 산업계 등 광범위한 네트워크 활용' },
     { title: '신축성', desc: '고객의 특정 요구에 맞춰 맞춤형 솔루션 제공' },
     { title: '시장 진입 기간 20% 단축', desc: '' }

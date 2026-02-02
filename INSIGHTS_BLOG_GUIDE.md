@@ -18,8 +18,17 @@
 
 ## 새 글 추가하기
 
-1. `src/data/insightsWithContent.js` 파일을 엽니다.
+### 방법 1: 글 작성 도우미 사용 (추천)
 
+1. 브라우저에서 `tools/insight-writer.html` 파일을 엽니다.
+2. 폼을 채우고 **"코드 생성"** 클릭
+3. 생성된 코드를 복사
+4. `src/data/insightsWithContent.js` 열기 → `INSIGHTS` 배열 맨 앞에 붙여넣기 (쉼표 확인)
+5. `npm run build` → 배포
+
+### 방법 2: 직접 작성
+
+1. `src/data/insightsWithContent.js` 파일을 엽니다.
 2. `INSIGHTS` 배열 **맨 앞**에 새 객체를 추가합니다 (최신 글이 위로 오도록).
 
 ```javascript
@@ -41,10 +50,7 @@
 }
 ```
 
-3. `insights.json`도 함께 수정합니다 (목록과 동기화를 위해).  
-   - 또는 `insightsWithContent.js`만 수정해도 됩니다. (Insights 페이지는 `getInsightsList()`를 사용하므로 `insightsWithContent.js`만 수정하면 됨)
-
-4. 저장 후 `npm run build` → 배포
+3. 저장 후 `npm run build` → 배포
 
 ---
 

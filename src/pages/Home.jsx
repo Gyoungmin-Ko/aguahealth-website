@@ -92,7 +92,7 @@ export default function Home() {
                   {companyData.tagline}
                 </p>
                 <p className="text-gray-600 mb-6">
-                  보건학·보건경제 전문성과 2,000건 이상의 심사 경험을 바탕으로,
+                  보건학·보건경제 전문성과 100건 이상의 프로젝트 경험을 바탕으로,
                   시장 진입부터 요양급여비용청구까지 전 과정을 함께합니다.
                 </p>
                 <ul className="space-y-2 mb-6">
@@ -297,7 +297,7 @@ export default function Home() {
                   경제성평가에서 자주 발생하는 오류와 피해야 할 리스크
                 </h3>
                 <p className="text-gray-600 text-sm mb-4">
-                  2,000건 이상의 심사 경험을 기반으로, 실제 심사에서 문제가 되었던 사례를 공유합니다.
+                  100건 이상의 프로젝트 경험을 기반으로, 실제 심사에서 문제가 되었던 사례를 공유합니다.
                 </p>
                 <span className="text-xs text-gray-400">인사이트 페이지에서 곧 공개 예정</span>
               </div>

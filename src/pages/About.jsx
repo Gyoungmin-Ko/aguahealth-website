@@ -6,10 +6,10 @@ export default function About() {
 
   const credentials = [
     '고려대학교 보건학 박사',
-    '등록 약사',
+    '등록약사',
     '전문 건강경제학자 (Professional Health Economist)',
-    '70+ 전문 컨설팅 서비스 제공',
-    '과천시 창업지원센터 보육기업'
+    '100+ 전문 컨설팅 서비스 제공',
+    '(전)동아제약, (전)건강보험심사평가원, (전)한국존슨앤존슨메디칼, (전)한국아스텔라스제약, (전)Insightec'
   ]
 
   return (

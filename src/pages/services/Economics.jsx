@@ -11,11 +11,11 @@ export default function Economics() {
   const serviceColumns = [
     {
       title: '비용효과성 분석 (CEA/CUA)',
-      sub: 'GALY',
+      sub: 'QALY',
       items: ['Decision tree', 'Markov model', 'Discrete event simulation', 'Cost-Effectiveness and Effectiveness', 'ICER', 'One-way & Probabilistic Sensitivity Analysis']
     },
     {
-      title: '예산영향분석 (BIA)',
+      title: '재정영향분석 (BIA)',
       items: ['신약의 건보재정 영향 분석', '역학 기반 예산 모형 개발', '5개년 관점 예산 모형', '다양한 시나리오별 영향 분석']
     },
     {
