@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import SEOHead from '../components/SEOHead'
-import { getInsightsList } from '../data/insightsLoader'
+import insightsData from '../data/insights.json'
 import seoData from '../data/seo.json'
 
-const insightsData = getInsightsList()
+const insightsWithLinks = insightsData.map((i) => ({ ...i, link: `/insights/${i.id}` }))
 
 const FILTER_OPTIONS = [
   { value: 'all', label: '전체' },
@@ -52,8 +52,8 @@ export default function Insights() {
   }
 
   const filteredInsights = activeFilter === 'all'
-    ? insightsData
-    : insightsData.filter(item => item.category === activeFilter)
+    ? insightsWithLinks
+    : insightsWithLinks.filter(item => item.category === activeFilter)
 
   return (
     <>
@@ -123,7 +123,7 @@ export default function Insights() {
                         {insight.summary}
                       </p>
                       <Link 
-                        to={insight.link} 
+                        to={`/insights/${insight.id}`} 
                         className="inline-flex items-center text-[#285BAB] font-medium hover:underline"
                       >
                         자세히 보기 →

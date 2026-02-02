@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -8,7 +9,8 @@ import Contact from './pages/Contact'
 import AIServices from './pages/AIServices'
 import AIModule from './pages/ai/AIModule'
 import Insights from './pages/Insights'
-import InsightDetail from './pages/InsightDetail'
+
+const InsightDetail = lazy(() => import('./pages/InsightDetail'))
 import CaseStudies from './pages/CaseStudies'
 import MarketEntry from './pages/services/MarketEntry'
 import Economics from './pages/services/Economics'
@@ -27,7 +29,7 @@ function App() {
         <Route path="/ai-solutions" element={<AIServices />} />
         <Route path="/ai-solutions/:moduleId" element={<AIModule />} />
         <Route path="/insights" element={<Insights />} />
-        <Route path="/insights/:id" element={<InsightDetail />} />
+        <Route path="/insights/:id" element={<Suspense fallback={<div className="min-h-screen pt-20 flex items-center justify-center"><div className="animate-pulse text-gray-500">로딩 중...</div></div>}><InsightDetail /></Suspense>} />
         <Route path="/case-studies" element={<CaseStudies />} />
         <Route path="/services/market-entry" element={<MarketEntry />} />
         <Route path="/services/economics" element={<Economics />} />
