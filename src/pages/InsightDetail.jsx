@@ -1,7 +1,7 @@
 import { useParams, Link, Navigate } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import SEOHead from '../components/SEOHead'
-import { getInsightById } from '../data/insightsLoader'
+import { getInsightById } from '../data/insightsWithContent'
 import seoData from '../data/seo.json'
 
 export default function InsightDetail() {

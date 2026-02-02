@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import SEOHead from '../components/SEOHead'
-import insightsData from '../data/insights.json'
+import { getInsightsList } from '../data/insightsWithContent'
 import seoData from '../data/seo.json'
 
-const insightsWithLinks = insightsData.map((i) => ({ ...i, link: `/insights/${i.id}` }))
+const insightsData = getInsightsList()
 
 const FILTER_OPTIONS = [
   { value: 'all', label: '전체' },
@@ -52,8 +52,8 @@ export default function Insights() {
   }
 
   const filteredInsights = activeFilter === 'all'
-    ? insightsWithLinks
-    : insightsWithLinks.filter(item => item.category === activeFilter)
+    ? insightsData
+    : insightsData.filter(item => item.category === activeFilter)
 
   return (
     <>

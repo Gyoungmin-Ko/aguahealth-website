@@ -1,41 +1,50 @@
-# 인사이트 블로그 작성 가이드
+# 인사이트 블로그 글 작성 가이드
 
-인사이트 페이지는 **Markdown 기반 내부 블로그**로 구현되어 있습니다.  
-"자세히 보기" 클릭 시 `/insights/:id` 상세 페이지에서 전문을 확인할 수 있습니다.
+인사이트 메뉴는 **내부 블로그**로, "자세히 보기" 클릭 시 상세 페이지(`/insights/1` 등)에서 전문을 볼 수 있습니다.
 
 ---
 
-## 현재 구조
+## 현재 구조 (2025년 2월 기준)
 
-- **목록**: `src/pages/Insights.jsx` — 인사이트 그리드 + 필터 + 뉴스레터 구독
-- **상세**: `src/pages/InsightDetail.jsx` — `/insights/1`, `/insights/2` 등
-- **콘텐츠**: `src/content/insights/*.md` — Markdown 파일이 단일 출처
+| 파일 | 역할 |
+|------|------|
+| `src/data/insightsWithContent.js` | **단일 출처** — 목록 + 상세 콘텐츠 모두 포함 |
+| `src/pages/Insights.jsx` | 목록 페이지 (그리드, 필터, 뉴스레터) |
+| `src/pages/InsightDetail.jsx` | 상세 페이지 |
+
+**변경 사항**: 이전 Markdown(`.md`) 방식은 제거되었습니다. 모든 콘텐츠는 `insightsWithContent.js`에서 관리합니다.
 
 ---
 
 ## 새 글 추가하기
 
-1. `src/content/insights/` 폴더에 새 파일 생성 (예: `11.md`)
-2. 아래 형식으로 frontmatter와 본문 작성
+1. `src/data/insightsWithContent.js` 파일을 엽니다.
 
-```markdown
----
-id: "11"
-title: "글 제목"
-category: economics
-categoryLabel: 경제성평가
-date: 2025년 2월
-summary: "카드에 보일 요약 2~3줄을 입력합니다."
----
+2. `INSIGHTS` 배열 **맨 앞**에 새 객체를 추가합니다 (최신 글이 위로 오도록).
 
-본문 내용을 마크다운으로 작성합니다.
+```javascript
+{
+  id: "11",   // 기존 최대 번호 + 1
+  title: "글 제목",
+  category: "economics",   // 아래 표 참고
+  categoryLabel: "경제성평가",
+  date: "2025년 3월",
+  summary: "카드에 보일 요약 2~3줄",
+  content: `본문을 마크다운으로 작성합니다.
 
 ## 소제목
 
-문단, 목록, 표 등 일반 마크다운 문법을 사용할 수 있습니다.
+- 목록
+- 항목
+
+**굵게**, *기울임*, 표 등도 사용 가능합니다.`
+}
 ```
 
-3. `npm run build` 후 배포
+3. `insights.json`도 함께 수정합니다 (목록과 동기화를 위해).  
+   - 또는 `insightsWithContent.js`만 수정해도 됩니다. (Insights 페이지는 `getInsightsList()`를 사용하므로 `insightsWithContent.js`만 수정하면 됨)
+
+4. 저장 후 `npm run build` → 배포
 
 ---
 
@@ -51,16 +60,19 @@ summary: "카드에 보일 요약 2~3줄을 입력합니다."
 
 ---
 
-## 마크다운 지원
+## content에서 사용 가능한 마크다운
 
-- 제목 (h2, h3)
-- 문단, **굵게**, *기울임*
-- 목록 (ul, ol)
-- 표 (table)
-- 링크, 이미지
+- `##`, `###` 소제목
+- `**굵게**`, `*기울임*`
+- `-` 목록, `1.` 번호 목록
+- 표 (`| 열1 | 열2 |`)
+- 링크 `[텍스트](url)`
 
 ---
 
-## 상세 설계
+## 요약
 
-[docs/INSIGHTS_BLOG_DESIGN.md](docs/INSIGHTS_BLOG_DESIGN.md) 참고
+- **수정 파일**: `src/data/insightsWithContent.js`
+- **추가 위치**: `INSIGHTS` 배열 맨 앞
+- **id**: 문자열 숫자 (예: `"11"`)
+- **content**: 백틱(\`)으로 감싼 마크다운 문자열

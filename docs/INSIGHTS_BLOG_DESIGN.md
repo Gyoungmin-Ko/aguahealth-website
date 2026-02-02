@@ -2,99 +2,55 @@
 
 ## 개요
 
-인사이트 페이지는 **Markdown 기반 내부 블로그**로 구현되어 있습니다.  
-글 목록은 메타데이터를 기반으로 표시되고, "자세히 보기" 클릭 시 `/insights/:id` 상세 페이지에서 전문을 확인할 수 있습니다.
+인사이트 페이지는 **JSON 기반 내부 블로그**로 구현되어 있습니다.  
+글 목록과 상세 콘텐츠는 `src/data/insightsWithContent.js` 한 파일에서 관리하며, "자세히 보기" 클릭 시 `/insights/:id` 상세 페이지에서 전문을 확인할 수 있습니다.
 
 ---
 
-## 디렉터리 구조
+## 디렉터리 구조 (2025년 2월)
 
 ```
 src/
-├── content/
-│   └── insights/           # 인사이트 Markdown 원본
-│       ├── 1.md
-│       ├── 2.md
-│       └── ...
 ├── data/
-│   ├── insightsLoader.js   # Markdown 파싱 및 데이터 제공
-│   └── insights.json       # (레거시, 참고용)
+│   ├── insightsWithContent.js   # 목록 + 상세 콘텐츠 (단일 출처)
+│   └── insights.json            # (레거시, 미사용)
+├── content/insights/            # (레거시 .md 파일, 참고용)
 └── pages/
-    ├── Insights.jsx        # 목록 페이지
-    └── InsightDetail.jsx   # 상세 페이지
+    ├── Insights.jsx             # 목록 페이지
+    └── InsightDetail.jsx        # 상세 페이지
 ```
 
 ---
 
-## Markdown 파일 형식
+## 데이터 구조 (insightsWithContent.js)
 
-각 `.md` 파일은 **YAML frontmatter**와 **마크다운 본문**으로 구성됩니다.
-
-```markdown
----
-id: "1"
-title: "글 제목"
-category: economics
-categoryLabel: 경제성평가
-date: 2025년 1월
-summary: "카드에 보일 요약 2~3줄"
----
-
-본문 마크다운...
-```
+각 항목은 다음 필드를 가집니다:
 
 | 필드 | 필수 | 설명 |
 |------|------|------|
-| `id` | O | 고유 ID (파일명과 일치 권장: `1.md` → `"1"`) |
+| `id` | O | 고유 ID (문자열, 예: `"1"`) |
 | `title` | O | 제목 |
-| `category` | O | 분류 코드: `economics`, `market-entry`, `regulatory`, `claims`, `ai` |
+| `category` | O | 분류 코드 |
 | `categoryLabel` | O | 화면 표시 분류명 |
 | `date` | O | 표시 날짜 |
 | `summary` | O | 목록 카드용 요약 |
+| `content` | O | 상세 페이지 본문 (마크다운 문자열) |
 
 ---
 
-## 데이터 흐름
+## SPA 라우팅
 
-1. **빌드 시**: `import.meta.glob`으로 `src/content/insights/*.md` 로드
-2. **파싱**: `gray-matter`로 frontmatter와 본문 분리
-3. **제공**: `insightsLoader.js`가 `getInsightsList()`, `getInsightById(id)` export
-4. **렌더링**: `react-markdown`으로 본문을 HTML로 변환
+`public/_redirects`에 다음 규칙이 있습니다:
 
----
+```
+/insights/*  /index.html  200
+```
 
-## 새 글 작성 절차
-
-1. `src/content/insights/`에 새 파일 생성 (예: `11.md`)
-2. frontmatter와 본문 작성
-3. 저장 후 `npm run build` → 배포
-
-파일명(`11.md`)과 frontmatter의 `id`(`"11"`)가 일치하면 `/insights/11`에서 접근 가능합니다.
+이를 통해 `/insights/1` 등 직접 URL 접근 시에도 `index.html`이 서빙되어 React Router가 동작합니다.
 
 ---
 
-## 지원 마크다운 요소
+## 새 글 추가
 
-- 제목 (h2, h3)
-- 문단, 굵게, 기울임
-- 목록 (ul, ol)
-- 표 (table)
-- 링크, 이미지
-
-`InsightDetail.jsx`의 `ReactMarkdown` components로 스타일이 적용됩니다.
-
----
-
-## 유지보수
-
-- **글 수정**: 해당 `.md` 파일 편집 후 재배포
-- **글 삭제**: `.md` 파일 삭제 후 재배포
-- **스타일 변경**: `InsightDetail.jsx`의 `ReactMarkdown` components 수정
-- **목록 UI 변경**: `Insights.jsx` 수정
-
----
-
-## 의존성
-
-- `react-markdown`: 마크다운 → React 컴포넌트 렌더링
-- `gray-matter`: frontmatter 파싱
+`src/data/insightsWithContent.js`의 `INSIGHTS` 배열 맨 앞에 새 객체를 추가합니다.  
+자세한 절차는 [INSIGHTS_BLOG_GUIDE.md](../INSIGHTS_BLOG_GUIDE.md)를 참고하세요.
