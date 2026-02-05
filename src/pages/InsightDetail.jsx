@@ -99,10 +99,15 @@ export default function InsightDetail() {
               </ReactMarkdown>
             </article>
 
-            {/* CTA */}
+            {/* CTA - 카테고리별 문구 */}
             <div className="max-w-3xl mx-auto mt-16 pt-10 border-t border-gray-200 text-center">
               <p className="text-gray-600 mb-4">
-                마켓 액세스 전략이 궁금하신가요?
+                {{
+                  economics: '경제성평가 전략이 궁금하신가요?',
+                  'market-entry': '시장진입전략이 궁금하신가요?',
+                  regulatory: '인허가지원 전략이 궁금하신가요?',
+                  claims: '요양급여비용청구 전략이 궁금하신가요?'
+                }[insight.category] || '마켓 액세스 전략이 궁금하신가요?'}
               </p>
               <button
                 onClick={() => window.openContactModal?.()}

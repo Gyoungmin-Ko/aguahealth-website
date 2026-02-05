@@ -98,25 +98,23 @@ export default function AIServices() {
                 <div key={group} className="bg-white rounded-2xl border border-slate-200 p-6">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-xl font-semibold text-slate-900">{group} 모듈</h3>
-                    <span className="text-xs text-slate-500">와이어프레임</span>
                   </div>
                   <div className="grid sm:grid-cols-2 gap-4">
                     {aiModules
                       .filter((m) => m.category === group)
                       .map((m) => (
-                        <a
+                        <div
                           key={m.id}
-                          href={`/ai-solutions/${m.id}`}
-                          className="group rounded-xl border border-slate-200 bg-white p-4 hover:shadow-md hover:-translate-y-0.5 transition"
+                          className="group rounded-xl border border-slate-200 bg-white p-4"
                         >
-                          <div className="text-sm font-semibold text-slate-900 group-hover:text-[#285BAB] transition">
+                          <div className="text-sm font-semibold text-slate-900">
                             {m.title}
                           </div>
                           <div className="text-xs text-slate-500 mt-1 line-clamp-2">{m.tagline}</div>
-                          <div className="mt-3 text-xs font-medium text-[#285BAB]">
-                            화면 보기 →
+                          <div className="mt-3 text-xs font-medium text-slate-400">
+                            Coming Soon
                           </div>
-                        </a>
+                        </div>
                       ))}
                   </div>
                 </div>

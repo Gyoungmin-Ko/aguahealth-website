@@ -99,10 +99,7 @@ export default function AIModule() {
               {/* Inputs */}
               <div className="rounded-2xl border border-slate-200 bg-white shadow-sm">
                 <div className="p-6 border-b border-slate-200">
-                  <div className="flex items-center justify-between">
-                    <h2 className="text-lg font-semibold text-slate-900">입력</h2>
-                    <span className="text-xs text-slate-500">와이어프레임 · 실제 기능은 개발 중</span>
-                  </div>
+                  <h2 className="text-lg font-semibold text-slate-900">입력</h2>
                 </div>
                 <div className="p-6 space-y-5">
                   {(module.inputs || []).map((field) => (

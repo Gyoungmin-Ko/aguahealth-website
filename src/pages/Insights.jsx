@@ -11,8 +11,7 @@ const FILTER_OPTIONS = [
   { value: 'market-entry', label: '시장진입전략' },
   { value: 'economics', label: '경제성평가' },
   { value: 'regulatory', label: '인허가지원' },
-  { value: 'claims', label: '요양급여비용청구' },
-  { value: 'ai', label: 'AI 솔루션' }
+  { value: 'claims', label: '요양급여비용청구' }
 ]
 
 export default function Insights() {
@@ -52,7 +51,7 @@ export default function Insights() {
   }
 
   const filteredInsights = activeFilter === 'all'
-    ? insightsData
+    ? insightsData.filter(item => item.category !== 'ai')
     : insightsData.filter(item => item.category === activeFilter)
 
   return (

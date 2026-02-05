@@ -55,7 +55,26 @@ export async function onRequestPost(context) {
 
     const trimmedEmail = email.trim()
 
-    // 1) Resend Contacts API 시도
+    // 1) Google Sheets 웹훅 우선 시도 (설정된 경우)
+    const webhookUrl = env.GOOGLE_SHEETS_WEBHOOK_URL
+    const webhookSecret = env.GOOGLE_SHEETS_SECRET
+    if (webhookUrl && webhookSecret) {
+      try {
+        const gsRes = await fetch(webhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: trimmedEmail, secret: webhookSecret }),
+        })
+        const gsData = await gsRes.json().catch(() => ({}))
+        if (gsRes.ok && gsData.success) {
+          return jsonResponse({ success: true })
+        }
+      } catch (gsErr) {
+        console.error('Newsletter: Google Sheets webhook error', gsErr)
+      }
+    }
+
+    // 2) Resend Contacts API 시도
     const contactPayload = {
       email: trimmedEmail,
       unsubscribed: false,
@@ -82,26 +101,7 @@ export async function onRequestPost(context) {
       return jsonResponse({ success: true })
     }
 
-    // 2) Contacts 실패 시 Google Sheets 웹훅 호출 (구독자 자동 저장)
-    const webhookUrl = env.GOOGLE_SHEETS_WEBHOOK_URL
-    const webhookSecret = env.GOOGLE_SHEETS_SECRET
-    if (webhookUrl && webhookSecret) {
-      try {
-        const gsRes = await fetch(webhookUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: trimmedEmail, secret: webhookSecret }),
-        })
-        const gsData = await gsRes.json().catch(() => ({}))
-        if (gsRes.ok && gsData.success) {
-          return jsonResponse({ success: true })
-        }
-      } catch (gsErr) {
-        console.error('Newsletter: Google Sheets webhook error', gsErr)
-      }
-    }
-
-    // 3) 둘 다 실패 시 Emails API로 관리자에게 구독 알림 전송 (백업)
+    // 3) Contacts 실패 시 Emails API로 관리자에게 구독 알림 전송 (백업)
     const fromEmail = env.CONTACT_FROM_EMAIL || 'onboarding@resend.dev'
     const fromName = env.CONTACT_FROM_NAME || '아그와헬스 웹사이트'
 

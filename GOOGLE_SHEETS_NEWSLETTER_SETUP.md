@@ -87,8 +87,27 @@ GOOGLE_SHEETS_SECRET=aguahealth_newsletter_2024_secret_xyz123
 
 ## 동작 순서
 
-1. **Resend Contacts** 시도 (Audiences/Segments 등록)
-2. 실패 시 **Google Sheets** 웹훅 호출 → 구독자 이메일 시트에 자동 저장
+1. **Google Sheets** 웹훅 우선 호출 (설정된 경우) → 구독자 이메일 시트에 자동 저장
+2. 실패 시 **Resend Contacts** 시도
 3. 둘 다 실패 시 관리자 이메일로 전송 (백업)
 
 Google Sheets 설정 후에는 구독자가 인사이트 페이지에서 구독하면 시트에 날짜와 이메일이 자동으로 추가됩니다.
+
+---
+
+## 연결이 안 될 때 점검 사항
+
+1. **Cloudflare 환경 변수**  
+   - `GOOGLE_SHEETS_WEBHOOK_URL`, `GOOGLE_SHEETS_SECRET`이 **Production**과 **Preview** 모두에 설정되어 있는지 확인  
+   - 설정 변경 후에는 **재배포**가 필요함
+
+2. **Apps Script 스크립트 속성**  
+   - 프로젝트 설정 → 스크립트 속성에서 `SECRET`이 추가되어 있는지 확인  
+   - Cloudflare의 `GOOGLE_SHEETS_SECRET`과 값이 **완전히 동일**한지 확인
+
+3. **웹 앱 배포 URL**  
+   - URL이 `https://script.google.com/macros/s/.../exec` 형태인지 확인  
+   - `/dev`가 아닌 **배포된 URL**을 사용하는지 확인
+
+4. **배포 권한**  
+   - 웹 앱 배포 시 "액세스 권한: **모든 사용자**"로 설정했는지 확인

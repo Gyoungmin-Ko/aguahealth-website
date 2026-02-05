@@ -101,16 +101,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* 무료상담신청 CTA */}
-        <div className="border-t border-gray-800 pt-8 pb-8 text-center">
-          <button
-            onClick={() => window.openContactModal?.()}
-            className="bg-[#285BAB] text-white px-8 py-3 rounded-lg hover:bg-[#1e4580] transition-colors font-medium"
-          >
-            무료상담신청
-          </button>
-        </div>
-
         {/* 하단 */}
         <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
           <p>&copy; {currentYear} {companyData.englishName} ({companyData.name}). All rights reserved.</p>

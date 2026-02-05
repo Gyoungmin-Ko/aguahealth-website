@@ -92,10 +92,17 @@ export default function ServicePageLayout({
 
         {afterFeatures}
 
-        {/* CTA - 전문가 상담 */}
+        {/* CTA - 카테고리별 문구 */}
         <section className="py-20 bg-slate-900 text-white">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">전문가와 상담하세요</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              {{
+                claims: '요양급여비용청구 전략이 궁금하신가요?',
+                economics: '경제성평가 전략이 궁금하신가요?',
+                marketEntry: '시장진입전략이 궁금하신가요?',
+                regulatory: '인허가지원 전략이 궁금하신가요?'
+              }[serviceKey] || '전문가와 상담하세요'}
+            </h2>
             <p className="text-slate-300 text-lg mb-8 max-w-2xl mx-auto">
               귀사의 성공적인 시장 진입을 위해 최선을 다하겠습니다
             </p>
