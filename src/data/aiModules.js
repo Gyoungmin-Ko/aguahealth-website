@@ -21,6 +21,13 @@ export const aiModules = [
     ],
   },
   {
+    id: 'drug-withdrawal-prevention',
+    category: '의약품',
+    title: '퇴장방지의약품 지정 및 원가보전',
+    tagline: '퇴장방지의약품 원가산정방식을 적용해 원가를 보전합니다.',
+    comingSoon: true,
+  },
+  {
     id: 'drug-listing-evidence',
     category: '의약품',
     title: '교과서·의약품집 수재내역',
