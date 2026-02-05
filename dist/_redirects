@@ -25,6 +25,7 @@ https://aguahealth-website.pages.dev/* https://agua-health.com/:splat 301!
 
 # SPA fallback - React Router 클라이언트 라우팅
 /insights/*  /index.html  200
+/ai-solutions/*  /index.html  200
 
 # Legacy URL redirects (if needed in future)
 # /old-page.html /new-page.html 301

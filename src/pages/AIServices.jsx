@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import SEOHead from '../components/SEOHead'
 import servicesData from '../data/services.json'
 import { aiModules } from '../data/aiModules'
@@ -103,18 +104,23 @@ export default function AIServices() {
                     {aiModules
                       .filter((m) => m.category === group)
                       .map((m) => (
-                        <div
+                        <Link
                           key={m.id}
-                          className="group rounded-xl border border-slate-200 bg-white p-4"
+                          to={`/ai-solutions/${m.id}`}
+                          className="group block rounded-xl border border-slate-200 bg-white p-4 hover:border-[#285BAB]/40 hover:shadow-md transition"
                         >
-                          <div className="text-sm font-semibold text-slate-900">
+                          <div className="text-sm font-semibold text-slate-900 group-hover:text-[#285BAB]">
                             {m.title}
                           </div>
                           <div className="text-xs text-slate-500 mt-1 line-clamp-2">{m.tagline}</div>
-                          <div className="mt-3 text-xs font-medium text-slate-400">
-                            Coming Soon
+                          <div className="mt-3 text-xs font-medium">
+                            {m.inputs?.length && !m.comingSoon ? (
+                              <span className="text-[#285BAB]">바로가기 →</span>
+                            ) : (
+                              <span className="text-slate-400">Coming Soon</span>
+                            )}
                           </div>
-                        </div>
+                        </Link>
                       ))}
                   </div>
                 </div>
