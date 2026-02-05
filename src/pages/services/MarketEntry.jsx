@@ -113,11 +113,8 @@ export default function MarketEntry() {
               </h2>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {processSteps.map((step, i) => (
-                  <div key={i} className="bg-white rounded-xl p-6 shadow-pro border border-slate-100">
-                    <h3 className="text-lg font-bold text-[#285BAB] mb-4 flex items-center gap-2">
-                      <span className="text-green-500">✓</span>
-                      {step.title}
-                    </h3>
+                  <div key={i} className="border border-gray-200 rounded-xl p-6 bg-white">
+                    <h3 className="text-xl font-bold text-[#285BAB] mb-4">{step.title}</h3>
                     <ul className="space-y-2">
                       {step.items.map((item, j) => (
                         <li key={j} className="flex items-start gap-2 text-gray-600 text-sm">
@@ -136,14 +133,14 @@ export default function MarketEntry() {
         {/* 주요 산출물 */}
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
+            <div className="max-w-6xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-12 text-center">
                 주요 산출물
               </h2>
-              <div className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
                 {deliverables.map((item, i) => (
-                  <div key={i} className="border-l-4 border-[#285BAB] pl-6">
-                    <h3 className="text-lg font-bold text-gray-900 mb-2">{item.title}</h3>
+                  <div key={i} className="border border-gray-200 rounded-xl p-6">
+                    <h3 className="text-xl font-bold text-[#285BAB] mb-4">{item.title}</h3>
                     <p className="text-gray-600">{item.desc}</p>
                   </div>
                 ))}
@@ -161,8 +158,8 @@ export default function MarketEntry() {
               </h2>
               <div className="grid md:grid-cols-2 gap-6">
                 {whyChooseUs.map((item, i) => (
-                  <div key={i} className="bg-white rounded-xl p-6 shadow-pro border border-slate-100">
-                    <h3 className="text-lg font-bold text-[#285BAB] mb-2">{item.title}</h3>
+                  <div key={i} className="border border-gray-200 rounded-xl p-6 bg-white">
+                    <h3 className="text-xl font-bold text-[#285BAB] mb-4">{item.title}</h3>
                     {item.desc && <p className="text-gray-600">{item.desc}</p>}
                   </div>
                 ))}

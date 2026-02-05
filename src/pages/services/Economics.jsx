@@ -111,7 +111,7 @@ export default function Economics() {
               <div className="grid md:grid-cols-3 gap-8">
                 {serviceColumns.map((col, i) => (
                   <div key={i} className="border border-gray-200 rounded-xl p-6">
-                    <h3 className="text-lg font-bold text-[#285BAB] mb-2">{col.title}</h3>
+                    <h3 className="text-xl font-bold text-[#285BAB] mb-4">{col.title}</h3>
                     {col.sub && <p className="text-sm text-gray-500 mb-3">{col.sub}</p>}
                     <ul className="space-y-2">
                       {col.items.map((item, j) => (
@@ -128,21 +128,29 @@ export default function Economics() {
           </div>
         </section>
 
-        {/* 경제성평가 보고서 작성 */}
+        {/* 경제성평가 보고서 작성 - 좌→우 순서도 */}
         <section className="py-16 bg-slate-50/80">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 text-center">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-12 text-center">
                 경제성평가 보고서 작성
               </h2>
-              <ul className="space-y-3">
+              <div className="flex flex-col md:flex-row items-center gap-4 md:gap-2 overflow-x-auto pb-4">
                 {reportItems.map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-gray-700">
-                    <span className="text-green-500 font-bold">✓</span>
-                    <span>{item}</span>
-                  </li>
+                  <div key={i} className="flex flex-1 min-w-0 md:min-w-[180px] items-center gap-2">
+                    <div className="flex-1 border border-gray-200 rounded-xl p-6 bg-white text-center min-w-0">
+                      <p className="text-gray-800 font-semibold text-sm md:text-base">{item}</p>
+                    </div>
+                    {i < reportItems.length - 1 && (
+                      <div className="hidden md:flex shrink-0 w-6 items-center justify-center text-gray-400 flex-shrink-0">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </div>
+                    )}
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
           </div>
         </section>
@@ -156,11 +164,8 @@ export default function Economics() {
               </h2>
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {processSteps.map((step, i) => (
-                  <div key={i} className="bg-white rounded-xl p-6 shadow-pro border border-slate-100">
-                    <h3 className="text-lg font-bold text-[#285BAB] mb-4 flex items-center gap-2">
-                      <span className="text-green-500">✓</span>
-                      {step.title}
-                    </h3>
+                  <div key={i} className="border border-gray-200 rounded-xl p-6 bg-white">
+                    <h3 className="text-xl font-bold text-[#285BAB] mb-4">{step.title}</h3>
                     <ul className="space-y-2">
                       {step.items.map((item, j) => (
                         <li key={j} className="flex items-start gap-2 text-gray-600 text-sm">
@@ -204,20 +209,54 @@ export default function Economics() {
         {/* 주요 산출물 */}
         <section className="py-16 bg-slate-50/80">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 text-center">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-12 text-center">
                 주요 산출물
               </h2>
-              <ul className="space-y-3">
-                <li className="flex items-center gap-3 text-gray-700">
-                  <span className="text-green-500 font-bold">✓</span>
-                  <span>경제성평가 보고서</span>
-                </li>
-                <li className="flex items-center gap-3 text-gray-700">
-                  <span className="text-green-500 font-bold">✓</span>
-                  <span>BIA 보고서</span>
-                </li>
-              </ul>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="border border-gray-200 rounded-xl p-6 bg-white">
+                  <h3 className="text-xl font-bold text-[#285BAB] mb-4">경제성평가 보고서</h3>
+                  <ul className="space-y-2">
+                    <li className="flex items-start gap-2 text-gray-600 text-sm">
+                      <span className="text-green-500 font-bold">✓</span>
+                      <span>비용효과성 분석 결과 (ICER, QALY 등)</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-gray-600 text-sm">
+                      <span className="text-green-500 font-bold">✓</span>
+                      <span>의사결정 나무/Markov 모델 기반 분석 결과</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-gray-600 text-sm">
+                      <span className="text-green-500 font-bold">✓</span>
+                      <span>민감도 분석 및 시나리오 분석</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-gray-600 text-sm">
+                      <span className="text-green-500 font-bold">✓</span>
+                      <span>심평원 제출용 표준 형식 준비</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="border border-gray-200 rounded-xl p-6 bg-white">
+                  <h3 className="text-xl font-bold text-[#285BAB] mb-4">BIA 보고서</h3>
+                  <ul className="space-y-2">
+                    <li className="flex items-start gap-2 text-gray-600 text-sm">
+                      <span className="text-green-500 font-bold">✓</span>
+                      <span>5개년 건보재정 영향 예측</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-gray-600 text-sm">
+                      <span className="text-green-500 font-bold">✓</span>
+                      <span>시나리오별 예산 영향 분석</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-gray-600 text-sm">
+                      <span className="text-green-500 font-bold">✓</span>
+                      <span>시장 점유율 및 치료 패턴 반영</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-gray-600 text-sm">
+                      <span className="text-green-500 font-bold">✓</span>
+                      <span>역학 기반 예산 모형 개발</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </section>

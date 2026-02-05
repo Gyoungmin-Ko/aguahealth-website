@@ -140,11 +140,8 @@ export default function Regulatory() {
               </h2>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {processSteps.map((step, i) => (
-                  <div key={i} className="bg-white rounded-xl p-6 shadow-pro border border-slate-100">
-                    <h3 className="text-lg font-bold text-[#285BAB] mb-4 flex items-center gap-2">
-                      <span className="text-green-500">✓</span>
-                      {step.title}
-                    </h3>
+                  <div key={i} className="border border-gray-200 rounded-xl p-6 bg-white">
+                    <h3 className="text-xl font-bold text-[#285BAB] mb-4">{step.title}</h3>
                     <ul className="space-y-2">
                       {step.items.map((item, j) => (
                         <li key={j} className="flex items-start gap-2 text-gray-600 text-sm">

@@ -110,8 +110,8 @@ export default function Claims() {
               </h2>
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {service.lossPoints.map((item, i) => (
-                  <div key={i} className="bg-gray-50 rounded-xl p-6 border border-gray-100">
-                    <h3 className="font-bold text-lg text-gray-900 mb-2">{item}</h3>
+                  <div key={i} className="border border-gray-200 rounded-xl p-6 bg-white">
+                    <h3 className="text-xl font-bold text-[#285BAB] mb-4">{item}</h3>
                     <p className="text-gray-600 text-sm">
                       {item === '재정 손실' && '반송된 청구는 평균 60-90일의 현금 흐름 지연을 초래하며, 재청구 비용이 추가로 발생합니다.'}
                       {item === '행정 부담' && '반송 사유 분석, 재청구 서류 작성, 이의신청 등 행정 업무가 2배 이상 증가합니다.'}
@@ -125,25 +125,22 @@ export default function Claims() {
           </div>
         </section>
 
-        {/* 아그와헬스의 솔루션 */}
+        {/* 아그와헬스의 솔루션 - 청구 최적화 프로세스와 동일한 박스형태 */}
         <section className="py-16 lg:py-20 bg-white">
           <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
+            <div className="max-w-6xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-12 text-center">
                 아그와헬스의 솔루션
               </h2>
-              <div className="space-y-10">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {solutions.map((sol, i) => (
-                  <div key={i} className="border-l-4 border-[#285BAB] pl-6">
-                    <div className="flex items-center gap-3 mb-3">
-                      <span className="text-2xl font-bold text-[#285BAB]">{sol.num}</span>
-                      <h3 className="text-xl font-bold text-gray-900">{sol.title}</h3>
-                    </div>
-                    <p className="text-gray-600 mb-4">{sol.desc}</p>
+                  <div key={i} className="border border-gray-200 rounded-xl p-6">
+                    <h3 className="text-xl font-bold text-[#285BAB] mb-4">{sol.num} {sol.title}</h3>
+                    <p className="text-gray-600 mb-4 text-sm">{sol.desc}</p>
                     <ul className="space-y-2">
                       {sol.items.map((item, j) => (
-                        <li key={j} className="flex items-start gap-2 text-gray-700">
-                          <span className="text-green-500 font-bold mt-0.5">✓</span>
+                        <li key={j} className="flex items-start gap-2 text-gray-600 text-sm">
+                          <span className="text-green-500 font-bold">✓</span>
                           <span>{item}</span>
                         </li>
                       ))}
@@ -164,11 +161,8 @@ export default function Claims() {
               </h2>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {processSteps.map((step, i) => (
-                  <div key={i} className="bg-white rounded-xl p-6 shadow-pro border border-slate-100">
-                    <h3 className="text-lg font-bold text-[#285BAB] mb-4 flex items-center gap-2">
-                      <span className="text-green-500">✓</span>
-                      {step.title}
-                    </h3>
+                  <div key={i} className="border border-gray-200 rounded-xl p-6 bg-white">
+                    <h3 className="text-xl font-bold text-[#285BAB] mb-4">{step.title}</h3>
                     <ul className="space-y-2">
                       {step.items.map((item, j) => (
                         <li key={j} className="flex items-start gap-2 text-gray-600 text-sm">
