@@ -30,9 +30,26 @@ function Field({ field, value, onChange }) {
     )
   }
 
+  if (field.type === 'file') {
+    return (
+      <div>
+        <input
+          type="file"
+          className="block w-full text-sm text-slate-600 file:mr-4 file:rounded-lg file:border-0 file:bg-[#285BAB]/10 file:px-4 file:py-2 file:text-sm file:font-medium file:text-[#285BAB] hover:file:bg-[#285BAB]/20"
+          accept={field.accept}
+          onChange={(e) => onChange(field.id, e.target.files?.[0] ?? null)}
+        />
+        {field.description && (
+          <p className="mt-1 text-xs text-slate-500">{field.description}</p>
+        )}
+      </div>
+    )
+  }
+
   return (
     <input
       className={base}
+      type="text"
       value={value}
       placeholder={field.placeholder}
       onChange={(e) => onChange(field.id, e.target.value)}
@@ -40,12 +57,51 @@ function Field({ field, value, onChange }) {
   )
 }
 
+const API_BASE = import.meta.env.VITE_API_BASE || ''
+
 export default function AIModule() {
   const { moduleId } = useParams()
   const module = useMemo(() => getAiModuleById(moduleId), [moduleId])
   const [values, setValues] = useState(() => ({}))
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
+  const [result, setResult] = useState(null)
 
   const update = (id, next) => setValues((v) => ({ ...v, [id]: next }))
+
+  const canRun = module?.inputs?.length && !module.comingSoon
+
+  const handleRun = async () => {
+    if (!canRun || !module) return
+    setError(null)
+    setResult(null)
+    setLoading(true)
+    try {
+      const formData = new FormData()
+      for (const field of module.inputs) {
+        const val = values[field.id]
+        if (field.type === 'file') {
+          if (val instanceof File) formData.append(field.id, val)
+        } else if (val != null && val !== '') {
+          formData.append(field.id, String(val))
+        }
+      }
+      const res = await fetch(`${API_BASE}/api/ai-module/${moduleId}`, {
+        method: 'POST',
+        body: formData,
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) {
+        setError(data.error || '처리 중 오류가 발생했습니다.')
+        return
+      }
+      setResult(data)
+    } catch (e) {
+      setError('네트워크 오류가 발생했습니다. 다시 시도해주세요.')
+    } finally {
+      setLoading(false)
+    }
+  }
 
   if (!module) {
     return (
@@ -110,14 +166,24 @@ export default function AIModule() {
                   ))}
 
                   <div className="pt-2 flex flex-col sm:flex-row gap-3">
+                    {canRun ? (
+                      <button
+                        disabled={loading}
+                        onClick={handleRun}
+                        className="flex-1 px-4 py-3 rounded-lg bg-[#285BAB] text-white font-semibold hover:bg-[#1e4580] disabled:opacity-60 disabled:cursor-not-allowed transition"
+                      >
+                        {loading ? '처리 중…' : 'AI 실행'}
+                      </button>
+                    ) : (
+                      <button
+                        disabled
+                        className="flex-1 px-4 py-3 rounded-lg bg-slate-200 text-slate-500 font-semibold cursor-not-allowed"
+                      >
+                        AI 실행(준비 중)
+                      </button>
+                    )}
                     <button
-                      disabled
-                      className="flex-1 px-4 py-3 rounded-lg bg-slate-200 text-slate-500 font-semibold cursor-not-allowed"
-                    >
-                      AI 실행(준비 중)
-                    </button>
-                    <button
-                      onClick={() => setValues({})}
+                      onClick={() => { setValues({}); setResult(null); setError(null); }}
                       className="px-4 py-3 rounded-lg border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 transition font-medium"
                     >
                       초기화
@@ -135,11 +201,79 @@ export default function AIModule() {
                 <div className="p-6 border-b border-slate-200">
                   <h2 className="text-lg font-semibold text-slate-900">출력</h2>
                   <p className="text-sm text-slate-600 mt-1">
-                    버튼을 눌렀을 때 어떤 결과물이 나오는지 “화면 구조”를 먼저 잡아둔 상태입니다.
+                    {result ? 'AI 실행 결과입니다.' : '입력 후 "AI 실행"을 누르면 결과가 여기에 표시됩니다.'} “화면 구조”를 먼저 잡아둔 상태입니다.
                   </p>
                 </div>
 
                 <div className="p-6 space-y-6">
+                  {error && (
+                    <div className="rounded-xl bg-red-50 border border-red-200 p-4 text-red-800 text-sm">
+                      {error}
+                    </div>
+                  )}
+                  {result ? (
+                    <>
+                      {result.summary && (
+                        <div className="rounded-xl bg-slate-50 border border-slate-100 p-4">
+                          <div className="text-xs font-semibold text-[#285BAB] mb-2">요약</div>
+                          <p className="text-sm text-slate-800 whitespace-pre-wrap">{result.summary}</p>
+                        </div>
+                      )}
+                      {result.risks && (
+                        <div className="rounded-xl bg-amber-50 border border-amber-100 p-4">
+                          <div className="text-xs font-semibold text-[#285BAB] mb-2">신뢰도/리스크</div>
+                          <p className="text-sm text-slate-800 whitespace-pre-wrap">{result.risks}</p>
+                        </div>
+                      )}
+                      {result.sections?.length > 0 && (
+                        <div className="space-y-4">
+                          {result.sections.map((sec, i) => (
+                            <div key={i} className="rounded-xl border border-slate-200 overflow-hidden">
+                              <div className="px-4 py-3 bg-slate-50 border-b border-slate-200 font-medium text-slate-900">
+                                {sec.title}
+                              </div>
+                              <div className="p-4 bg-white text-sm text-slate-800 whitespace-pre-wrap">
+                                {sec.content}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                      {result.assumptions?.length > 0 && (
+                        <div className="rounded-xl border border-slate-200 overflow-hidden">
+                          <div className="px-4 py-3 bg-slate-50 border-b border-slate-200 font-medium text-slate-900">
+                            핵심 가정값 및 산출 근거
+                          </div>
+                          <div className="overflow-x-auto">
+                            <table className="w-full text-sm text-left">
+                              <thead>
+                                <tr className="border-b border-slate-200 bg-slate-50">
+                                  {result.assumptions[0] && Object.keys(result.assumptions[0]).map((k) => (
+                                    <th key={k} className="px-4 py-2 font-medium text-slate-700">{k}</th>
+                                  ))}
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {result.assumptions.map((row, i) => (
+                                  <tr key={i} className="border-b border-slate-100">
+                                    {Object.values(row).map((cell, j) => (
+                                      <td key={j} className="px-4 py-2 text-slate-800">{String(cell)}</td>
+                                    ))}
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      )}
+                      <div className="flex gap-2 flex-wrap">
+                        <button type="button" className="px-3 py-1.5 text-xs rounded-lg border border-slate-200 text-slate-700" disabled>PDF(예정)</button>
+                        <button type="button" className="px-3 py-1.5 text-xs rounded-lg border border-slate-200 text-slate-700" disabled>PPT(예정)</button>
+                        <button type="button" className="px-3 py-1.5 text-xs rounded-lg border border-slate-200 text-slate-700" disabled>Excel(예정)</button>
+                      </div>
+                    </>
+                  ) : (
+                    <>
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div className="rounded-xl bg-slate-50 border border-slate-100 p-4">
                       <div className="text-xs font-semibold text-[#285BAB] mb-2">요약</div>
@@ -189,6 +323,8 @@ export default function AIModule() {
                       실제 전략 수립은 “빠르게 정리된 결과물”을 바탕으로 팀이 결정합니다.
                     </p>
                   </div>
+                    </>
+                  )}
                 </div>
               </div>
             </div>

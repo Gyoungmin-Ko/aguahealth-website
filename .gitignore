@@ -40,3 +40,7 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.swp
+
+# media-bot 생성 파일
+scripts/media-bot/scraped_news.json
+scripts/media-bot/weekly_briefing_*.md

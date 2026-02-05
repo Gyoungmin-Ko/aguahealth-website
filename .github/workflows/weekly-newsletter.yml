@@ -1,0 +1,40 @@
+# 주간 정책 브리핑: 미디어 수집 → 뉴스레터 생성 → (선택) Resend 발송
+# 매주 월요일 00:00 UTC (09:00 KST) 실행, workflow_dispatch로 수동 실행 가능
+name: Weekly Newsletter
+on:
+  schedule:
+    - cron: '0 0 * * 1'
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install -r scripts/media-bot/requirements.txt
+          playwright install chromium --with-deps
+
+      - name: Run media scraper
+        run: python scripts/media-bot/media_scraper.py
+
+      - name: Run newsletter generator
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python scripts/media-bot/newsletter_gen.py
+
+      # Resend 발송: 저장소 Secrets에 RESEND_API_KEY, RESEND_SEGMENT_ID 추가 시 발송됨. 미설정 시 이 단계만 실패하고 워크플로는 성공 처리
+      - name: Send newsletter (Resend Broadcast)
+        continue-on-error: true
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          RESEND_SEGMENT_ID: ${{ secrets.RESEND_SEGMENT_ID }}
+          NEWSLETTER_FROM_EMAIL: ${{ vars.NEWSLETTER_FROM_EMAIL || 'onboarding@resend.dev' }}
+          NEWSLETTER_FROM_NAME: ${{ vars.NEWSLETTER_FROM_NAME || '아그와헬스' }}
+        run: python scripts/media-bot/send_newsletter.py

@@ -25,7 +25,19 @@ export const aiModules = [
     category: '의약품',
     title: '퇴장방지의약품 지정 및 원가보전',
     tagline: '퇴장방지의약품 원가산정방식을 적용해 원가를 보전합니다.',
-    comingSoon: true,
+    inputs: [
+      { id: 'productName', label: '제품명(가칭)', type: 'text', placeholder: '예: ABC-101' },
+      { id: 'indication', label: '적응증', type: 'text', placeholder: '예: 퇴장방지 대상 적응증' },
+      { id: 'costData', label: '원가자료', type: 'file', accept: '.pdf,.xlsx,.xls,.csv', description: '원가산정 관련 서류 (PDF, Excel, CSV)' },
+      { id: 'targetTiming', label: '지정 희망 시점', type: 'text', placeholder: '예: 2026년 상반기' },
+      { id: 'notes', label: '추가 메모', type: 'textarea', placeholder: '가정/제약사항/특이사항' },
+    ],
+    outputs: [
+      '퇴장방지의약품 원가산정 결과 요약',
+      '원가산정 방식·근거 요약',
+      '핵심 가정값 및 산출 근거 표',
+      '추가 제출 자료·리스크 포인트',
+    ],
   },
   {
     id: 'drug-listing-evidence',
