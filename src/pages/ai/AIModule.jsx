@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import SEOHead from '../../components/SEOHead'
 import { getAiModuleById } from '../../data/aiModules'
+import WithdrawalPreventionForm from './WithdrawalPreventionForm'
 
 function Field({ field, value, onChange }) {
   const base =
@@ -119,6 +120,28 @@ export default function AIModule() {
     }
   }
 
+  const handleWithdrawalRun = async (formData) => {
+    setError(null)
+    setResult(null)
+    setLoading(true)
+    try {
+      const res = await fetch(`${API_BASE}/api/ai-module/${moduleId}`, {
+        method: 'POST',
+        body: formData,
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) {
+        setError(data.error || '처리 중 오류가 발생했습니다.')
+        return
+      }
+      setResult(data)
+    } catch (e) {
+      setError('네트워크 오류가 발생했습니다. 다시 시도해주세요.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
   if (!module) {
     return (
       <div className="pt-20 min-h-screen">
@@ -174,46 +197,57 @@ export default function AIModule() {
                   <h2 className="text-lg font-semibold text-slate-900">입력</h2>
                 </div>
                 <div className="p-6 space-y-5">
-                  {inputsToUse.map((field) => {
-                    const defaultVal = field.type === 'select' && field.options?.[0] != null
-                      ? (typeof field.options[0] === 'object' ? field.options[0].value : field.options[0])
-                      : ''
-                    return (
-                      <div key={field.id}>
-                        <label className="block text-sm font-medium text-slate-800 mb-2">{field.label}</label>
-                        <Field field={field} value={values[field.id] ?? defaultVal} onChange={update} />
+                  {module.id === 'drug-withdrawal-prevention' ? (
+                    <WithdrawalPreventionForm
+                      onRun={handleWithdrawalRun}
+                      loading={loading}
+                      onReset={() => { setResult(null); setError(null); }}
+                    />
+                  ) : (
+                    <>
+                      {inputsToUse.map((field) => {
+                        const defaultVal = field.type === 'select' && field.options?.[0] != null
+                          ? (typeof field.options[0] === 'object' ? field.options[0].value : field.options[0])
+                          : ''
+                        return (
+                          <div key={field.id}>
+                            <label className="block text-sm font-medium text-slate-800 mb-2">{field.label}</label>
+                            <Field field={field} value={values[field.id] ?? defaultVal} onChange={update} />
+                          </div>
+                        )
+                      })}
+                      <div className="pt-2 flex flex-col sm:flex-row gap-3">
+                        {canRun ? (
+                          <button
+                            type="button"
+                            disabled={loading}
+                            onClick={handleRun}
+                            className="flex-1 px-4 py-3 rounded-lg bg-[#285BAB] text-white font-semibold hover:bg-[#1e4580] disabled:opacity-60 disabled:cursor-not-allowed transition"
+                          >
+                            {loading ? '처리 중…' : 'AI 실행'}
+                          </button>
+                        ) : (
+                          <button
+                            type="button"
+                            disabled
+                            className="flex-1 px-4 py-3 rounded-lg bg-slate-200 text-slate-500 font-semibold cursor-not-allowed"
+                          >
+                            AI 실행(준비 중)
+                          </button>
+                        )}
+                        <button
+                          type="button"
+                          onClick={() => { setValues({}); setResult(null); setError(null); }}
+                          className="px-4 py-3 rounded-lg border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 transition font-medium"
+                        >
+                          초기화
+                        </button>
                       </div>
-                    )
-                  })}
-
-                  <div className="pt-2 flex flex-col sm:flex-row gap-3">
-                    {canRun ? (
-                      <button
-                        disabled={loading}
-                        onClick={handleRun}
-                        className="flex-1 px-4 py-3 rounded-lg bg-[#285BAB] text-white font-semibold hover:bg-[#1e4580] disabled:opacity-60 disabled:cursor-not-allowed transition"
-                      >
-                        {loading ? '처리 중…' : 'AI 실행'}
-                      </button>
-                    ) : (
-                      <button
-                        disabled
-                        className="flex-1 px-4 py-3 rounded-lg bg-slate-200 text-slate-500 font-semibold cursor-not-allowed"
-                      >
-                        AI 실행(준비 중)
-                      </button>
-                    )}
-                    <button
-                      onClick={() => { setValues({}); setResult(null); setError(null); }}
-                      className="px-4 py-3 rounded-lg border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 transition font-medium"
-                    >
-                      초기화
-                    </button>
-                  </div>
-
-                  <div className="text-xs text-slate-500">
-                    입력은 예시이며, 실제 제품에서는 회사 템플릿/데이터 소스에 맞춰 항목을 커스터마이즈합니다.
-                  </div>
+                      <div className="text-xs text-slate-500">
+                        입력은 예시이며, 실제 제품에서는 회사 템플릿/데이터 소스에 맞춰 항목을 커스터마이즈합니다.
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
 

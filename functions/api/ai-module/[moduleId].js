@@ -87,7 +87,35 @@ async function processDrugWithdrawalPrevention(body) {
     }
   }
 
-  const cost = calcProductCost(body)
+  // 전용 폼(payload)에서 원료비·재료비 배열이 오면 1단위당 산출
+  let calcBody = { ...body }
+  const approved = num(body.approvedProduction) || 1
+  if (Array.isArray(body.rawMaterials) && body.rawMaterials.length > 0) {
+    const rawTotal = body.rawMaterials.reduce((s, r) => s + (num(r.unitPrice) * num(r.quantity)), 0)
+    calcBody.rawMaterialPerUnit = approved > 0 ? rawTotal / approved : 0
+  }
+  if (Array.isArray(body.materials) && body.materials.length > 0) {
+    const matTotal = body.materials.reduce((s, r) => s + (num(r.unitPrice) * num(r.quantity)), 0)
+    calcBody.materialPerUnit = approved > 0 ? matTotal / approved : 0
+  }
+  if (body.labor && typeof body.labor === 'object' && approved > 0) {
+    const L = body.labor
+    const productH = num(L.productLaborHours)
+    const totalH = num(L.totalLaborHours)
+    const totalCost = num(L.totalLaborCost)
+    calcBody.laborPerUnit = totalH > 0 ? (productH / totalH) * totalCost / approved : 0
+  }
+  if (num(body.totalOverhead) > 0 && approved > 0 && body.labor && typeof body.labor === 'object') {
+    const productH = num(body.labor.productLaborHours)
+    const totalH = num(body.labor.totalLaborHours)
+    const ratio = totalH > 0 ? productH / totalH : 0
+    calcBody.overheadPerUnit = (num(body.totalOverhead) * ratio) / approved
+  }
+  if (body.sellingAdminPerUnit != null) calcBody.sellingAdminPerUnit = body.sellingAdminPerUnit
+  if (body.nonOperatingPerUnit != null) calcBody.nonOperatingPerUnit = body.nonOperatingPerUnit
+  if (body.profitRatePercent != null) calcBody.profitRatePercent = body.profitRatePercent
+
+  const cost = calcProductCost(calcBody)
   const summary = [
     '【제품(국내제조) 원가산정 결과 요약】',
     `제품명: ${productName}`,
@@ -159,9 +187,17 @@ export async function onRequestPost(context) {
         if (value instanceof Blob && value.size > 0) {
           body[`${key}FileName`] = value.name || '(파일)'
           body[`${key}Size`] = value.size
-          // MVP에서는 파일 내용은 저장/분석하지 않고 "제출됨" 여부만 반영
         } else if (typeof value === 'string') {
-          body[key] = value
+          if (key === 'payload') {
+            try {
+              const parsed = JSON.parse(value)
+              Object.assign(body, parsed)
+            } catch (e) {
+              console.warn('payload JSON parse failed', e)
+            }
+          } else {
+            body[key] = value
+          }
         }
       }
     } else {
