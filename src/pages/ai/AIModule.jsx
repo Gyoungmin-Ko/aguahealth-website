@@ -19,13 +19,18 @@ function Field({ field, value, onChange }) {
   }
 
   if (field.type === 'select') {
+    const opts = field.options || []
     return (
       <select className={base} value={value} onChange={(e) => onChange(field.id, e.target.value)}>
-        {(field.options || []).map((opt) => (
-          <option key={opt} value={opt}>
-            {opt}
-          </option>
-        ))}
+        {opts.map((opt) => {
+          const val = typeof opt === 'object' && opt !== null ? opt.value : opt
+          const label = typeof opt === 'object' && opt !== null ? opt.label : opt
+          return (
+            <option key={val} value={val}>
+              {label}
+            </option>
+          )
+        })}
       </select>
     )
   }
@@ -69,7 +74,17 @@ export default function AIModule() {
 
   const update = (id, next) => setValues((v) => ({ ...v, [id]: next }))
 
-  const canRun = module?.inputs?.length && !module.comingSoon
+  // 퇴방 모듈: 제품/상품 구분에 따라 표시할 입력만 필터 (미선택 시 제품으로 간주)
+  const visibleInputs = useMemo(() => {
+    if (!module?.inputs) return []
+    const productType = values.productType || 'product'
+    return module.inputs.filter(
+      (f) => f.showWhen == null || f.showWhen === productType
+    )
+  }, [module?.inputs, values.productType])
+
+  const inputsToUse = module?.id === 'drug-withdrawal-prevention' ? visibleInputs : (module?.inputs || [])
+  const canRun = inputsToUse.length > 0 && !module?.comingSoon
 
   const handleRun = async () => {
     if (!canRun || !module) return
@@ -78,7 +93,8 @@ export default function AIModule() {
     setLoading(true)
     try {
       const formData = new FormData()
-      for (const field of module.inputs) {
+      const fieldsToSend = module.id === 'drug-withdrawal-prevention' ? visibleInputs : (module.inputs || [])
+      for (const field of fieldsToSend) {
         const val = values[field.id]
         if (field.type === 'file') {
           if (val instanceof File) formData.append(field.id, val)
@@ -158,12 +174,17 @@ export default function AIModule() {
                   <h2 className="text-lg font-semibold text-slate-900">입력</h2>
                 </div>
                 <div className="p-6 space-y-5">
-                  {(module.inputs || []).map((field) => (
-                    <div key={field.id}>
-                      <label className="block text-sm font-medium text-slate-800 mb-2">{field.label}</label>
-                      <Field field={field} value={values[field.id] ?? (field.type === 'select' ? field.options?.[0] : '')} onChange={update} />
-                    </div>
-                  ))}
+                  {inputsToUse.map((field) => {
+                    const defaultVal = field.type === 'select' && field.options?.[0] != null
+                      ? (typeof field.options[0] === 'object' ? field.options[0].value : field.options[0])
+                      : ''
+                    return (
+                      <div key={field.id}>
+                        <label className="block text-sm font-medium text-slate-800 mb-2">{field.label}</label>
+                        <Field field={field} value={values[field.id] ?? defaultVal} onChange={update} />
+                      </div>
+                    )
+                  })}
 
                   <div className="pt-2 flex flex-col sm:flex-row gap-3">
                     {canRun ? (
@@ -201,7 +222,7 @@ export default function AIModule() {
                 <div className="p-6 border-b border-slate-200">
                   <h2 className="text-lg font-semibold text-slate-900">출력</h2>
                   <p className="text-sm text-slate-600 mt-1">
-                    {result ? 'AI 실행 결과입니다.' : '입력 후 "AI 실행"을 누르면 결과가 여기에 표시됩니다.'} “화면 구조”를 먼저 잡아둔 상태입니다.
+                    {result ? 'AI 실행 결과입니다.' : '입력 후 "AI 실행"을 누르면 결과가 여기에 표시됩니다.'}
                   </p>
                 </div>
 
@@ -213,6 +234,13 @@ export default function AIModule() {
                   )}
                   {result ? (
                     <>
+                      {result.adjustmentRequestAmount != null && result.productType === 'product' && (
+                        <div className="rounded-xl bg-[#285BAB]/10 border border-[#285BAB]/30 p-5">
+                          <div className="text-xs font-semibold text-[#285BAB] mb-1">규격단위당 조정신청금액</div>
+                          <div className="text-2xl font-bold text-slate-900">{Number(result.adjustmentRequestAmount).toFixed(2)}원</div>
+                          <p className="text-xs text-slate-600 mt-1">참고용 산출이며, 반올림 규칙은 미적용입니다.</p>
+                        </div>
+                      )}
                       {result.summary && (
                         <div className="rounded-xl bg-slate-50 border border-slate-100 p-4">
                           <div className="text-xs font-semibold text-[#285BAB] mb-2">요약</div>
