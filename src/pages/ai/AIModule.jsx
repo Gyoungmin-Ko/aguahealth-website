@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import SEOHead from '../../components/SEOHead'
 import { getAiModuleById } from '../../data/aiModules'
 import WithdrawalPreventionForm from './WithdrawalPreventionForm'
+import ForeignLandscapeReportView from './ForeignLandscapeReportView'
 
 function Field({ field, value, onChange }) {
   const base =
@@ -109,7 +110,15 @@ export default function AIModule() {
       })
       const data = await res.json().catch(() => ({}))
       if (!res.ok) {
-        setError(data.error || '처리 중 오류가 발생했습니다.')
+        const msg = data.error || (res.status === 404
+          ? 'API에 연결할 수 없습니다. 배포된 사이트(agua-health.com)에서 이용하거나, 로컬에서는 "npm run build" 후 "npx wrangler pages dev dist"로 실행해 보세요.'
+          : '처리 중 오류가 발생했습니다.')
+        setError(msg)
+        return
+      }
+      // API가 HTML을 반환한 경우(SPA 폴백 등) 파싱 결과가 빈 객체일 수 있음
+      if (!data || (typeof data === 'object' && !('summary' in data) && !('assumptions' in data) && !('sections' in data) && !('error' in data))) {
+        setError('API 응답 형식이 올바르지 않습니다. 배포 환경에서 다시 시도해 주세요.')
         return
       }
       setResult(data)
@@ -281,6 +290,67 @@ export default function AIModule() {
                           <p className="text-sm text-slate-800 whitespace-pre-wrap">{result.summary}</p>
                         </div>
                       )}
+                      {/* 외국현황 리포트: 요약·산출기준·국가별 요약표 + 캡처 기준 1~4절 전용 뷰 */}
+                      {moduleId === 'drug-foreign-landscape' && result && (
+                        <>
+                          <div className="rounded-xl border border-slate-200 bg-slate-50/80 p-4">
+                            <div className="text-xs font-semibold text-[#285BAB] mb-3">산출 기준</div>
+                            <p className="text-sm text-slate-600 mb-3">본 리포트는 아래 세 가지 기준으로 국가별 현황을 산출합니다.</p>
+                            <div className="grid sm:grid-cols-3 gap-3">
+                              <div className="rounded-lg border border-slate-200 bg-white p-3">
+                                <div className="text-sm font-semibold text-slate-900 mb-1">외국허가</div>
+                                <p className="text-xs text-slate-600">주요 국가의 등재 여부·허가/급여 기관(Medicare, G-BA, NDB 등)</p>
+                              </div>
+                              <div className="rounded-lg border border-slate-200 bg-white p-3">
+                                <div className="text-sm font-semibold text-slate-900 mb-1">약가</div>
+                                <p className="text-xs text-slate-600">국가별 약가 수준·협상가·참고가(ASP, AMNOG, 약가기준 등)</p>
+                              </div>
+                              <div className="rounded-lg border border-slate-200 bg-white p-3">
+                                <div className="text-sm font-semibold text-slate-900 mb-1">외국평가현황</div>
+                                <p className="text-xs text-slate-600">HTA·급여 범위, RSA/MEA 등 평가·제도 현황</p>
+                              </div>
+                            </div>
+                          </div>
+                          {result.assumptions?.length > 0 && (
+                            <div className="rounded-xl border-2 border-[#285BAB]/20 bg-white overflow-hidden shadow-sm">
+                              <div className="px-4 py-3 bg-[#285BAB]/10 border-b border-slate-200 font-semibold text-slate-900">
+                                국가별 등재·약가 요약
+                              </div>
+                              <div className="overflow-x-auto">
+                                <table className="w-full text-sm text-left">
+                                  <thead>
+                                    <tr className="border-b border-slate-200 bg-slate-50">
+                                      <th className="px-4 py-2 font-medium text-slate-700 w-24">국가</th>
+                                      <th className="px-4 py-2 font-medium text-[#285BAB] bg-sky-50/50">외국허가</th>
+                                      <th className="px-4 py-2 font-medium text-[#285BAB] bg-sky-50/50">약가</th>
+                                      <th className="px-4 py-2 font-medium text-[#285BAB] bg-sky-50/50" colSpan={2}>외국평가현황</th>
+                                    </tr>
+                                    <tr className="border-b border-slate-200 bg-slate-50/80">
+                                      <th className="px-4 py-1.5 text-xs font-medium text-slate-500 w-24"> </th>
+                                      <th className="px-4 py-1.5 text-xs font-medium text-slate-500">등재여부</th>
+                                      <th className="px-4 py-1.5 text-xs font-medium text-slate-500">약가수준</th>
+                                      <th className="px-4 py-1.5 text-xs font-medium text-slate-500">급여범위</th>
+                                      <th className="px-4 py-1.5 text-xs font-medium text-slate-500">비고</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    {result.assumptions.map((row, i) => (
+                                      <tr key={i} className="border-b border-slate-100 hover:bg-slate-50/50">
+                                        <td className="px-4 py-2.5 font-medium text-slate-900">{row.국가 ?? '-'}</td>
+                                        <td className="px-4 py-2.5 text-slate-800">{String(row.등재여부 ?? '-')}</td>
+                                        <td className="px-4 py-2.5 text-slate-800">{String(row.약가수준 ?? '-')}</td>
+                                        <td className="px-4 py-2.5 text-slate-800">{String(row.급여범위 ?? '-')}</td>
+                                        <td className="px-4 py-2.5 text-slate-700">{String(row.비고 ?? '-')}</td>
+                                      </tr>
+                                    ))}
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          )}
+                          <ForeignLandscapeReportView result={result} />
+                        </>
+                      )}
                       {result.risks && (
                         <div className="rounded-xl bg-amber-50 border border-amber-100 p-4">
                           <div className="text-xs font-semibold text-[#285BAB] mb-2">신뢰도/리스크</div>
@@ -301,7 +371,8 @@ export default function AIModule() {
                           ))}
                         </div>
                       )}
-                      {result.assumptions?.length > 0 && (
+                      {/* 외국현황이 아닐 때만 기존 가정값 표 노출 (외국현황은 위에서 이미 표시) */}
+                      {result.assumptions?.length > 0 && moduleId !== 'drug-foreign-landscape' && (
                         <div className="rounded-xl border border-slate-200 overflow-hidden">
                           <div className="px-4 py-3 bg-slate-50 border-b border-slate-200 font-medium text-slate-900">
                             핵심 가정값 및 산출 근거

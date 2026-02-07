@@ -1,4 +1,4 @@
-# Cloudflare Pages Redirects Configuration
+# Cloudflare Pages Redirects Configuration for React SPA
 # https://developers.cloudflare.com/pages/configuration/redirects/
 
 # Force HTTPS (handled by Cloudflare automatically)
@@ -8,24 +8,22 @@ https://www.agua-health.com/* https://agua-health.com/:splat 301!
 # Redirect old aguahealth-website.pages.dev to custom domain
 https://aguahealth-website.pages.dev/* https://agua-health.com/:splat 301!
 
-# Trailing slash normalization - redirect with trailing slash to without
-/about.html/ /about.html 301
-/ai-solutions.html/ /ai-solutions.html 301
-/case-studies.html/ /case-studies.html 301
-/contact.html/ /contact.html 301
-/insights.html/ /insights.html 301
-/services/market-entry.html/ /services/market-entry.html 301
-/services/economics.html/ /services/economics.html 301
-/services/regulatory.html/ /services/regulatory.html 301
-/services/claims.html/ /services/claims.html 301
-/services/ai-solutions.html/ /services/ai-solutions.html 301
-
-# Redirect index.html to root
+# Legacy .html URLs redirect to clean URLs (for backward compatibility)
+/about.html /about 301
+/contact.html /contact 301
+/faq.html /faq 301
+/ai-solutions.html /ai-solutions 301
+/insights.html /insights 301
+/case-studies.html /case-studies 301
+/services/market-entry.html /services/market-entry 301
+/services/economics.html /services/economics 301
+/services/regulatory.html /services/regulatory 301
+/services/claims.html /services/claims 301
+/services/withdrawal-prevention.html /services/withdrawal-prevention 301
+/services/medical-device.html /services/medical-device 301
+/services/ai-solutions.html /services/ai-solutions 301
 /index.html / 301
 
-# SPA fallback - React Router 클라이언트 라우팅
-/insights/*  /index.html  200
-/ai-solutions/*  /index.html  200
-
-# Legacy URL redirects (if needed in future)
-# /old-page.html /new-page.html 301
+# SPA fallback - serve index.html for ALL routes (must be last)
+# 새로고침 시 React 앱이 로드되도록 모든 경로를 index.html로 라우팅
+/* /index.html 200

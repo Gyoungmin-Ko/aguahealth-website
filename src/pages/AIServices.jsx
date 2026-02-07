@@ -138,7 +138,7 @@ export default function AIServices() {
                       <optgroup key={tier.price} label={`${tier.priceLabel} — ${tier.copy}`}>
                         {tier.modules.map((m) => (
                           <option key={`${m.moduleId}-${tier.price}`} value={`${m.moduleId}|${tier.price}|${tier.priceLabel}|${m.label}`}>
-                            {m.label} ({tier.priceLabel})
+                            {m.label}
                           </option>
                         ))}
                       </optgroup>
