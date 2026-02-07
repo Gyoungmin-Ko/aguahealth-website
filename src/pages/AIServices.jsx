@@ -1,11 +1,26 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import SEOHead from '../components/SEOHead'
 import servicesData from '../data/services.json'
 import { aiModules } from '../data/aiModules'
 import aiPricing from '../data/aiPricing.json'
+import ROICalculator from '../components/ROICalculator'
 
 export default function AIServices() {
   const ai = servicesData.aiServices
+  const [selectedOneTime, setSelectedOneTime] = useState('')
+  const [bundleSelections, setBundleSelections] = useState([])
+
+  const flatModulesWithPrice = (aiPricing.oneTime?.priceTiers || []).flatMap((tier) =>
+    tier.modules.map((m) => ({ ...m, price: tier.price, priceLabel: tier.priceLabel }))
+  )
+  const bundleTotal = bundleSelections.reduce((sum, id) => {
+    const m = flatModulesWithPrice.find((x) => `${x.moduleId}-${x.price}` === id)
+    return sum + (m?.price || 0)
+  }, 0)
+  const toggleBundle = (id) => {
+    setBundleSelections((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]))
+  }
 
   return (
     <>
@@ -96,39 +111,113 @@ export default function AIServices() {
               <p className="text-lg text-slate-200">
                 {aiPricing.sectionSubtitle}
               </p>
-            </div>
-
-            {/* 원타임 단품: 한 건만 써보기 */}
-            <div className="max-w-5xl mx-auto mb-14">
-              <h3 className="text-xl font-bold text-sky-200 mb-2">{aiPricing.oneTime.title}</h3>
-              <p className="text-sm text-slate-400 mb-4">{aiPricing.oneTime.subtitle}</p>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3">
-                {aiPricing.oneTime.items.map((item) => (
-                  <button
-                    key={item.id}
-                    type="button"
-                    onClick={() => window.openContactModal?.({ presetMessage: `【AI 솔루션 원타임 신청】\n관심 서비스: ${item.label}\n결과물: ${item.outcome}\n\n(위 서비스 1건 견적·진행 문의드립니다.)\n\n` })}
-                    className="group text-left rounded-xl border border-slate-600 bg-slate-800/80 p-4 hover:border-sky-400 hover:bg-slate-800 transition"
-                  >
-                    <div className="font-semibold text-white group-hover:text-sky-300 mb-1">{item.label}</div>
-                    <div className="text-xs text-slate-400 mb-3 line-clamp-2">{item.outcome}</div>
-                    <span className="text-xs font-medium text-sky-400">1건 신청 →</span>
-                  </button>
-                ))}
-              </div>
-              {aiPricing.oneTime.priceHint && (
-                <p className="text-center text-xs text-slate-500 mt-3">{aiPricing.oneTime.priceHint}</p>
+              {aiPricing.psychology?.anchorLine && (
+                <p className="text-sm text-sky-200/90 mt-3">
+                  {aiPricing.psychology.anchorLine}
+                </p>
               )}
             </div>
 
+            {/* 원타임 단품: 드롭다운 + 가격 표시 */}
+            <div className="max-w-5xl mx-auto mb-14">
+              {aiPricing.psychology?.reciprocityLine && (
+                <p className="text-center text-sm text-sky-200/90 mb-3">{aiPricing.psychology.reciprocityLine}</p>
+              )}
+              <h3 className="text-xl font-bold text-sky-200 mb-2">{aiPricing.oneTime?.title}</h3>
+              <p className="text-sm text-slate-400 mb-4">{aiPricing.oneTime?.subtitle}</p>
+              <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-end">
+                <div className="flex-1">
+                  <label className="block text-xs font-medium text-slate-400 mb-1">모듈 선택</label>
+                  <select
+                    value={selectedOneTime}
+                    onChange={(e) => setSelectedOneTime(e.target.value)}
+                    className="w-full rounded-lg border border-slate-600 bg-slate-800 px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-sky-500"
+                  >
+                    <option value="">모듈을 선택하세요</option>
+                    {(aiPricing.oneTime?.priceTiers || []).map((tier) => (
+                      <optgroup key={tier.price} label={`${tier.priceLabel} — ${tier.copy}`}>
+                        {tier.modules.map((m) => (
+                          <option key={`${m.moduleId}-${tier.price}`} value={`${m.moduleId}|${tier.price}|${tier.priceLabel}|${m.label}`}>
+                            {m.label} ({tier.priceLabel})
+                          </option>
+                        ))}
+                      </optgroup>
+                    ))}
+                  </select>
+                </div>
+                <div className="flex gap-3 items-end">
+                  {selectedOneTime && (() => {
+                    const [, , priceLabel, label] = selectedOneTime.split('|')
+                    return (
+                      <>
+                        <span className="text-lg font-bold text-sky-200 py-2">{priceLabel}</span>
+                        <button
+                          type="button"
+                          onClick={() => window.openContactModal?.({
+                            presetMessage: `【AI 솔루션 원타임 신청】\n관심 서비스: ${label} (${priceLabel})\n\n위 서비스 1건 견적·진행 문의드립니다.\n\n`
+                          })}
+                          className="px-4 py-3 rounded-lg bg-sky-400 text-slate-900 font-semibold hover:bg-sky-300 transition"
+                        >
+                          견적 문의
+                        </button>
+                      </>
+                    )
+                  })()}
+                </div>
+              </div>
+            </div>
+
+            {/* 원타임 묶음: 복수 선택 + 합산 */}
+            {aiPricing.oneTimeBundle && (
+              <div className="max-w-5xl mx-auto mb-14">
+                <h3 className="text-xl font-bold text-sky-200 mb-2">{aiPricing.oneTimeBundle.title}</h3>
+                <p className="text-sm text-slate-400 mb-4">{aiPricing.oneTimeBundle.subtitle}</p>
+                <div className="rounded-xl border border-slate-600 bg-slate-800/60 p-4 max-h-48 overflow-y-auto">
+                  <div className="grid sm:grid-cols-2 gap-2">
+                    {flatModulesWithPrice.map((m) => {
+                      const id = `${m.moduleId}-${m.price}`
+                      const checked = bundleSelections.includes(id)
+                      return (
+                        <label key={id} className="flex items-center gap-2 text-sm text-slate-200 cursor-pointer hover:text-sky-200">
+                          <input type="checkbox" checked={checked} onChange={() => toggleBundle(id)} className="rounded border-slate-500" />
+                          <span>{m.label}</span>
+                          <span className="text-sky-300 ml-auto">{m.priceLabel}</span>
+                        </label>
+                      )
+                    })}
+                  </div>
+                </div>
+                {bundleSelections.length > 0 && (
+                  <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+                    <span className="text-slate-300">선택 합계: <strong className="text-sky-200">{bundleTotal.toLocaleString()}원</strong></span>
+                    <button
+                      type="button"
+                      onClick={() => window.openContactModal?.({
+                        presetMessage: `【AI 솔루션 원타임 묶음 신청】\n선택 모듈 수: ${bundleSelections.length}건\n예상 합계: ${bundleTotal.toLocaleString()}원\n\n위 구성으로 견적·진행 문의드립니다.\n\n`
+                      })}
+                      className="px-4 py-2 rounded-lg bg-sky-400 text-slate-900 font-semibold hover:bg-sky-300 transition"
+                    >
+                      {aiPricing.oneTimeBundle.cta}
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* ROI 계산기 */}
+            {aiPricing.roiCalculator && (
+              <div className="max-w-5xl mx-auto mb-14">
+                <ROICalculator config={aiPricing.roiCalculator} />
+              </div>
+            )}
+
+            {/* 구독 3단계: Starter / Professional / Enterprise */}
             <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {aiPricing.tiers.map((tier) => (
+              {aiPricing.tiers?.map((tier) => (
                 <div
                   key={tier.id}
                   className={`rounded-2xl p-6 flex flex-col relative ${
-                    tier.recommended
-                      ? 'bg-slate-800 border-2 border-sky-400'
-                      : 'bg-slate-800/60 border border-slate-700'
+                    tier.recommended ? 'bg-slate-800 border-2 border-sky-400' : 'bg-slate-800/60 border border-slate-700'
                   }`}
                 >
                   {tier.badge && (
@@ -138,20 +227,20 @@ export default function AIServices() {
                   )}
                   <div className="text-sm font-semibold text-sky-300 mb-2">{tier.name}</div>
                   <h3 className="text-xl font-bold mb-1">{tier.tagline}</h3>
-                  {tier.priceHint && (
-                    <p className="text-sm font-medium text-sky-200/90 mb-2">{tier.priceHint}</p>
-                  )}
+                  {tier.headline && <p className="text-sm text-sky-200/90 mb-2">{tier.headline}</p>}
+                  {tier.price && <p className="text-lg font-bold text-white mb-1">{tier.price}</p>}
+                  {tier.credits && <p className="text-xs text-slate-400 mb-3">{tier.credits}</p>}
                   <p className="text-sm text-slate-200 mb-4">{tier.description}</p>
                   <ul className="text-sm text-slate-100 space-y-2 mb-6 flex-1">
-                    {tier.features.map((f, i) => (
+                    {tier.features?.map((f, i) => (
                       <li key={i}>· {f}</li>
                     ))}
                   </ul>
-                  <p className="text-xs text-slate-300 mb-4">{tier.footer}</p>
+                  {tier.footer && <p className="text-xs text-slate-300 mb-4">{tier.footer}</p>}
                   <button
                     type="button"
                     onClick={() => window.openContactModal?.({
-                      presetMessage: `【AI 솔루션 플랜 문의】\n관심 플랜: ${tier.name} (${tier.tagline})\n\n(위 플랜 견적·맞춤 제안 요청드립니다.)\n\n`
+                      presetMessage: `【AI 솔루션 플랜 문의】\n관심 플랜: ${tier.name} (${tier.tagline})\n${tier.price || ''}\n\n위 플랜 견적·맞춤 제안 요청드립니다.\n\n`
                     })}
                     className={`w-full py-3 rounded-lg font-semibold transition ${tier.recommended ? 'bg-sky-400 text-slate-900 hover:bg-sky-300' : 'bg-slate-700 text-white hover:bg-slate-600'}`}
                   >
@@ -171,10 +260,7 @@ export default function AIServices() {
                     <thead>
                       <tr className="border-b border-slate-600">
                         {aiPricing.comparisonTable.headers.map((h, i) => (
-                          <th
-                            key={i}
-                            className={`px-4 py-3 font-semibold ${i === 0 ? 'text-slate-300 w-1/5' : 'text-sky-200'}`}
-                          >
+                          <th key={i} className={`px-4 py-3 font-semibold ${i === 0 ? 'text-slate-300 w-1/5' : 'text-sky-200'}`}>
                             {h}
                           </th>
                         ))}
@@ -185,8 +271,8 @@ export default function AIServices() {
                         <tr key={i} className="border-b border-slate-700 last:border-0">
                           <td className="px-4 py-3 text-slate-300 font-medium">{row.label}</td>
                           <td className="px-4 py-3 text-slate-200">{row.starter}</td>
-                          <td className="px-4 py-3 text-slate-200 bg-sky-900/20">{row.growth}</td>
-                          <td className="px-4 py-3 text-slate-200">{row.scale}</td>
+                          <td className="px-4 py-3 text-slate-200 bg-sky-900/20">{row.professional}</td>
+                          <td className="px-4 py-3 text-slate-200">{row.enterprise}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -195,9 +281,22 @@ export default function AIServices() {
               </div>
             )}
 
+            {/* Expert Review */}
+            {aiPricing.expertReview && (
+              <div className="max-w-5xl mx-auto mt-8 p-4 rounded-xl border border-slate-600 bg-slate-800/40 text-center">
+                <div className="font-semibold text-sky-200">{aiPricing.expertReview.title}</div>
+                <p className="text-sm text-slate-400 mt-1">{aiPricing.expertReview.description}</p>
+              </div>
+            )}
+
             <p className="text-center text-sm text-slate-400 mt-8 max-w-2xl mx-auto">
               {aiPricing.trustNote}
             </p>
+            {aiPricing.psychology?.exitLine && (
+              <p className="text-center text-xs text-slate-500 mt-2 max-w-2xl mx-auto">
+                {aiPricing.psychology.exitLine}
+              </p>
+            )}
             <div className="text-center mt-6">
               <button
                 type="button"

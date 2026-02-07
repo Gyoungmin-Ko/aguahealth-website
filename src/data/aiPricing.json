@@ -1,64 +1,153 @@
 {
   "sectionTitle": "예산에 맞는 옵션을 선택하세요",
   "sectionSubtitle": "구독으로 안정적으로 쓰거나, 필요한 1건만 먼저 써보세요. 글로벌 컨설팅 대비 부담 없는 가격대로 설계했습니다.",
+  "psychology": {
+    "anchorLine": "글로벌 마켓액세스 컨설팅은 프로젝트당 수천만원대가 일반적입니다. AI로 같은 결과물을 더 낮은 비용으로.",
+    "reciprocityLine": "무료로 견적부터 받아보세요. 48시간 내 제안드립니다.",
+    "exitLine": "상담 후 진행 여부는 귀사가 결정합니다. 별도 의무 없습니다."
+  },
   "oneTime": {
     "title": "원타임 단품",
-    "subtitle": "한 건만 필요할 때. 결재도 빠르고, 체험 후 구독으로 전환할 수 있습니다.",
-    "priceHint": "1건당 견적 문의 (서비스별 상이)",
-    "items": [
-      { "id": "one-expected-price", "label": "예상 보험가격 1건", "moduleId": "drug-expected-price", "outcome": "예상 약가 범위·레퍼런스 요약" },
-      { "id": "one-foreign-landscape", "label": "외국 현황 리포트 1건", "moduleId": "drug-foreign-landscape", "outcome": "국가별 등재·약가·제도 비교" },
-      { "id": "one-withdrawal", "label": "퇴장방지 원가산정 1건", "moduleId": "drug-withdrawal-prevention", "outcome": "원가산정 결과·조정신청금액" },
-      { "id": "one-listing-evidence", "label": "교과서·의약품집 수재 1건", "moduleId": "drug-listing-evidence", "outcome": "수재 여부·인용 문구·증빙 초안" },
-      { "id": "one-listing-strategy", "label": "등재 전략 수립 1건", "moduleId": "drug-listing-strategy", "outcome": "전략 옵션·타임라인 초안" }
+    "subtitle": "한 건만 필요할 때. 모듈을 선택하면 단품 가격이 표시됩니다. 결제·문의로 바로 이어집니다.",
+    "priceTiers": [
+      {
+        "price": 100000,
+        "priceLabel": "10만원",
+        "copy": "20시간 걸리던 기초 조사를 10분으로. 한 건만 써보고 결정하세요.",
+        "modules": [
+          { "moduleId": "drug-expected-price", "label": "예상 보험가격 산정" },
+          { "moduleId": "device-existing-tech", "label": "기존기술 여부 평가" },
+          { "moduleId": "device-early-entry", "label": "선진입 의료기술 평가" },
+          { "moduleId": "device-nhta", "label": "신의료기술평가 준비" },
+          { "moduleId": "device-reimbursement", "label": "행위·치료재료 등재 전략" }
+        ]
+      },
+      {
+        "price": 1000000,
+        "priceLabel": "100만원",
+        "copy": "등재 전략·외국 현황·원가보전까지. 1건당 100만원, 프로젝트 단위 결재에 맞춤.",
+        "modules": [
+          { "moduleId": "drug-foreign-landscape", "label": "외국 현황 리포트" },
+          { "moduleId": "drug-listing-evidence", "label": "교과서·의약품집 수재" },
+          { "moduleId": "drug-journal-indexing", "label": "학술지 수재내역" },
+          { "moduleId": "drug-substitutes", "label": "예상 대체가능약제" },
+          { "moduleId": "drug-listing-strategy", "label": "건강보험 등재 전략 수립" },
+          { "moduleId": "drug-pricing-strategy", "label": "약가협상 전략" },
+          { "moduleId": "drug-rsa-simulation", "label": "위험분담제 시뮬레이션" },
+          { "moduleId": "drug-withdrawal-prevention", "label": "퇴장방지의약품·원가보전" },
+          { "moduleId": "drug-bia", "label": "재정영향분석" }
+        ]
+      },
+      {
+        "price": 5000000,
+        "priceLabel": "500만원",
+        "copy": "고난도 분석(SLR·간접비교)은 전문 컨설팅 대비 합리적인 단가로.",
+        "modules": [
+          { "moduleId": "drug-slr", "label": "체계적 문헌고찰(SLR)" },
+          { "moduleId": "drug-indirect-comparison", "label": "간접비교 시뮬레이터" }
+        ]
+      },
+      {
+        "price": 10000000,
+        "priceLabel": "1,000만원",
+        "copy": "경제성평가는 전문 컨설팅 대비 합리적인 단가로 제공합니다.",
+        "modules": [
+          { "moduleId": "drug-hee-sim", "label": "경제성평가" }
+        ]
+      }
     ]
+  },
+  "oneTimeBundle": {
+    "title": "원타임 묶음",
+    "subtitle": "여러 모듈을 선택하면 단품 가격이 합산됩니다. 필요한 만큼만 골라 문의하세요.",
+    "cta": "선택한 모듈 견적 문의하기"
   },
   "tiers": [
     {
       "id": "starter",
-      "name": "스타터",
+      "name": "Starter",
+      "nameKo": "스타터",
       "badge": null,
-      "tagline": "입문형",
-      "priceHint": "월 50만원대~",
-      "description": "소수의 브랜드를 운영하는 국내 제약·바이오, 의료기기 회사에 적합합니다.",
-      "features": ["핵심 AI 모듈 일부 사용", "월간 구독 또는 프로젝트 1~2건 원타임 선택", "이메일 기반 서포트"],
+      "tagline": "실무 강화형",
+      "headline": "반복 업무 제로, 실무 가속화",
+      "price": "월 50만 원",
+      "credits": "10 Credits",
+      "description": "소수의 브랜드를 운영하는 국내 제약·바이오, 의료기기 회사에 적합합니다. 시간 소모적인 기초 조사를 AI로 10분 만에 완료합니다.",
+      "features": [
+        "예상 약가 산정, 기존기술 평가, 선진입·신의료기술평가 준비, 행위·치료재료 등재 전략",
+        "월 10 Credits",
+        "이메일 기반 서포트"
+      ],
       "footer": "경쟁업체 대비 체감 비용을 낮춘 플랜입니다.",
       "cta": "이 플랜 문의하기"
     },
     {
-      "id": "growth",
-      "name": "그로스",
-      "badge": "가장 많이 선택",
-      "tagline": "성장형",
-      "priceHint": "월 100만원대~",
-      "description": "여러 제품 라인을 운영하는 국내 제약사·바이오의 Market Access 팀에 추천합니다.",
-      "features": ["의약품·의료기기 AI 모듈 대부분 사용", "팀 단위 구독 + 주요 프로젝트 원타임 옵션", "온보딩 세션 및 정기 리포트"],
-      "footer": "프로젝트 수와 복잡도에 맞춰 예산 범위 안에서 설계해드립니다.",
+      "id": "professional",
+      "name": "Professional",
+      "nameKo": "프로페셔널",
+      "badge": "성공 확률 극대화",
+      "tagline": "전략 완성형",
+      "headline": "성공적인 등재와 이익 극대화",
+      "price": "월 120만 원",
+      "credits": "40 Credits",
+      "description": "여러 제품 라인을 운영하는 Market Access 팀에 추천합니다. 다각도 시뮬레이션으로 최적의 약가 도출 및 협상 우위를 확보합니다.",
+      "features": [
+        "외국 현황, 교과서·학술지 수재, 대체가능약제, 등재 전략, 약가협상·위험분담제 시뮬레이션, 퇴장방지·원가보전, 재정영향분석",
+        "월 40 Credits",
+        "온보딩 세션 및 정기 리포트"
+      ],
+      "footer": "0.1%의 약가 차이가 가져올 수십억 원의 추가 이익을 고려하면, 120만 원은 매우 낮은 투자입니다.",
       "cta": "이 플랜 문의하기",
       "recommended": true
     },
     {
-      "id": "scale",
-      "name": "스케일",
+      "id": "enterprise",
+      "name": "Enterprise",
+      "nameKo": "엔터프라이즈",
       "badge": null,
-      "tagline": "확장형",
-      "priceHint": "연간 협의",
-      "description": "다수의 브랜드와 고난도 Market Access 프로젝트를 동시에 운영하는 경우를 위한 플랜입니다.",
-      "features": ["모든 AI 모듈 및 커스텀 워크플로우", "글로벌 본사와 한국 지사 통합 활용 설계", "전담 컨설턴트 및 커스텀 리포트"],
+      "tagline": "혁신 내재화형",
+      "headline": "독보적인 기술력의 전사 도입",
+      "price": "별도 문의",
+      "credits": "Custom / 무제한",
+      "description": "다수의 브랜드와 고난도 Market Access 프로젝트를 동시에 운영하는 경우를 위한 플랜입니다. 고난도 경제성평가 및 SLR 프로세스 전체 자동화.",
+      "features": [
+        "체계적 문헌고찰(SLR), 간접비교, 경제성평가 포함 전 모듈 + 커스텀",
+        "Custom / 무제한",
+        "전담 컨설턴트 및 커스텀 리포트"
+      ],
       "footer": "장기 파트너십 기준으로 개별 협의합니다.",
       "cta": "이 플랜 문의하기"
     }
   ],
   "comparisonTable": {
     "title": "플랜 비교",
-    "subtitle": "포함 모듈·건수·지원 수준을 한눈에 비교하세요.",
-    "headers": ["구분", "스타터", "그로스", "스케일"],
+    "subtitle": "포함 모듈·크레딧·지원 수준을 한눈에 비교하세요.",
+    "headers": ["구분", "Starter", "Professional", "Enterprise"],
     "rows": [
-      { "label": "포함 AI 모듈", "starter": "예상가격, 등재전략, 수재 등 핵심 일부", "growth": "의약품·의료기기 대부분", "scale": "전 모듈 + 커스텀" },
-      { "label": "사용 규모", "starter": "월 1~2건 또는 구독", "growth": "팀 구독 + 추가 건", "scale": "무제한·통합 설계" },
-      { "label": "지원 수준", "starter": "이메일 서포트", "growth": "온보딩 + 정기 리포트", "scale": "전담 컨설턴트" },
-      { "label": "가격대", "starter": "월 50만원대~", "growth": "월 100만원대~", "scale": "연간 협의" }
+      { "label": "포함 AI 모듈", "starter": "예상가격, 기존기술·선진입·신의료기술, 행위·치료재료 등재", "professional": "외국현황, 수재, 등재전략, 약가협상·RSA, 퇴장방지·BIA 등", "enterprise": "SLR, 간접비교, 경제성평가 포함 전 모듈 + 커스텀" },
+      { "label": "제공 크레딧", "starter": "10 Credits/월", "professional": "40 Credits/월", "enterprise": "Custom / 무제한" },
+      { "label": "지원 수준", "starter": "이메일 서포트", "professional": "온보딩 + 정기 리포트", "enterprise": "전담 컨설턴트" },
+      { "label": "가격", "starter": "월 50만 원", "professional": "월 120만 원", "enterprise": "별도 문의" }
     ]
+  },
+  "roiCalculator": {
+    "title": "업무 생산성 및 이익 기회 계산기",
+    "subtitle": "아그와헬스 도입 시 예상되는 시간 절감과 기회 가치를 간단히 산출해 보세요. (가정 하에 추정치입니다.)",
+    "inputs": [
+      { "id": "productsPerMonth", "label": "한 달에 검토하는 제품/적응증 수", "placeholder": "예: 5", "unit": "건" },
+      { "id": "hoursPerCase", "label": "현재 1건당 업무 소요 시간", "placeholder": "예: 20", "unit": "시간" },
+      { "id": "hourlyCost", "label": "담당자 시간당 인건비", "placeholder": "예: 50000", "unit": "원" }
+    ],
+    "outputs": {
+      "timeSavedLabel": "매달 아낄 수 있는 시간",
+      "opportunityLabel": "해당 시간의 인건비 절감 (보수적 추정)",
+      "scenarioLabel": "전략 업무에 쓸 때의 잠재 가치"
+    },
+    "assumptionNote": "AI 도입 시 1건당 업무를 약 10분으로 가정했습니다. 전략 가치는 참고용이며, 실제 효과는 상이할 수 있습니다."
+  },
+  "expertReview": {
+    "title": "신뢰를 더하는 전문가 검수",
+    "description": "AI 결과물에 대해 전문가가 검수·보완해 드리는 옵션입니다. (별도 견적)"
   },
   "trustNote": "구체적인 금액은 제품 포트폴리오와 사용 규모를 확인한 뒤 48시간 내 투명하게 제안드립니다."
 }
