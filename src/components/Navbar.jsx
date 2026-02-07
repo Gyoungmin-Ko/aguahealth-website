@@ -28,7 +28,7 @@ export default function Navbar() {
         { label: '경제성평가', path: '/services/economics' },
         { label: '인허가지원', path: '/services/regulatory' },
         { label: '요양급여비용청구', path: '/services/claims' },
-        { label: '퇴장방지의약품', path: '/services/withdrawal-prevention' },
+        { label: '퇴장방지의약품 및 약가조정', path: '/services/withdrawal-prevention' },
         { label: '의료기기', path: '/services/medical-device' },
       ]
     },

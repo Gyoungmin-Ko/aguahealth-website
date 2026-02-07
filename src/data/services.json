@@ -129,10 +129,10 @@
   },
   "withdrawalPrevention": {
     "id": "withdrawal-prevention",
-    "title": "퇴장방지의약품 지정 및 원가보전",
-    "subtitle": "Withdrawal Prevention Drug Designation",
-    "heroSubtitle": "퇴장방지의약품 원가산정방식을 적용해 원가를 보전합니다",
-    "description": "퇴장방지의약품 지정 및 원가보전 지원",
+    "title": "퇴장방지의약품 및 약가조정",
+    "subtitle": "Withdrawal Prevention & Price Adjustment",
+    "heroSubtitle": "퇴장방지의약품 원가보전 및 약가조정(재산정·인하 등) 전략 지원",
+    "description": "퇴장방지의약품 지정·원가보전 및 약가조정 지원",
     "icon": "💊",
     "kpis": [
       { "value": "제품/상품", "label": "원가산정 구분" },

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import SEOHead from '../components/SEOHead'
 import servicesData from '../data/services.json'
 import { aiModules } from '../data/aiModules'
+import aiPricing from '../data/aiPricing.json'
 
 export default function AIServices() {
   const ai = servicesData.aiServices
@@ -85,78 +86,125 @@ export default function AIServices() {
           </div>
         </section>
 
-        {/* Pricing */}
-        <section className="py-20 bg-slate-900 text-white">
+        {/* Pricing: 구독 + 원타임, 클릭 유도 */}
+        <section className="py-20 bg-slate-900 text-white" id="pricing">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                구독형 + 원타임 솔루션 가격 구조
+                {aiPricing.sectionTitle}
               </h2>
               <p className="text-lg text-slate-200">
-                중소 제약사와 국내 지사도 부담 없이 쓸 수 있는 가격대를 목표로 설계했습니다.<br />
-                구체적인 금액은 제품 포트폴리오와 데이터 환경을 확인한 뒤, 투명하게 제안드립니다.
+                {aiPricing.sectionSubtitle}
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="bg-slate-800/60 border border-slate-700 rounded-2xl p-6 flex flex-col">
-                <div className="text-sm font-semibold text-sky-300 mb-2">Basic</div>
-                <h3 className="text-xl font-bold mb-4">입문형 플랜</h3>
-                <p className="text-sm text-slate-200 mb-4">
-                  소수의 브랜드를 운영하는 국내 제약·바이오, 의료기기 회사에 적합합니다.
-                </p>
-                <ul className="text-sm text-slate-100 space-y-2 mb-6">
-                  <li>· 핵심 AI 모듈 일부 사용</li>
-                  <li>· 월간 구독 또는 프로젝트 단위 원타임 선택</li>
-                  <li>· 이메일 기반 서포트</li>
-                </ul>
-                <div className="mt-auto text-xs text-slate-300">
-                  경쟁업체 대비 체감 비용을 확실히 낮춘 플랜입니다.
-                </div>
+            {/* 원타임 단품: 한 건만 써보기 */}
+            <div className="max-w-5xl mx-auto mb-14">
+              <h3 className="text-xl font-bold text-sky-200 mb-2">{aiPricing.oneTime.title}</h3>
+              <p className="text-sm text-slate-400 mb-4">{aiPricing.oneTime.subtitle}</p>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3">
+                {aiPricing.oneTime.items.map((item) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => window.openContactModal?.({ presetMessage: `【AI 솔루션 원타임 신청】\n관심 서비스: ${item.label}\n결과물: ${item.outcome}\n\n(위 서비스 1건 견적·진행 문의드립니다.)\n\n` })}
+                    className="group text-left rounded-xl border border-slate-600 bg-slate-800/80 p-4 hover:border-sky-400 hover:bg-slate-800 transition"
+                  >
+                    <div className="font-semibold text-white group-hover:text-sky-300 mb-1">{item.label}</div>
+                    <div className="text-xs text-slate-400 mb-3 line-clamp-2">{item.outcome}</div>
+                    <span className="text-xs font-medium text-sky-400">1건 신청 →</span>
+                  </button>
+                ))}
               </div>
-
-              <div className="bg-slate-800 border-2 border-sky-400 rounded-2xl p-6 flex flex-col relative">
-                <div className="absolute -top-3 left-6 bg-sky-400 text-slate-900 text-xs font-semibold px-3 py-1 rounded-full">
-                  가장 많이 선택하는 플랜
-                </div>
-                <div className="text-sm font-semibold text-sky-300 mb-2">Standard</div>
-                <h3 className="text-xl font-bold mb-4">성장형 플랜</h3>
-                <p className="text-sm text-slate-200 mb-4">
-                  여러 제품 라인을 운영하는 국내 제약사·바이오 기업의 Market Access 팀에 추천드립니다.
-                </p>
-                <ul className="text-sm text-slate-100 space-y-2 mb-6">
-                  <li>· 의약품·의료기기 AI 모듈 대부분 사용</li>
-                  <li>· 팀 단위 구독 + 주요 프로젝트 원타임 옵션</li>
-                  <li>· 온보딩 세션 및 정기 리포트</li>
-                </ul>
-                <div className="mt-auto text-xs text-slate-300">
-                  프로젝트 수와 복잡도에 맞춰, 예산 범위 안에서 설계해드립니다.
-                </div>
-              </div>
-
-              <div className="bg-slate-800/60 border border-slate-700 rounded-2xl p-6 flex flex-col">
-                <div className="text-sm font-semibold text-sky-300 mb-2">Pro</div>
-                <h3 className="text-xl font-bold mb-4">확장형 플랜</h3>
-                <p className="text-sm text-slate-200 mb-4">
-                  다수의 브랜드와 고난도 Market Access 프로젝트를 동시에 운영하는 경우를 위해 설계되었습니다.
-                </p>
-                <ul className="text-sm text-slate-100 space-y-2 mb-6">
-                  <li>· 모든 AI 모듈 및 커스텀 워크플로우</li>
-                  <li>· 글로벌 본사와 한국 지사 통합 활용 설계</li>
-                  <li>· 전담 컨설턴트 및 커스텀 리포트</li>
-                </ul>
-                <div className="mt-auto text-xs text-slate-300">
-                  장기 파트너십 기준으로 개별 협의합니다.
-                </div>
-              </div>
+              {aiPricing.oneTime.priceHint && (
+                <p className="text-center text-xs text-slate-500 mt-3">{aiPricing.oneTime.priceHint}</p>
+              )}
             </div>
 
-            <div className="text-center mt-10">
+            <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              {aiPricing.tiers.map((tier) => (
+                <div
+                  key={tier.id}
+                  className={`rounded-2xl p-6 flex flex-col relative ${
+                    tier.recommended
+                      ? 'bg-slate-800 border-2 border-sky-400'
+                      : 'bg-slate-800/60 border border-slate-700'
+                  }`}
+                >
+                  {tier.badge && (
+                    <div className="absolute -top-3 left-6 bg-sky-400 text-slate-900 text-xs font-semibold px-3 py-1 rounded-full">
+                      {tier.badge}
+                    </div>
+                  )}
+                  <div className="text-sm font-semibold text-sky-300 mb-2">{tier.name}</div>
+                  <h3 className="text-xl font-bold mb-1">{tier.tagline}</h3>
+                  {tier.priceHint && (
+                    <p className="text-sm font-medium text-sky-200/90 mb-2">{tier.priceHint}</p>
+                  )}
+                  <p className="text-sm text-slate-200 mb-4">{tier.description}</p>
+                  <ul className="text-sm text-slate-100 space-y-2 mb-6 flex-1">
+                    {tier.features.map((f, i) => (
+                      <li key={i}>· {f}</li>
+                    ))}
+                  </ul>
+                  <p className="text-xs text-slate-300 mb-4">{tier.footer}</p>
+                  <button
+                    type="button"
+                    onClick={() => window.openContactModal?.({
+                      presetMessage: `【AI 솔루션 플랜 문의】\n관심 플랜: ${tier.name} (${tier.tagline})\n\n(위 플랜 견적·맞춤 제안 요청드립니다.)\n\n`
+                    })}
+                    className={`w-full py-3 rounded-lg font-semibold transition ${tier.recommended ? 'bg-sky-400 text-slate-900 hover:bg-sky-300' : 'bg-slate-700 text-white hover:bg-slate-600'}`}
+                  >
+                    {tier.cta}
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            {/* 티어 비교표 */}
+            {aiPricing.comparisonTable && (
+              <div className="max-w-5xl mx-auto mt-14">
+                <h3 className="text-xl font-bold text-sky-200 mb-2 text-center">{aiPricing.comparisonTable.title}</h3>
+                <p className="text-sm text-slate-400 mb-6 text-center">{aiPricing.comparisonTable.subtitle}</p>
+                <div className="overflow-x-auto rounded-xl border border-slate-600 bg-slate-800/60">
+                  <table className="w-full text-sm text-left">
+                    <thead>
+                      <tr className="border-b border-slate-600">
+                        {aiPricing.comparisonTable.headers.map((h, i) => (
+                          <th
+                            key={i}
+                            className={`px-4 py-3 font-semibold ${i === 0 ? 'text-slate-300 w-1/5' : 'text-sky-200'}`}
+                          >
+                            {h}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {aiPricing.comparisonTable.rows.map((row, i) => (
+                        <tr key={i} className="border-b border-slate-700 last:border-0">
+                          <td className="px-4 py-3 text-slate-300 font-medium">{row.label}</td>
+                          <td className="px-4 py-3 text-slate-200">{row.starter}</td>
+                          <td className="px-4 py-3 text-slate-200 bg-sky-900/20">{row.growth}</td>
+                          <td className="px-4 py-3 text-slate-200">{row.scale}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+
+            <p className="text-center text-sm text-slate-400 mt-8 max-w-2xl mx-auto">
+              {aiPricing.trustNote}
+            </p>
+            <div className="text-center mt-6">
               <button
-                onClick={() => window.openContactModal()}
-                className="inline-flex items-center px-8 py-3 bg-sky-400 text-slate-900 rounded-lg font-semibold hover:bg-sky-300 transition"
+                type="button"
+                onClick={() => window.openContactModal?.()}
+                className="inline-flex items-center px-6 py-2.5 rounded-lg border border-slate-500 text-slate-200 hover:bg-slate-700 transition text-sm font-medium"
               >
-                우리 팀에 맞는 플랜 상담하기
+                플랜 비교·맞춤 상담 요청
               </button>
             </div>
           </div>

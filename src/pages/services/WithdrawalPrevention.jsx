@@ -5,9 +5,9 @@ import { getAiModuleById } from '../../data/aiModules'
 
 export default function WithdrawalPrevention() {
   const seoInfo = seoData.services?.withdrawalPrevention || {
-    title: '퇴장방지의약품 지정 및 원가보전 - 아그와헬스',
-    description: '퇴장방지의약품 원가산정방식을 적용해 원가를 보전합니다. 제품(국내제조)과 상품(수입의약품)을 구분해 산정합니다.',
-    keywords: '퇴장방지의약품, 원가보전, 원가산정, 국내제조, 수입의약품',
+    title: '퇴장방지의약품 및 약가조정 - 아그와헬스',
+    description: '퇴장방지의약품 원가보전 및 약가조정(재산정·인하 등)을 지원합니다. 제품/상품 구분 원가산정과 심평원 약가조정 제도 대응을 돕습니다.',
+    keywords: '퇴장방지의약품, 약가조정, 원가보전, 원가산정, 국내제조, 수입의약품',
   }
   const moduleInfo = getAiModuleById('drug-withdrawal-prevention')
   const openContactModal = () => window.openContactModal?.()
@@ -24,10 +24,10 @@ export default function WithdrawalPrevention() {
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
-                퇴장방지의약품 지정 및 원가보전
+                퇴장방지의약품 및 약가조정
               </h1>
               <p className="text-xl md:text-2xl text-blue-100 mb-8 leading-relaxed">
-                퇴장방지의약품 원가산정방식을 적용해 원가를 보전합니다. 제품(국내제조)과 상품(수입의약품)을 구분해 산정합니다.
+                퇴장방지의약품 원가보전 및 약가조정(재산정·인하 등) 전략을 지원합니다. 제품/상품 구분 원가산정과 심평원 약가조정 제도 대응을 돕습니다.
               </p>
               <button
                 onClick={openContactModal}
@@ -44,10 +44,13 @@ export default function WithdrawalPrevention() {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
-                퇴장방지의약품이란?
+                퇴장방지의약품 및 약가조정
               </h2>
               <p className="text-gray-600 leading-relaxed mb-6">
-                퇴장방지의약품은 의약품 시장에서 공급이 부족하거나 단절될 우려가 있는 필수 의약품을 지정하여 원가를 보전하는 제도입니다. 제품(국내제조)과 상품(수입의약품)으로 구분되며, 각각에 맞는 원가산정 방식이 적용됩니다. 아그와헬스는 원가산정 관련 자료 검토·산정 지원을 제공합니다.
+                <strong>퇴장방지의약품</strong>은 의약품 시장에서 공급이 부족하거나 단절될 우려가 있는 필수 의약품을 지정하여 원가를 보전하는 제도입니다. 제품(국내제조)과 상품(수입의약품)으로 구분되며, 각각에 맞는 원가산정 방식이 적용됩니다.
+              </p>
+              <p className="text-gray-600 leading-relaxed mb-6">
+                <strong>약가조정</strong>은 심평원이 실시하는 재산정·인하·상한가 재설정 등으로, 시장 가격·경쟁 구조·역학·R&D 비용 등을 반영합니다. 아그와헬스는 퇴장방지의약품 원가산정과 약가조정 관련 자료 검토·산정·전략 수립을 지원합니다.
               </p>
             </div>
           </div>
@@ -78,9 +81,9 @@ export default function WithdrawalPrevention() {
         {/* CTA */}
         <section className="py-20 bg-[#102a43] text-white">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">퇴장방지의약품 원가보전이 궁금하신가요?</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">퇴장방지의약품 및 약가조정이 궁금하신가요?</h2>
             <p className="text-blue-100 text-lg mb-8 max-w-2xl mx-auto">
-              전문가와 상담하세요. 귀사의 퇴장방지의약품 지정 및 원가보전을 지원합니다.
+              전문가와 상담하세요. 귀사의 퇴장방지의약품 원가보전 및 약가조정 전략을 지원합니다.
             </p>
             <button
               onClick={openContactModal}

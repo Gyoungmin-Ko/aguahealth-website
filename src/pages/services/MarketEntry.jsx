@@ -11,7 +11,6 @@ const MARKET_ENTRY_AI_MODULES = [
   'drug-substitutes',
   'drug-listing-strategy',
   'drug-foreign-landscape',
-  'drug-withdrawal-prevention',
   'drug-pricing-strategy',
 ]
 

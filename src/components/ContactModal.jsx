@@ -11,8 +11,14 @@ export default function ContactModal() {
   })
 
   useEffect(() => {
-    // 전역에서 모달 열기 가능하도록
-    window.openContactModal = () => setIsOpen(true)
+    // 전역에서 모달 열기 가능하도록. options.presetMessage 있으면 문의 내용에 미리 채움
+    window.openContactModal = (options = {}) => {
+      const preset = options?.presetMessage || options?.preset || ''
+      if (preset) {
+        setFormData((prev) => ({ ...prev, message: preset }))
+      }
+      setIsOpen(true)
+    }
     window.closeContactModal = () => setIsOpen(false)
 
     return () => {
