@@ -10,6 +10,8 @@ export default function Footer() {
       { label: '경제성평가', path: '/services/economics' },
       { label: '인허가지원', path: '/services/regulatory' },
       { label: '요양급여비용청구', path: '/services/claims' },
+      { label: '퇴장방지의약품', path: '/services/withdrawal-prevention' },
+      { label: '의료기기', path: '/services/medical-device' },
     ],
     company: [
       { label: '회사소개', path: '/about' },

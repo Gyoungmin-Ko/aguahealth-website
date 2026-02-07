@@ -16,6 +16,8 @@ import MarketEntry from './pages/services/MarketEntry'
 import Economics from './pages/services/Economics'
 import Regulatory from './pages/services/Regulatory'
 import Claims from './pages/services/Claims'
+import WithdrawalPrevention from './pages/services/WithdrawalPrevention'
+import MedicalDevice from './pages/services/MedicalDevice'
 import ServiceAI from './pages/services/AIServices'
 
 function App() {
@@ -35,6 +37,8 @@ function App() {
         <Route path="/services/economics" element={<Economics />} />
         <Route path="/services/regulatory" element={<Regulatory />} />
         <Route path="/services/claims" element={<Claims />} />
+        <Route path="/services/withdrawal-prevention" element={<WithdrawalPrevention />} />
+        <Route path="/services/medical-device" element={<MedicalDevice />} />
         <Route path="/services/ai-solutions" element={<ServiceAI />} />
       </Routes>
       <Footer />

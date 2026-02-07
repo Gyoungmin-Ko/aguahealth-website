@@ -1,6 +1,19 @@
+import { Link } from 'react-router-dom'
 import SEOHead from '../../components/SEOHead'
 import servicesData from '../../data/services.json'
 import seoData from '../../data/seo.json'
+import { aiModules } from '../../data/aiModules'
+
+const MARKET_ENTRY_AI_MODULES = [
+  'drug-expected-price',
+  'drug-listing-evidence',
+  'drug-journal-indexing',
+  'drug-substitutes',
+  'drug-listing-strategy',
+  'drug-foreign-landscape',
+  'drug-withdrawal-prevention',
+  'drug-pricing-strategy',
+]
 
 export default function MarketEntry() {
   const service = servicesData.marketEntry
@@ -163,6 +176,37 @@ export default function MarketEntry() {
                     {item.desc && <p className="text-gray-600">{item.desc}</p>}
                   </div>
                 ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* AI 모듈 연결 */}
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 text-center">
+                시장진입 AI 모듈
+              </h2>
+              <p className="text-gray-600 text-center mb-10 max-w-2xl mx-auto">
+                시장진입과 연계된 AI 분석 모듈로 빠르게 전략을 수립하세요.
+              </p>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {MARKET_ENTRY_AI_MODULES.map((id) => {
+                  const m = aiModules.find((x) => x.id === id)
+                  if (!m) return null
+                  return (
+                    <Link
+                      key={m.id}
+                      to={`/ai-solutions/${m.id}`}
+                      className="group block border border-gray-200 rounded-xl p-5 hover:border-[#285BAB]/40 hover:shadow-md transition bg-white"
+                    >
+                      <div className="text-base font-bold text-slate-900 mb-1 group-hover:text-[#285BAB]">{m.title}</div>
+                      <div className="text-xs text-slate-500 line-clamp-2">{m.tagline}</div>
+                      <div className="mt-3 text-sm text-[#285BAB] font-medium">AI 모듈 바로가기 →</div>
+                    </Link>
+                  )
+                })}
               </div>
             </div>
           </div>

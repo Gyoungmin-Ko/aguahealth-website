@@ -157,6 +157,27 @@ export const aiModules = [
   },
 
   {
+    id: 'drug-pricing-strategy',
+    category: '의약품',
+    title: '약가협상 전략',
+    tagline: '약가협상 시나리오와 대응 전략을 설계합니다.',
+    comingSoon: true,
+  },
+  {
+    id: 'drug-rsa-simulation',
+    category: '의약품',
+    title: '위험분담제 시뮬레이션',
+    tagline: 'RSA 시나리오별 재정·성과 영향을 시뮬레이션합니다.',
+    comingSoon: true,
+  },
+  {
+    id: 'drug-indirect-comparison',
+    category: '의약품',
+    title: '간접비교 시뮬레이터',
+    tagline: '직접 비교가 불가할 때 간접비교(ITC/MTAC) 시나리오를 설계합니다.',
+    comingSoon: true,
+  },
+  {
     id: 'drug-foreign-landscape',
     category: '의약품',
     title: '외국 현황 리포트',

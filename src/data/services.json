@@ -126,5 +126,30 @@
       "전략 최적화"
     ],
     "accuracy": "95% 이상"
+  },
+  "withdrawalPrevention": {
+    "id": "withdrawal-prevention",
+    "title": "퇴장방지의약품 지정 및 원가보전",
+    "subtitle": "Withdrawal Prevention Drug Designation",
+    "heroSubtitle": "퇴장방지의약품 원가산정방식을 적용해 원가를 보전합니다",
+    "description": "퇴장방지의약품 지정 및 원가보전 지원",
+    "icon": "💊",
+    "kpis": [
+      { "value": "제품/상품", "label": "원가산정 구분" },
+      { "value": "100%", "label": "원가산정 특화" }
+    ]
+  },
+  "medicalDevice": {
+    "id": "medical-device",
+    "title": "의료기기",
+    "subtitle": "Medical Device",
+    "heroSubtitle": "의료기기 시장 진입을 위한 기존기술 평가, 선진입, 신의료기술평가, 등재 전략 지원",
+    "description": "의료기기 인허가 및 등재 전략 지원",
+    "icon": "🔬",
+    "kpis": [
+      { "value": "기존기술", "label": "여부 평가" },
+      { "value": "선진입", "label": "의료기술 평가" },
+      { "value": "등재", "label": "전략 수립" }
+    ]
   }
 }

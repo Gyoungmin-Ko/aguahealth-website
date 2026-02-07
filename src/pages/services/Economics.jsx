@@ -1,6 +1,16 @@
+import { Link } from 'react-router-dom'
 import SEOHead from '../../components/SEOHead'
 import servicesData from '../../data/services.json'
 import seoData from '../../data/seo.json'
+import { aiModules } from '../../data/aiModules'
+
+const ECONOMICS_AI_MODULES = [
+  'drug-hee-sim',
+  'drug-slr',
+  'drug-bia',
+  'drug-rsa-simulation',
+  'drug-indirect-comparison',
+]
 
 export default function Economics() {
   const service = servicesData.economics
@@ -201,6 +211,37 @@ export default function Economics() {
                   <li className="flex items-start gap-2"><span className="text-green-500">✓</span> 학술대회 정보 제공</li>
                   <li className="flex items-start gap-2"><span className="text-green-500">✓</span> 최신 가이드라인 및 방법론 동향 제공</li>
                 </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 경제성평가 AI 모듈 */}
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 text-center">
+                경제성평가 AI 모듈
+              </h2>
+              <p className="text-gray-600 text-center mb-10 max-w-2xl mx-auto">
+                경제성평가와 연계된 AI 시뮬레이터로 빠르게 분석 결과를 확인하세요.
+              </p>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-16">
+                {ECONOMICS_AI_MODULES.map((id) => {
+                  const m = aiModules.find((x) => x.id === id)
+                  if (!m) return null
+                  return (
+                    <Link
+                      key={m.id}
+                      to={`/ai-solutions/${m.id}`}
+                      className="block border border-gray-200 rounded-xl p-5 hover:border-[#285BAB]/40 hover:shadow-md transition bg-white"
+                    >
+                      <div className="text-base font-bold text-slate-900 mb-1">{m.title}</div>
+                      <div className="text-xs text-slate-500 line-clamp-2">{m.tagline}</div>
+                      <div className="mt-3 text-sm text-[#285BAB] font-medium">AI 모듈 바로가기 →</div>
+                    </Link>
+                  )
+                })}
               </div>
             </div>
           </div>

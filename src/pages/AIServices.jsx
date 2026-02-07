@@ -30,90 +30,37 @@ export default function AIServices() {
           </div>
         </section>
 
-        {/* Features by domain */}
-        <section className="py-20 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto mb-12 text-center">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                의약품·의료기기 전용 AI 워크플로우
-              </h2>
-              <p className="text-lg text-gray-600">
-                Market Access 실무에서 반복되는 리서치·분석 업무를 워크플로우 단위로 묶어, 클릭 몇 번으로 실행할 수 있습니다.
-              </p>
-            </div>
-
-            <div className="grid lg:grid-cols-2 gap-10">
-              <div className="bg-slate-50 rounded-2xl p-8 border border-slate-100">
-                <h3 className="text-2xl font-semibold mb-4">의약품용 AI 모듈</h3>
-                <p className="text-sm text-gray-600 mb-4">
-                  새로운 약제를 한국 시장에 런칭할 때 필요한 분석을 한 번에.
-                </p>
-                <ul className="space-y-2 text-gray-800 text-sm">
-                  <li>· 예상 보험가격 시나리오 생성</li>
-                  <li>· 교과서 및 의약품집 수재내역 스크리닝</li>
-                  <li>· 학술지 수재내역 및 근거 정리</li>
-                  <li>· 예상 대체가능약제 후보 탐색</li>
-                  <li>· 체계적 문헌고찰 프로토콜 제안</li>
-                  <li>· 경제성평가(CEA/CUA) AI 시뮬레이터</li>
-                  <li>· 재정영향분석(BIA) 자동 계산</li>
-                  <li>· 건강보험 등재 전략 옵션 비교</li>
-                  <li>· 주요 국가 외국 현황 리포트 생성</li>
-                  <li>· 퇴장방지의약품 지정 및 원가보전 분석</li>
-                  <li>· 약가협상 전략 시나리오 설계</li>
-                  <li>· 위험분담제 적용 시뮬레이션</li>
-                </ul>
-              </div>
-
-              <div className="bg-slate-50 rounded-2xl p-8 border border-slate-100">
-                <h3 className="text-2xl font-semibold mb-4">의료기기용 AI 모듈</h3>
-                <p className="text-sm text-gray-600 mb-4">
-                  의료기기 특성에 맞춘 인허가·급여 전략 지원.
-                </p>
-                <ul className="space-y-2 text-gray-800 text-sm">
-                  <li>· 기존기술 여부 평가 지원</li>
-                  <li>· 선진입의료기술 평가 준비</li>
-                  <li>· 신의료기술 평가 전략 제안</li>
-                  <li>· 행위 및 치료재료 등재 시나리오 설계</li>
-                  <li>· 치료재료 등재 사례 분석</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Module gallery (wireframes) */}
+        {/* Market Access AI Intelligence */}
         <section className="py-20 bg-gray-50">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto mb-12 text-center">
+            <div className="max-w-5xl mx-auto mb-12 text-center">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                AI 모듈 미리보기 (화면 구조)
+                Market Access AI Intelligence
               </h2>
               <p className="text-lg text-gray-600">
                 각 모듈은 “입력 → 결과물(리포트/표/슬라이드)” 흐름으로 설계합니다.
-                먼저 화면 구조를 잡고, 이후 기능을 붙여 빠르게 제품화합니다.
+                시장진입전략, 경제성평가, 의료기기 서비스에서 해당 AI 모듈로 바로 이동할 수 있습니다.
               </p>
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-10">
+            <div className="flex flex-col gap-12 max-w-5xl mx-auto">
               {['의약품', '의료기기'].map((group) => (
-                <div key={group} className="bg-white rounded-2xl border border-slate-200 p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-xl font-semibold text-slate-900">{group} 모듈</h3>
-                  </div>
-                  <div className="grid sm:grid-cols-2 gap-4">
+                <div key={group} className="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
+                  <h3 className="text-2xl font-bold text-slate-900 mb-6">{group} 모듈</h3>
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
                     {aiModules
                       .filter((m) => m.category === group)
                       .map((m) => (
                         <Link
                           key={m.id}
                           to={`/ai-solutions/${m.id}`}
-                          className="group block rounded-xl border border-slate-200 bg-white p-4 hover:border-[#285BAB]/40 hover:shadow-md transition"
+                          className="group block rounded-xl border border-slate-200 bg-slate-50/50 p-6 hover:border-[#285BAB]/40 hover:shadow-lg hover:bg-white transition min-h-[140px] flex flex-col"
                         >
-                          <div className="text-sm font-semibold text-slate-900 group-hover:text-[#285BAB]">
+                          <div className="text-base font-bold text-slate-900 group-hover:text-[#285BAB] mb-2">
                             {m.title}
                           </div>
-                          <div className="text-xs text-slate-500 mt-1 line-clamp-2">{m.tagline}</div>
-                          <div className="mt-3 text-xs font-medium">
+                          <div className="text-sm text-slate-600 flex-1 line-clamp-3">{m.tagline}</div>
+                          <div className="mt-4 text-sm font-medium">
                             {m.inputs?.length && !m.comingSoon ? (
                               <span className="text-[#285BAB]">바로가기 →</span>
                             ) : (
